@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.1.1";
+const CARD_VERSION = "1.1.2";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -734,8 +734,31 @@ if (!customElements.get("buymeapie-card-editor")) {
 }
 
 // Tell HA to re-render any cards that showed "Custom element doesn't exist"
-// before our define() ran. HA's Lovelace listens for this event.
-window.dispatchEvent(new Event("ll-rebuild"));
+// before our define() ran.
+// Strategy: fire ll-rebuild immediately + delayed, and also watch for any
+// error cards that appear later and rebuild those too.
+const _rebuild = () => window.dispatchEvent(new Event("ll-rebuild"));
+_rebuild();
+setTimeout(_rebuild, 200);
+setTimeout(_rebuild, 1000);
+setTimeout(_rebuild, 3000);
+
+// Also observe DOM for late-appearing error cards and force rebuild
+if (typeof MutationObserver !== "undefined") {
+  const _obs = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      for (const n of m.addedNodes) {
+        if (n.nodeType === 1 && n.textContent?.includes("buymeapie-card")) {
+          _rebuild();
+          return;
+        }
+      }
+    }
+  });
+  _obs.observe(document.body, { childList: true, subtree: true });
+  // Stop watching after 10s to avoid ongoing overhead
+  setTimeout(() => _obs.disconnect(), 10000);
+}
 
 window.customCards = window.customCards || [];
 if (!window.customCards.some((c) => c.type === "buymeapie-card")) {
