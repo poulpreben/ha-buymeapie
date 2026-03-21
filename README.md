@@ -1,5 +1,8 @@
 # Buy Me a Pie for Home Assistant
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=buymeapie)
+
 A Home Assistant custom integration for the [Buy Me a Pie](https://buymeapie.com) shopping list service. Syncs your shopping lists as todo entities with a custom Lovelace card featuring autocomplete from your item history.
 
 ## Features
@@ -16,6 +19,10 @@ A Home Assistant custom integration for the [Buy Me a Pie](https://buymeapie.com
 ## Installation
 
 ### HACS (recommended)
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=poulpreben&repository=ha-buymeapie&category=integration)
+
+Or manually:
 
 1. Open HACS in Home Assistant
 2. Go to **Integrations** > **Custom repositories**
