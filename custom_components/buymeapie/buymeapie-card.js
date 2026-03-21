@@ -575,7 +575,7 @@ class BuyMeAPieCard extends HTMLElement {
           <div class="bmap-suggestions"></div>
         </div>
 
-        <div class="bmap-items"${maxItems ? ` style="max-height:${maxItems * 48 + 32}px"` : ""}>
+        <div class="bmap-items"${maxItems ? ` style="max-height:${maxItems * 49}px"` : ""}>
           ${needsAction.length === 0 && (!showCompleted || completed.length === 0) ? `
             <div class="bmap-empty">No items</div>
           ` : ""}
