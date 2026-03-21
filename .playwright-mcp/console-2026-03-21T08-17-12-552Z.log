@@ -1,0 +1,8 @@
+[     330ms] Transition was skipped
+[     363ms] [ERROR] Failure writing unhandled promise rejection to system log: Error: Cannot parse given Error object
+    at Object.parse (http://localhost:8123/frontend_latest/61210.470a90aa4bd94086.js:1:478)
+    at http://localhost:8123/frontend_latest/61210.470a90aa4bd94086.js:1:27684
+    at new Promise (<anonymous>)
+    at fromError (http://localhost:8123/frontend_latest/61210.470a90aa4bd94086.js:1:27650)
+    at t (http://localhost:8123/frontend_latest/29090.18d35e3322eca686.js:1:621)
+    at http://localhost:8123/frontend_latest/app.bdfac6a7ad3bdb9b.js:51:18717 @ http://localhost:8123/frontend_latest/app.bdfac6a7ad3bdb9b.js:50
