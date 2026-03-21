@@ -1,0 +1,25 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Buy Me a Pie",
+        "description": "Enter your Buy Me a Pie login and PIN. Optionally set a custom API endpoint.",
+        "data": {
+          "login": "Login",
+          "pin": "PIN",
+          "api_url": "API URL (advanced)"
+        },
+        "data_description": {
+          "api_url": "Override the API endpoint. Leave as default unless you are using a self-hosted or mock server."
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid login or PIN.",
+      "cannot_connect": "Unable to connect to Buy Me a Pie."
+    },
+    "abort": {
+      "already_configured": "This account is already configured."
+    }
+  }
+}

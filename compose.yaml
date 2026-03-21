@@ -1,0 +1,23 @@
+services:
+  mock-api:
+    build:
+      context: ./mock_server
+      dockerfile: Containerfile
+    ports:
+      - "8080:8080"
+    container_name: bmap-mock-api
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: bmap-homeassistant
+    volumes:
+      - ha_config:/config
+      - ./custom_components/buymeapie:/config/custom_components/buymeapie:z
+    ports:
+      - "8123:8123"
+    depends_on:
+      - mock-api
+    restart: unless-stopped
+
+volumes:
+  ha_config:

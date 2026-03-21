@@ -1,0 +1,22 @@
+[project]
+name = "bmap-mock-api"
+version = "0.1.0"
+description = "Mock API server for Buy Me a Pie"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11",
+    "ty>=0.0.1a7",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
