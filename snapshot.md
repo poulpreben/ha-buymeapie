@@ -1,0 +1,2209 @@
+- generic [ref=e18]:
+  - complementary [ref=e19]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - generic "Sidebar toggle" [ref=e24]:
+          - button "Sidebar toggle" [ref=e25] [cursor=pointer]:
+            - generic [ref=e27]:
+              - img
+        - generic [ref=e28]: Home Assistant
+      - generic [ref=e29]:
+        - generic [ref=e31]:
+          - generic:
+            - listitem [ref=e33] [cursor=pointer]:
+              - generic [ref=e34]:
+                - generic [ref=e36]:
+                  - img
+                - generic [ref=e38]: Overview
+            - listitem [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]:
+                - generic [ref=e42]:
+                  - img
+                - generic [ref=e44]: Map
+            - listitem [ref=e46] [cursor=pointer]:
+              - generic [ref=e47]:
+                - generic [ref=e49]:
+                  - img
+                - generic [ref=e51]: test
+            - listitem [ref=e53] [cursor=pointer]:
+              - generic [ref=e54]:
+                - generic [ref=e55]:
+                  - img
+                - generic [ref=e57]: Energy
+            - listitem [ref=e59] [cursor=pointer]:
+              - generic [ref=e60]:
+                - generic [ref=e61]:
+                  - img
+                - generic [ref=e63]: Activity
+            - listitem [ref=e65] [cursor=pointer]:
+              - generic [ref=e66]:
+                - generic [ref=e67]:
+                  - img
+                - generic [ref=e69]: History
+            - listitem [ref=e71] [cursor=pointer]:
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - img
+                - generic [ref=e75]: Media
+            - listitem [ref=e77] [cursor=pointer]:
+              - generic [ref=e78]:
+                - generic [ref=e79]:
+                  - img
+                - generic [ref=e81]: To-do lists
+        - generic [ref=e82]:
+          - generic:
+            - listitem [ref=e84] [cursor=pointer]:
+              - generic [ref=e85]:
+                - generic [ref=e86]:
+                  - img
+                - generic [ref=e88]: Settings
+            - listitem [ref=e90] [cursor=pointer]:
+              - generic [ref=e91]:
+                - generic [ref=e92]:
+                  - img
+                - generic [ref=e94]: Notifications
+            - listitem [ref=e96] [cursor=pointer]:
+              - generic [ref=e97]:
+                - generic [ref=e99]: p
+                - generic [ref=e101]: preben
+  - generic [ref=e106]:
+    - generic [ref=e109]:
+      - generic [ref=e110]: test
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - generic:
+            - generic "Add to Home Assistant" [ref=e135]:
+              - button [ref=e115] [cursor=pointer]:
+                - generic [ref=e117]:
+                  - img
+            - generic:
+              - generic: Add device
+              - generic: Create automation
+              - generic: Create area
+              - generic: Add person
+        - button [ref=e120] [cursor=pointer]:
+          - generic [ref=e122]:
+            - img
+        - button [ref=e125] [cursor=pointer]:
+          - generic [ref=e127]:
+            - img
+        - button [ref=e130] [cursor=pointer]:
+          - generic [ref=e132]:
+            - img
+    - generic [ref=e146]:
+      - paragraph [ref=e153]: New section
+      - generic [ref=e7211]:
+        - generic:
+          - generic [ref=e7212]:
+            - img [ref=e7214]
+            - generic [ref=e7216]: Shopping list
+            - generic [ref=e7217]: "8"
+          - generic [ref=e7218]:
+            - textbox "Add item, quantity" [ref=e7219]
+            - button "Add item" [ref=e7220] [cursor=pointer]:
+              - img [ref=e7221]
+          - generic [ref=e7223]:
+            - generic [ref=e7224]: Active
+            - generic [ref=e7225] [cursor=pointer]:
+              - generic [ref=e7228]: Hotdogposer
+              - button "Remove" [ref=e7229]:
+                - img [ref=e7230]
+            - generic [ref=e7232] [cursor=pointer]:
+              - generic [ref=e7235]: Snackposer
+              - button "Remove" [ref=e7236]:
+                - img [ref=e7237]
+            - generic [ref=e7239] [cursor=pointer]:
+              - generic [ref=e7242]: Kyllingepølser
+              - button "Remove" [ref=e7243]:
+                - img [ref=e7244]
+            - generic [ref=e7246] [cursor=pointer]:
+              - generic [ref=e7249]: Remoulade
+              - button "Remove" [ref=e7250]:
+                - img [ref=e7251]
+            - generic [ref=e7253] [cursor=pointer]:
+              - generic [ref=e7256]: Ketchup
+              - button "Remove" [ref=e7257]:
+                - img [ref=e7258]
+            - generic [ref=e7260] [cursor=pointer]:
+              - generic [ref=e7263]: Hotdogdressing
+              - button "Remove" [ref=e7264]:
+                - img [ref=e7265]
+            - generic [ref=e7267] [cursor=pointer]:
+              - generic [ref=e7269]:
+                - generic [ref=e7270]: Hotdogbrød
+                - generic [ref=e7271]: "50"
+              - button "Remove" [ref=e7272]:
+                - img [ref=e7273]
+            - generic [ref=e7275] [cursor=pointer]:
+              - generic [ref=e7278]: Smør
+              - button "Remove" [ref=e7279]:
+                - img [ref=e7280]
+            - generic [ref=e7283]: Completed
+            - generic [ref=e7284] [cursor=pointer]:
+              - generic [ref=e7287]: Hrov salt
+              - button "Remove" [ref=e7288]:
+                - img [ref=e7289]
+            - generic [ref=e7291] [cursor=pointer]:
+              - generic [ref=e7294]: Skæreost
+              - button "Remove" [ref=e7295]:
+                - img [ref=e7296]
+            - generic [ref=e7298] [cursor=pointer]:
+              - generic [ref=e7301]: Musli
+              - button "Remove" [ref=e7302]:
+                - img [ref=e7303]
+            - generic [ref=e7305] [cursor=pointer]:
+              - generic [ref=e7308]: Yoghurt
+              - button "Remove" [ref=e7309]:
+                - img [ref=e7310]
+            - generic [ref=e7312] [cursor=pointer]:
+              - generic [ref=e7315]: Letmælk
+              - button "Remove" [ref=e7316]:
+                - img [ref=e7317]
+            - generic [ref=e7319] [cursor=pointer]:
+              - generic [ref=e7322]: Pålæg
+              - button "Remove" [ref=e7323]:
+                - img [ref=e7324]
+            - generic [ref=e7326] [cursor=pointer]:
+              - generic [ref=e7329]: Små flute
+              - button "Remove" [ref=e7330]:
+                - img [ref=e7331]
+            - generic [ref=e7333] [cursor=pointer]:
+              - generic [ref=e7336]: Kylling
+              - button "Remove" [ref=e7337]:
+                - img [ref=e7338]
+            - generic [ref=e7340] [cursor=pointer]:
+              - generic [ref=e7343]: Mayonaise
+              - button "Remove" [ref=e7344]:
+                - img [ref=e7345]
+            - generic [ref=e7347] [cursor=pointer]:
+              - generic [ref=e7349]:
+                - generic [ref=e7350]: Fløde
+                - generic [ref=e7351]: 0,5 dl
+              - button "Remove" [ref=e7352]:
+                - img [ref=e7353]
+            - generic [ref=e7355] [cursor=pointer]:
+              - generic [ref=e7358]: Spaghetti
+              - button "Remove" [ref=e7359]:
+                - img [ref=e7360]
+            - generic [ref=e7362] [cursor=pointer]:
+              - generic [ref=e7364]:
+                - generic [ref=e7365]: Frisk mozarella
+                - generic [ref=e7366]: "1"
+              - button "Remove" [ref=e7367]:
+                - img [ref=e7368]
+            - generic [ref=e7370] [cursor=pointer]:
+              - generic [ref=e7373]: Flødeost naturel
+              - button "Remove" [ref=e7374]:
+                - img [ref=e7375]
+            - generic [ref=e7377] [cursor=pointer]:
+              - generic [ref=e7380]: Macaroni
+              - button "Remove" [ref=e7381]:
+                - img [ref=e7382]
+            - generic [ref=e7384] [cursor=pointer]:
+              - generic [ref=e7386]:
+                - generic [ref=e7387]: Squash
+                - generic [ref=e7388]: "2"
+              - button "Remove" [ref=e7389]:
+                - img [ref=e7390]
+            - generic [ref=e7392] [cursor=pointer]:
+              - generic [ref=e7395]: Fiskefars
+              - button "Remove" [ref=e7396]:
+                - img [ref=e7397]
+            - generic [ref=e7399] [cursor=pointer]:
+              - generic [ref=e7402]: Kartofler til ovn
+              - button "Remove" [ref=e7403]:
+                - img [ref=e7404]
+            - generic [ref=e7406] [cursor=pointer]:
+              - generic [ref=e7409]: Blandede rodfrugter
+              - button "Remove" [ref=e7410]:
+                - img [ref=e7411]
+            - generic [ref=e7413] [cursor=pointer]:
+              - generic [ref=e7416]: Creme fraiche
+              - button "Remove" [ref=e7417]:
+                - img [ref=e7418]
+            - generic [ref=e7420] [cursor=pointer]:
+              - generic [ref=e7423]: Salsa
+              - button "Remove" [ref=e7424]:
+                - img [ref=e7425]
+            - generic [ref=e7427] [cursor=pointer]:
+              - generic [ref=e7429]:
+                - generic [ref=e7430]: Nacho chips
+                - generic [ref=e7431]: "2"
+              - button "Remove" [ref=e7432]:
+                - img [ref=e7433]
+            - generic [ref=e7435] [cursor=pointer]:
+              - generic [ref=e7438]: Cheddar
+              - button "Remove" [ref=e7439]:
+                - img [ref=e7440]
+            - generic [ref=e7442] [cursor=pointer]:
+              - generic [ref=e7444]:
+                - generic [ref=e7445]: Avocado
+                - generic [ref=e7446]: 2-3
+              - button "Remove" [ref=e7447]:
+                - img [ref=e7448]
+            - generic [ref=e7450] [cursor=pointer]:
+              - generic [ref=e7453]: Kyllingelårkød
+              - button "Remove" [ref=e7454]:
+                - img [ref=e7455]
+            - generic [ref=e7457] [cursor=pointer]:
+              - generic [ref=e7460]: Hakket oksekød
+              - button "Remove" [ref=e7461]:
+                - img [ref=e7462]
+            - generic [ref=e7464] [cursor=pointer]:
+              - generic [ref=e7466]:
+                - generic [ref=e7467]: pasta
+                - generic [ref=e7468]: 2 ps
+              - button "Remove" [ref=e7469]:
+                - img [ref=e7470]
+            - generic [ref=e7472] [cursor=pointer]:
+              - generic [ref=e7475]: Broccoli
+              - button "Remove" [ref=e7476]:
+                - img [ref=e7477]
+            - generic [ref=e7479] [cursor=pointer]:
+              - generic [ref=e7482]: Citronsyre
+              - button "Remove" [ref=e7483]:
+                - img [ref=e7484]
+            - generic [ref=e7486] [cursor=pointer]:
+              - generic [ref=e7489]: Skraldeposer
+              - button "Remove" [ref=e7490]:
+                - img [ref=e7491]
+            - generic [ref=e7493] [cursor=pointer]:
+              - generic [ref=e7496]: Toiletpapir
+              - button "Remove" [ref=e7497]:
+                - img [ref=e7498]
+            - generic [ref=e7500] [cursor=pointer]:
+              - generic [ref=e7503]: Sukker
+              - button "Remove" [ref=e7504]:
+                - img [ref=e7505]
+            - generic [ref=e7507] [cursor=pointer]:
+              - generic [ref=e7510]: Smørbart
+              - button "Remove" [ref=e7511]:
+                - img [ref=e7512]
+            - generic [ref=e7514] [cursor=pointer]:
+              - generic [ref=e7517]: Muslibarer
+              - button "Remove" [ref=e7518]:
+                - img [ref=e7519]
+            - generic [ref=e7521] [cursor=pointer]:
+              - generic [ref=e7524]: Bagepapir
+              - button "Remove" [ref=e7525]:
+                - img [ref=e7526]
+            - generic [ref=e7528] [cursor=pointer]:
+              - generic [ref=e7531]: Kakaopulver
+              - button "Remove" [ref=e7532]:
+                - img [ref=e7533]
+            - generic [ref=e7535] [cursor=pointer]:
+              - generic [ref=e7538]: Rosiner
+              - button "Remove" [ref=e7539]:
+                - img [ref=e7540]
+            - generic [ref=e7542] [cursor=pointer]:
+              - generic [ref=e7545]: kebab
+              - button "Remove" [ref=e7546]:
+                - img [ref=e7547]
+            - generic [ref=e7549] [cursor=pointer]:
+              - generic [ref=e7552]: Cherrytomater
+              - button "Remove" [ref=e7553]:
+                - img [ref=e7554]
+            - generic [ref=e7556] [cursor=pointer]:
+              - generic [ref=e7559]: Agurk
+              - button "Remove" [ref=e7560]:
+                - img [ref=e7561]
+            - generic [ref=e7563] [cursor=pointer]:
+              - generic [ref=e7566]: Peanuts
+              - button "Remove" [ref=e7567]:
+                - img [ref=e7568]
+            - generic [ref=e7570] [cursor=pointer]:
+              - generic [ref=e7572]:
+                - generic [ref=e7573]: Mango
+                - generic [ref=e7574]: "2"
+              - button "Remove" [ref=e7575]:
+                - img [ref=e7576]
+            - generic [ref=e7578] [cursor=pointer]:
+              - generic [ref=e7581]: Baby spinat
+              - button "Remove" [ref=e7582]:
+                - img [ref=e7583]
+            - generic [ref=e7585] [cursor=pointer]:
+              - generic [ref=e7588]: Rødkål
+              - button "Remove" [ref=e7589]:
+                - img [ref=e7590]
+            - generic [ref=e7592] [cursor=pointer]:
+              - generic [ref=e7595]: Grønkål
+              - button "Remove" [ref=e7596]:
+                - img [ref=e7597]
+            - generic [ref=e7599] [cursor=pointer]:
+              - generic [ref=e7602]: Nudler
+              - button "Remove" [ref=e7603]:
+                - img [ref=e7604]
+            - generic [ref=e7606] [cursor=pointer]:
+              - generic [ref=e7609]: Kropssæbe
+              - button "Remove" [ref=e7610]:
+                - img [ref=e7611]
+            - generic [ref=e7613] [cursor=pointer]:
+              - generic [ref=e7616]: Små kartofler
+              - button "Remove" [ref=e7617]:
+                - img [ref=e7618]
+            - generic [ref=e7620] [cursor=pointer]:
+              - generic [ref=e7623]: Edemamebønner
+              - button "Remove" [ref=e7624]:
+                - img [ref=e7625]
+            - generic [ref=e7627] [cursor=pointer]:
+              - generic [ref=e7630]: Gulerødder
+              - button "Remove" [ref=e7631]:
+                - img [ref=e7632]
+            - generic [ref=e7634] [cursor=pointer]:
+              - generic [ref=e7637]: Peberfrugt
+              - button "Remove" [ref=e7638]:
+                - img [ref=e7639]
+            - generic [ref=e7641] [cursor=pointer]:
+              - generic [ref=e7644]: Æbler
+              - button "Remove" [ref=e7645]:
+                - img [ref=e7646]
+            - generic [ref=e7648] [cursor=pointer]:
+              - generic [ref=e7651]: Hakket kalv flæsk
+              - button "Remove" [ref=e7652]:
+                - img [ref=e7653]
+            - generic [ref=e7655] [cursor=pointer]:
+              - generic [ref=e7658]: Kokosmælk
+              - button "Remove" [ref=e7659]:
+                - img [ref=e7660]
+            - generic [ref=e7662] [cursor=pointer]:
+              - generic [ref=e7665]: Tivolikrymmel
+              - button "Remove" [ref=e7666]:
+                - img [ref=e7667]
+            - generic [ref=e7669] [cursor=pointer]:
+              - generic [ref=e7672]: Æg
+              - button "Remove" [ref=e7673]:
+                - img [ref=e7674]
+            - generic [ref=e7676] [cursor=pointer]:
+              - generic [ref=e7679]: Hindbærmarmelade
+              - button "Remove" [ref=e7680]:
+                - img [ref=e7681]
+            - generic [ref=e7683] [cursor=pointer]:
+              - generic [ref=e7686]: Frugt
+              - button "Remove" [ref=e7687]:
+                - img [ref=e7688]
+            - generic [ref=e7690] [cursor=pointer]:
+              - generic [ref=e7693]: Leverpostej
+              - button "Remove" [ref=e7694]:
+                - img [ref=e7695]
+            - generic [ref=e7697] [cursor=pointer]:
+              - generic [ref=e7700]: 10'er snack
+              - button "Remove" [ref=e7701]:
+                - img [ref=e7702]
+            - generic [ref=e7704] [cursor=pointer]:
+              - generic [ref=e7707]: Skuresvampe
+              - button "Remove" [ref=e7708]:
+                - img [ref=e7709]
+            - generic [ref=e7711] [cursor=pointer]:
+              - generic [ref=e7714]: Pizzadej
+              - button "Remove" [ref=e7715]:
+                - img [ref=e7716]
+            - generic [ref=e7718] [cursor=pointer]:
+              - generic [ref=e7721]: Revet ost
+              - button "Remove" [ref=e7722]:
+                - img [ref=e7723]
+            - generic [ref=e7725] [cursor=pointer]:
+              - generic [ref=e7728]: Pizzasovs
+              - button "Remove" [ref=e7729]:
+                - img [ref=e7730]
+            - generic [ref=e7732] [cursor=pointer]:
+              - generic [ref=e7735]: Skinkestrimler
+              - button "Remove" [ref=e7736]:
+                - img [ref=e7737]
+            - generic [ref=e7739] [cursor=pointer]:
+              - generic [ref=e7742]: Hvidløg
+              - button "Remove" [ref=e7743]:
+                - img [ref=e7744]
+            - generic [ref=e7746] [cursor=pointer]:
+              - generic [ref=e7749]: Rugmel
+              - button "Remove" [ref=e7750]:
+                - img [ref=e7751]
+            - generic [ref=e7753] [cursor=pointer]:
+              - generic [ref=e7756]: Flækkede rugkerner
+              - button "Remove" [ref=e7757]:
+                - img [ref=e7758]
+            - generic [ref=e7760] [cursor=pointer]:
+              - generic [ref=e7763]: Kulør
+              - button "Remove" [ref=e7764]:
+                - img [ref=e7765]
+            - generic [ref=e7767] [cursor=pointer]:
+              - generic [ref=e7770]: Zendium
+              - button "Remove" [ref=e7771]:
+                - img [ref=e7772]
+            - generic [ref=e7774] [cursor=pointer]:
+              - generic [ref=e7777]: Havregryn
+              - button "Remove" [ref=e7778]:
+                - img [ref=e7779]
+            - generic [ref=e7781] [cursor=pointer]:
+              - generic [ref=e7784]: Græsk yoghurt
+              - button "Remove" [ref=e7785]:
+                - img [ref=e7786]
+            - generic [ref=e7788] [cursor=pointer]:
+              - generic [ref=e7791]: Kærnemælk
+              - button "Remove" [ref=e7792]:
+                - img [ref=e7793]
+            - generic [ref=e7795] [cursor=pointer]:
+              - generic [ref=e7798]: Bbq sauce
+              - button "Remove" [ref=e7799]:
+                - img [ref=e7800]
+            - generic [ref=e7802] [cursor=pointer]:
+              - generic [ref=e7805]: Kyllinglårfilet
+              - button "Remove" [ref=e7806]:
+                - img [ref=e7807]
+            - generic [ref=e7809] [cursor=pointer]:
+              - generic [ref=e7812]: Tortillas
+              - button "Remove" [ref=e7813]:
+                - img [ref=e7814]
+            - generic [ref=e7816] [cursor=pointer]:
+              - generic [ref=e7819]: Hakket kylling
+              - button "Remove" [ref=e7820]:
+                - img [ref=e7821]
+            - generic [ref=e7823] [cursor=pointer]:
+              - generic [ref=e7826]: Ananas
+              - button "Remove" [ref=e7827]:
+                - img [ref=e7828]
+            - generic [ref=e7830] [cursor=pointer]:
+              - generic [ref=e7833]: Cornichons
+              - button "Remove" [ref=e7834]:
+                - img [ref=e7835]
+            - generic [ref=e7837] [cursor=pointer]:
+              - generic [ref=e7840]: kapers
+              - button "Remove" [ref=e7841]:
+                - img [ref=e7842]
+            - generic [ref=e7844] [cursor=pointer]:
+              - generic [ref=e7847]: Torskefilet
+              - button "Remove" [ref=e7848]:
+                - img [ref=e7849]
+            - generic [ref=e7851] [cursor=pointer]:
+              - generic [ref=e7854]: syltede rødbeder
+              - button "Remove" [ref=e7855]:
+                - img [ref=e7856]
+            - generic [ref=e7858] [cursor=pointer]:
+              - generic [ref=e7861]: Baconklump
+              - button "Remove" [ref=e7862]:
+                - img [ref=e7863]
+            - generic [ref=e7865] [cursor=pointer]:
+              - generic [ref=e7867]:
+                - generic [ref=e7868]: Kartofler til mos
+                - generic [ref=e7869]: 2 kg
+              - button "Remove" [ref=e7870]:
+                - img [ref=e7871]
+            - generic [ref=e7873] [cursor=pointer]:
+              - generic [ref=e7876]: Druer
+              - button "Remove" [ref=e7877]:
+                - img [ref=e7878]
+            - generic [ref=e7880] [cursor=pointer]:
+              - generic [ref=e7883]: Morneysovs
+              - button "Remove" [ref=e7884]:
+                - img [ref=e7885]
+            - generic [ref=e7887] [cursor=pointer]:
+              - generic [ref=e7890]: Burgerboller
+              - button "Remove" [ref=e7891]:
+                - img [ref=e7892]
+            - generic [ref=e7894] [cursor=pointer]:
+              - generic [ref=e7897]: Lasagneplader
+              - button "Remove" [ref=e7898]:
+                - img [ref=e7899]
+            - generic [ref=e7901] [cursor=pointer]:
+              - generic [ref=e7904]: Salat
+              - button "Remove" [ref=e7905]:
+                - img [ref=e7906]
+            - generic [ref=e7908] [cursor=pointer]:
+              - generic [ref=e7911]: Bacon
+              - button "Remove" [ref=e7912]:
+                - img [ref=e7913]
+            - generic [ref=e7915] [cursor=pointer]:
+              - generic [ref=e7918]: Grøn pesto
+              - button "Remove" [ref=e7919]:
+                - img [ref=e7920]
+            - generic [ref=e7922] [cursor=pointer]:
+              - generic [ref=e7925]: Stødt koriander
+              - button "Remove" [ref=e7926]:
+                - img [ref=e7927]
+            - generic [ref=e7929] [cursor=pointer]:
+              - generic [ref=e7932]: Rullepølse
+              - button "Remove" [ref=e7933]:
+                - img [ref=e7934]
+            - generic [ref=e7936] [cursor=pointer]:
+              - generic [ref=e7939]: milano salame
+              - button "Remove" [ref=e7940]:
+                - img [ref=e7941]
+            - generic [ref=e7943] [cursor=pointer]:
+              - generic [ref=e7946]: Olivenolie
+              - button "Remove" [ref=e7947]:
+                - img [ref=e7948]
+            - generic [ref=e7950] [cursor=pointer]:
+              - generic [ref=e7953]: femkornsblanding/knækkede hvedekerner
+              - button "Remove" [ref=e7954]:
+                - img [ref=e7955]
+            - generic [ref=e7957] [cursor=pointer]:
+              - generic [ref=e7960]: Vådservietter
+              - button "Remove" [ref=e7961]:
+                - img [ref=e7962]
+            - generic [ref=e7964] [cursor=pointer]:
+              - generic [ref=e7967]: Peanut butter
+              - button "Remove" [ref=e7968]:
+                - img [ref=e7969]
+            - generic [ref=e7971] [cursor=pointer]:
+              - generic [ref=e7974]: Basmatiris
+              - button "Remove" [ref=e7975]:
+                - img [ref=e7976]
+            - generic [ref=e7978] [cursor=pointer]:
+              - generic [ref=e7981]: Gnavegrønt
+              - button "Remove" [ref=e7982]:
+                - img [ref=e7983]
+            - generic [ref=e7985] [cursor=pointer]:
+              - generic [ref=e7988]: Ymer
+              - button "Remove" [ref=e7989]:
+                - img [ref=e7990]
+            - generic [ref=e7992] [cursor=pointer]:
+              - generic [ref=e7995]: Øl kaffe
+              - button "Remove" [ref=e7996]:
+                - img [ref=e7997]
+            - generic [ref=e7999] [cursor=pointer]:
+              - generic [ref=e8002]: Flagesalt
+              - button "Remove" [ref=e8003]:
+                - img [ref=e8004]
+            - generic [ref=e8006] [cursor=pointer]:
+              - generic [ref=e8009]: Timian
+              - button "Remove" [ref=e8010]:
+                - img [ref=e8011]
+            - generic [ref=e8013] [cursor=pointer]:
+              - generic [ref=e8016]: Flagesalt
+              - button "Remove" [ref=e8017]:
+                - img [ref=e8018]
+            - generic [ref=e8020] [cursor=pointer]:
+              - generic [ref=e8023]: Barbeque sauce
+              - button "Remove" [ref=e8024]:
+                - img [ref=e8025]
+            - generic [ref=e8027] [cursor=pointer]:
+              - generic [ref=e8029]:
+                - generic [ref=e8030]: PomfrITTER
+                - generic [ref=e8031]: "2"
+              - button "Remove" [ref=e8032]:
+                - img [ref=e8033]
+            - generic [ref=e8035] [cursor=pointer]:
+              - generic [ref=e8038]: Spidskål
+              - button "Remove" [ref=e8039]:
+                - img [ref=e8040]
+            - generic [ref=e8042] [cursor=pointer]:
+              - generic [ref=e8045]: Fryserundstykker
+              - button "Remove" [ref=e8046]:
+                - img [ref=e8047]
+            - generic [ref=e8049] [cursor=pointer]:
+              - generic [ref=e8052]: Afspændingsmiddel
+              - button "Remove" [ref=e8053]:
+                - img [ref=e8054]
+            - generic [ref=e8056] [cursor=pointer]:
+              - generic [ref=e8059]: Vaniljesukker
+              - button "Remove" [ref=e8060]:
+                - img [ref=e8061]
+            - generic [ref=e8063] [cursor=pointer]:
+              - generic [ref=e8066]: Bagepulver
+              - button "Remove" [ref=e8067]:
+                - img [ref=e8068]
+            - generic [ref=e8070] [cursor=pointer]:
+              - generic [ref=e8073]: Håndsæbe til påfyldning
+              - button "Remove" [ref=e8074]:
+                - img [ref=e8075]
+            - generic [ref=e8077] [cursor=pointer]:
+              - generic [ref=e8080]: Haricot verts
+              - button "Remove" [ref=e8081]:
+                - img [ref=e8082]
+            - generic [ref=e8084] [cursor=pointer]:
+              - generic [ref=e8087]: Flormelis
+              - button "Remove" [ref=e8088]:
+                - img [ref=e8089]
+            - generic [ref=e8091] [cursor=pointer]:
+              - generic [ref=e8094]: Uldvaskemiddel
+              - button "Remove" [ref=e8095]:
+                - img [ref=e8096]
+            - generic [ref=e8098] [cursor=pointer]:
+              - generic [ref=e8101]: Brød fx ciabatta
+              - button "Remove" [ref=e8102]:
+                - img [ref=e8103]
+            - generic [ref=e8105] [cursor=pointer]:
+              - generic [ref=e8108]: Kaffe
+              - button "Remove" [ref=e8109]:
+                - img [ref=e8110]
+            - generic [ref=e8112] [cursor=pointer]:
+              - generic [ref=e8115]: Appelsiner
+              - button "Remove" [ref=e8116]:
+                - img [ref=e8117]
+            - generic [ref=e8119] [cursor=pointer]:
+              - generic [ref=e8121]:
+                - generic [ref=e8122]: Oksekød
+                - generic [ref=e8123]: 1.2-1.5
+              - button "Remove" [ref=e8124]:
+                - img [ref=e8125]
+            - generic [ref=e8127] [cursor=pointer]:
+              - generic [ref=e8130]: Ristede bananer
+              - button "Remove" [ref=e8131]:
+                - img [ref=e8132]
+            - generic [ref=e8134] [cursor=pointer]:
+              - generic [ref=e8137]: Fuglefoder
+              - button "Remove" [ref=e8138]:
+                - img [ref=e8139]
+            - generic [ref=e8141] [cursor=pointer]:
+              - generic [ref=e8144]: Tandstikker/tråd
+              - button "Remove" [ref=e8145]:
+                - img [ref=e8146]
+            - generic [ref=e8148] [cursor=pointer]:
+              - generic [ref=e8151]: Pesto
+              - button "Remove" [ref=e8152]:
+                - img [ref=e8153]
+            - generic [ref=e8155] [cursor=pointer]:
+              - generic [ref=e8158]: Sukkerærter
+              - button "Remove" [ref=e8159]:
+                - img [ref=e8160]
+            - generic [ref=e8162] [cursor=pointer]:
+              - generic [ref=e8165]: Ingefær
+              - button "Remove" [ref=e8166]:
+                - img [ref=e8167]
+            - generic [ref=e8169] [cursor=pointer]:
+              - generic [ref=e8172]: Dåseananas
+              - button "Remove" [ref=e8173]:
+                - img [ref=e8174]
+            - generic [ref=e8176] [cursor=pointer]:
+              - generic [ref=e8179]: Medisterpølse
+              - button "Remove" [ref=e8180]:
+                - img [ref=e8181]
+            - generic [ref=e8183] [cursor=pointer]:
+              - generic [ref=e8186]: Ærter
+              - button "Remove" [ref=e8187]:
+                - img [ref=e8188]
+            - generic [ref=e8190] [cursor=pointer]:
+              - generic [ref=e8193]: Frisk basilikum
+              - button "Remove" [ref=e8194]:
+                - img [ref=e8195]
+            - generic [ref=e8197] [cursor=pointer]:
+              - generic [ref=e8200]: Hot dog brød
+              - button "Remove" [ref=e8201]:
+                - img [ref=e8202]
+            - generic [ref=e8204] [cursor=pointer]:
+              - generic [ref=e8207]: Purløg
+              - button "Remove" [ref=e8208]:
+                - img [ref=e8209]
+            - generic [ref=e8211] [cursor=pointer]:
+              - generic [ref=e8214]: frisk dild
+              - button "Remove" [ref=e8215]:
+                - img [ref=e8216]
+            - generic [ref=e8218] [cursor=pointer]:
+              - generic [ref=e8221]: Persille
+              - button "Remove" [ref=e8222]:
+                - img [ref=e8223]
+            - generic [ref=e8225] [cursor=pointer]:
+              - generic [ref=e8228]: Hvid fisk
+              - button "Remove" [ref=e8229]:
+                - img [ref=e8230]
+            - generic [ref=e8232] [cursor=pointer]:
+              - generic [ref=e8235]: Affaldsposer
+              - button "Remove" [ref=e8236]:
+                - img [ref=e8237]
+            - generic [ref=e8239] [cursor=pointer]:
+              - generic [ref=e8242]: Løg
+              - button "Remove" [ref=e8243]:
+                - img [ref=e8244]
+            - generic [ref=e8246] [cursor=pointer]:
+              - generic [ref=e8249]: Spegepølse
+              - button "Remove" [ref=e8250]:
+                - img [ref=e8251]
+            - generic [ref=e8253] [cursor=pointer]:
+              - generic [ref=e8256]: Skiveost
+              - button "Remove" [ref=e8257]:
+                - img [ref=e8258]
+            - generic [ref=e8260] [cursor=pointer]:
+              - generic [ref=e8263]: Dild
+              - button "Remove" [ref=e8264]:
+                - img [ref=e8265]
+            - generic [ref=e8267] [cursor=pointer]:
+              - generic [ref=e8269]:
+                - generic [ref=e8270]: Citron
+                - generic [ref=e8271]: "1"
+              - button "Remove" [ref=e8272]:
+                - img [ref=e8273]
+            - generic [ref=e8275] [cursor=pointer]:
+              - generic [ref=e8278]: Sej
+              - button "Remove" [ref=e8279]:
+                - img [ref=e8280]
+            - generic [ref=e8282] [cursor=pointer]:
+              - generic [ref=e8284]:
+                - generic [ref=e8285]: Lime
+                - generic [ref=e8286]: "1"
+              - button "Remove" [ref=e8287]:
+                - img [ref=e8288]
+            - generic [ref=e8290] [cursor=pointer]:
+              - generic [ref=e8293]: Blomkål
+              - button "Remove" [ref=e8294]:
+                - img [ref=e8295]
+            - generic [ref=e8297] [cursor=pointer]:
+              - generic [ref=e8300]: Soltørrede tomater
+              - button "Remove" [ref=e8301]:
+                - img [ref=e8302]
+            - generic [ref=e8304] [cursor=pointer]:
+              - generic [ref=e8307]: Piskefløde
+              - button "Remove" [ref=e8308]:
+                - img [ref=e8309]
+            - generic [ref=e8311] [cursor=pointer]:
+              - generic [ref=e8314]: Beluga linser
+              - button "Remove" [ref=e8315]:
+                - img [ref=e8316]
+            - generic [ref=e8318] [cursor=pointer]:
+              - generic [ref=e8321]: Hakkede tomater
+              - button "Remove" [ref=e8322]:
+                - img [ref=e8323]
+            - generic [ref=e8325] [cursor=pointer]:
+              - generic [ref=e8328]: Spinat
+              - button "Remove" [ref=e8329]:
+                - img [ref=e8330]
+            - generic [ref=e8332] [cursor=pointer]:
+              - generic [ref=e8335]: Prosecco
+              - button "Remove" [ref=e8336]:
+                - img [ref=e8337]
+            - generic [ref=e8339] [cursor=pointer]:
+              - generic [ref=e8342]: Øko appelsiner
+              - button "Remove" [ref=e8343]:
+                - img [ref=e8344]
+            - generic [ref=e8346] [cursor=pointer]:
+              - generic [ref=e8349]: Grinebiddere
+              - button "Remove" [ref=e8350]:
+                - img [ref=e8351]
+            - generic [ref=e8353] [cursor=pointer]:
+              - generic [ref=e8356]: Figenstænger
+              - button "Remove" [ref=e8357]:
+                - img [ref=e8358]
+            - generic [ref=e8360] [cursor=pointer]:
+              - generic [ref=e8363]: Øl
+              - button "Remove" [ref=e8364]:
+                - img [ref=e8365]
+            - generic [ref=e8367] [cursor=pointer]:
+              - generic [ref=e8370]: Vanish
+              - button "Remove" [ref=e8371]:
+                - img [ref=e8372]
+            - generic [ref=e8374] [cursor=pointer]:
+              - generic [ref=e8377]: Runde tandstikker
+              - button "Remove" [ref=e8378]:
+                - img [ref=e8379]
+            - generic [ref=e8381] [cursor=pointer]:
+              - generic [ref=e8384]: Babyspinat
+              - button "Remove" [ref=e8385]:
+                - img [ref=e8386]
+            - generic [ref=e8388] [cursor=pointer]:
+              - generic [ref=e8391]: Edamamebønner
+              - button "Remove" [ref=e8392]:
+                - img [ref=e8393]
+            - generic [ref=e8395] [cursor=pointer]:
+              - generic [ref=e8398]: Kyllingelår
+              - button "Remove" [ref=e8399]:
+                - img [ref=e8400]
+            - generic [ref=e8402] [cursor=pointer]:
+              - generic [ref=e8405]: Frisk koriander
+              - button "Remove" [ref=e8406]:
+                - img [ref=e8407]
+            - generic [ref=e8409] [cursor=pointer]:
+              - generic [ref=e8412]: Baby leaves
+              - button "Remove" [ref=e8413]:
+                - img [ref=e8414]
+            - generic [ref=e8416] [cursor=pointer]:
+              - generic [ref=e8419]: morgenboller
+              - button "Remove" [ref=e8420]:
+                - img [ref=e8421]
+            - generic [ref=e8423] [cursor=pointer]:
+              - generic [ref=e8426]: majs
+              - button "Remove" [ref=e8427]:
+                - img [ref=e8428]
+            - generic [ref=e8430] [cursor=pointer]:
+              - generic [ref=e8433]: Skårne rugkerner
+              - button "Remove" [ref=e8434]:
+                - img [ref=e8435]
+            - generic [ref=e8437] [cursor=pointer]:
+              - generic [ref=e8440]: Appelsinjuice
+              - button "Remove" [ref=e8441]:
+                - img [ref=e8442]
+            - generic [ref=e8444] [cursor=pointer]:
+              - generic [ref=e8447]: Græskarkerner
+              - button "Remove" [ref=e8448]:
+                - img [ref=e8449]
+            - generic [ref=e8451] [cursor=pointer]:
+              - generic [ref=e8454]: Kokosolie
+              - button "Remove" [ref=e8455]:
+                - img [ref=e8456]
+            - generic [ref=e8458] [cursor=pointer]:
+              - generic [ref=e8461]: Hampefrø
+              - button "Remove" [ref=e8462]:
+                - img [ref=e8463]
+            - generic [ref=e8465] [cursor=pointer]:
+              - generic [ref=e8468]: Solsikkefrø
+              - button "Remove" [ref=e8469]:
+                - img [ref=e8470]
+            - generic [ref=e8472] [cursor=pointer]:
+              - generic [ref=e8475]: Dadler
+              - button "Remove" [ref=e8476]:
+                - img [ref=e8477]
+            - generic [ref=e8479] [cursor=pointer]:
+              - generic [ref=e8482]: Makroner
+              - button "Remove" [ref=e8483]:
+                - img [ref=e8484]
+            - generic [ref=e8486] [cursor=pointer]:
+              - generic [ref=e8489]: Drink
+              - button "Remove" [ref=e8490]:
+                - img [ref=e8491]
+            - generic [ref=e8493] [cursor=pointer]:
+              - generic [ref=e8496]: bag-in-a-box
+              - button "Remove" [ref=e8497]:
+                - img [ref=e8498]
+            - generic [ref=e8500] [cursor=pointer]:
+              - generic [ref=e8503]: Balloner
+              - button "Remove" [ref=e8504]:
+                - img [ref=e8505]
+            - generic [ref=e8507] [cursor=pointer]:
+              - generic [ref=e8510]: Vaskemiddel farvet
+              - button "Remove" [ref=e8511]:
+                - img [ref=e8512]
+            - generic [ref=e8514] [cursor=pointer]:
+              - generic [ref=e8517]: Mundskyl
+              - button "Remove" [ref=e8518]:
+                - img [ref=e8519]
+            - generic [ref=e8521] [cursor=pointer]:
+              - generic [ref=e8523]:
+                - generic [ref=e8524]: Knoldselleri
+                - generic [ref=e8525]: "2"
+              - button "Remove" [ref=e8526]:
+                - img [ref=e8527]
+            - generic [ref=e8529] [cursor=pointer]:
+              - generic [ref=e8531]:
+                - generic [ref=e8532]: Brød
+                - generic [ref=e8533]: 2 dage
+              - button "Remove" [ref=e8534]:
+                - img [ref=e8535]
+            - generic [ref=e8537] [cursor=pointer]:
+              - generic [ref=e8539]:
+                - generic [ref=e8540]: Porre
+                - generic [ref=e8541]: "4"
+              - button "Remove" [ref=e8542]:
+                - img [ref=e8543]
+            - generic [ref=e8545] [cursor=pointer]:
+              - generic [ref=e8547]:
+                - generic [ref=e8548]: Kartofler
+                - generic [ref=e8549]: 2 kg
+              - button "Remove" [ref=e8550]:
+                - img [ref=e8551]
+            - generic [ref=e8553] [cursor=pointer]:
+              - generic [ref=e8556]: Risottoris
+              - button "Remove" [ref=e8557]:
+                - img [ref=e8558]
+            - generic [ref=e8560] [cursor=pointer]:
+              - generic [ref=e8563]: Grøntsagsbouillon
+              - button "Remove" [ref=e8564]:
+                - img [ref=e8565]
+            - generic [ref=e8567] [cursor=pointer]:
+              - generic [ref=e8570]: Champignon/svampe
+              - button "Remove" [ref=e8571]:
+                - img [ref=e8572]
+            - generic [ref=e8574] [cursor=pointer]:
+              - generic [ref=e8577]: Karse
+              - button "Remove" [ref=e8578]:
+                - img [ref=e8579]
+            - generic [ref=e8581] [cursor=pointer]:
+              - generic [ref=e8584]: Hampefrø
+              - button "Remove" [ref=e8585]:
+                - img [ref=e8586]
+            - generic [ref=e8588] [cursor=pointer]:
+              - generic [ref=e8591]: Sriracha
+              - button "Remove" [ref=e8592]:
+                - img [ref=e8593]
+            - generic [ref=e8595] [cursor=pointer]:
+              - generic [ref=e8598]: Ristede løg
+              - button "Remove" [ref=e8599]:
+                - img [ref=e8600]
+            - generic [ref=e8602] [cursor=pointer]:
+              - generic [ref=e8605]: Syltede agurker
+              - button "Remove" [ref=e8606]:
+                - img [ref=e8607]
+            - generic [ref=e8609] [cursor=pointer]:
+              - generic [ref=e8611]:
+                - generic [ref=e8612]: Pølser
+                - generic [ref=e8613]: "16"
+              - button "Remove" [ref=e8614]:
+                - img [ref=e8615]
+            - generic [ref=e8617] [cursor=pointer]:
+              - generic [ref=e8620]: Nutella
+              - button "Remove" [ref=e8621]:
+                - img [ref=e8622]
+            - generic [ref=e8624] [cursor=pointer]:
+              - generic [ref=e8627]: Ståluld
+              - button "Remove" [ref=e8628]:
+                - img [ref=e8629]
+            - generic [ref=e8631] [cursor=pointer]:
+              - generic [ref=e8634]: Panodil
+              - button "Remove" [ref=e8635]:
+                - img [ref=e8636]
+            - generic [ref=e8638] [cursor=pointer]:
+              - generic [ref=e8641]: Opvaskemiddel
+              - button "Remove" [ref=e8642]:
+                - img [ref=e8643]
+            - generic [ref=e8645] [cursor=pointer]:
+              - generic [ref=e8648]: Tandpasta
+              - button "Remove" [ref=e8649]:
+                - img [ref=e8650]
+            - generic [ref=e8652] [cursor=pointer]:
+              - generic [ref=e8654]:
+                - generic [ref=e8655]: Pitabrød
+                - generic [ref=e8656]: "16"
+              - button "Remove" [ref=e8657]:
+                - img [ref=e8658]
+            - generic [ref=e8660] [cursor=pointer]:
+              - generic [ref=e8663]: Rejer
+              - button "Remove" [ref=e8664]:
+                - img [ref=e8665]
+            - generic [ref=e8667] [cursor=pointer]:
+              - generic [ref=e8670]: Røget makrel
+              - button "Remove" [ref=e8671]:
+                - img [ref=e8672]
+            - generic [ref=e8674] [cursor=pointer]:
+              - generic [ref=e8677]: Kaffebønner
+              - button "Remove" [ref=e8678]:
+                - img [ref=e8679]
+            - generic [ref=e8681] [cursor=pointer]:
+              - generic [ref=e8684]: Kippers
+              - button "Remove" [ref=e8685]:
+                - img [ref=e8686]
+            - generic [ref=e8688] [cursor=pointer]:
+              - generic [ref=e8691]: Dåsemakrel
+              - button "Remove" [ref=e8692]:
+                - img [ref=e8693]
+            - generic [ref=e8695] [cursor=pointer]:
+              - generic [ref=e8698]: Skummetmælk
+              - button "Remove" [ref=e8699]:
+                - img [ref=e8700]
+            - generic [ref=e8702] [cursor=pointer]:
+              - generic [ref=e8705]: juice
+              - button "Remove" [ref=e8706]:
+                - img [ref=e8707]
+            - generic [ref=e8709] [cursor=pointer]:
+              - generic [ref=e8711]:
+                - generic [ref=e8712]: Brødblandinger
+                - generic [ref=e8713]: 5+5
+              - button "Remove" [ref=e8714]:
+                - img [ref=e8715]
+            - generic [ref=e8717] [cursor=pointer]:
+              - generic [ref=e8720]: Hvedemel
+              - button "Remove" [ref=e8721]:
+                - img [ref=e8722]
+            - generic [ref=e8724] [cursor=pointer]:
+              - generic [ref=e8727]: Gær
+              - button "Remove" [ref=e8728]:
+                - img [ref=e8729]
+            - generic [ref=e8731] [cursor=pointer]:
+              - generic [ref=e8734]: Flæskesteg
+              - button "Remove" [ref=e8735]:
+                - img [ref=e8736]
+            - generic [ref=e8738] [cursor=pointer]:
+              - generic [ref=e8741]: kirsebærsovs
+              - button "Remove" [ref=e8742]:
+                - img [ref=e8743]
+            - generic [ref=e8745] [cursor=pointer]:
+              - generic [ref=e8747]:
+                - generic [ref=e8748]: Sødmælk
+                - generic [ref=e8749]: 4 l
+              - button "Remove" [ref=e8750]:
+                - img [ref=e8751]
+            - generic [ref=e8753] [cursor=pointer]:
+              - generic [ref=e8755]:
+                - generic [ref=e8756]: vaniliestang
+                - generic [ref=e8757]: "2"
+              - button "Remove" [ref=e8758]:
+                - img [ref=e8759]
+            - generic [ref=e8761] [cursor=pointer]:
+              - generic [ref=e8764]: Grødris
+              - button "Remove" [ref=e8765]:
+                - img [ref=e8766]
+            - generic [ref=e8768] [cursor=pointer]:
+              - generic [ref=e8771]: Andefond
+              - button "Remove" [ref=e8772]:
+                - img [ref=e8773]
+            - generic [ref=e8775] [cursor=pointer]:
+              - generic [ref=e8777]:
+                - generic [ref=e8778]: Meny chips
+                - generic [ref=e8779]: "2"
+              - button "Remove" [ref=e8780]:
+                - img [ref=e8781]
+            - generic [ref=e8783] [cursor=pointer]:
+              - generic [ref=e8785]:
+                - generic [ref=e8786]: taffel chips
+                - generic [ref=e8787]: "2"
+              - button "Remove" [ref=e8788]:
+                - img [ref=e8789]
+            - generic [ref=e8791] [cursor=pointer]:
+              - generic [ref=e8793]:
+                - generic [ref=e8794]: små kartofler til brunede
+                - generic [ref=e8795]: 2 kg
+              - button "Remove" [ref=e8796]:
+                - img [ref=e8797]
+            - generic [ref=e8799] [cursor=pointer]:
+              - generic [ref=e8801]:
+                - generic [ref=e8802]: almindelige kartofler
+                - generic [ref=e8803]: 3 kg
+              - button "Remove" [ref=e8804]:
+                - img [ref=e8805]
+            - generic [ref=e8807] [cursor=pointer]:
+              - generic [ref=e8810]: Valnødder
+              - button "Remove" [ref=e8811]:
+                - img [ref=e8812]
+            - generic [ref=e8814] [cursor=pointer]:
+              - generic [ref=e8817]: Rødløg
+              - button "Remove" [ref=e8818]:
+                - img [ref=e8819]
+            - generic [ref=e8821] [cursor=pointer]:
+              - generic [ref=e8823]:
+                - generic [ref=e8824]: Granatæble
+                - generic [ref=e8825]: "2"
+              - button "Remove" [ref=e8826]:
+                - img [ref=e8827]
+            - generic [ref=e8829] [cursor=pointer]:
+              - generic [ref=e8832]: Frisk rødkål
+              - button "Remove" [ref=e8833]:
+                - img [ref=e8834]
+            - generic [ref=e8836] [cursor=pointer]:
+              - generic [ref=e8839]: syltet rødkål
+              - button "Remove" [ref=e8840]:
+                - img [ref=e8841]
+            - generic [ref=e8843] [cursor=pointer]:
+              - generic [ref=e8846]: Børstehoved til opvaskebørste
+              - button "Remove" [ref=e8847]:
+                - img [ref=e8848]
+            - generic [ref=e8850] [cursor=pointer]:
+              - generic [ref=e8853]: Fiskefilet
+              - button "Remove" [ref=e8854]:
+                - img [ref=e8855]
+            - generic [ref=e8857] [cursor=pointer]:
+              - generic [ref=e8860]: Saftevand
+              - button "Remove" [ref=e8861]:
+                - img [ref=e8862]
+            - generic [ref=e8864] [cursor=pointer]:
+              - generic [ref=e8867]: Soya
+              - button "Remove" [ref=e8868]:
+                - img [ref=e8869]
+            - generic [ref=e8871] [cursor=pointer]:
+              - generic [ref=e8874]: Almindelig billig olie
+              - button "Remove" [ref=e8875]:
+                - img [ref=e8876]
+            - generic [ref=e8878] [cursor=pointer]:
+              - generic [ref=e8880]:
+                - generic [ref=e8881]: Æbleskiver
+                - generic [ref=e8882]: "2"
+              - button "Remove" [ref=e8883]:
+                - img [ref=e8884]
+            - generic [ref=e8886] [cursor=pointer]:
+              - generic [ref=e8889]: Natron
+              - button "Remove" [ref=e8890]:
+                - img [ref=e8891]
+            - generic [ref=e8893] [cursor=pointer]:
+              - generic [ref=e8896]: Æggehvide
+              - button "Remove" [ref=e8897]:
+                - img [ref=e8898]
+            - generic [ref=e8900] [cursor=pointer]:
+              - generic [ref=e8903]: Dijonsennep
+              - button "Remove" [ref=e8904]:
+                - img [ref=e8905]
+            - generic [ref=e8907] [cursor=pointer]:
+              - generic [ref=e8910]: Peberkorn
+              - button "Remove" [ref=e8911]:
+                - img [ref=e8912]
+            - generic [ref=e8914] [cursor=pointer]:
+              - generic [ref=e8917]: Havremælk
+              - button "Remove" [ref=e8918]:
+                - img [ref=e8919]
+            - generic [ref=e8921] [cursor=pointer]:
+              - generic [ref=e8924]: Flødehavarti
+              - button "Remove" [ref=e8925]:
+                - img [ref=e8926]
+            - generic [ref=e8928] [cursor=pointer]:
+              - generic [ref=e8931]: Cashewnødder
+              - button "Remove" [ref=e8932]:
+                - img [ref=e8933]
+            - generic [ref=e8935] [cursor=pointer]:
+              - generic [ref=e8938]: Hamburgerryg
+              - button "Remove" [ref=e8939]:
+                - img [ref=e8940]
+            - generic [ref=e8942] [cursor=pointer]:
+              - generic [ref=e8945]: Mandler
+              - button "Remove" [ref=e8946]:
+                - img [ref=e8947]
+            - generic [ref=e8949] [cursor=pointer]:
+              - generic [ref=e8952]: Clementiner
+              - button "Remove" [ref=e8953]:
+                - img [ref=e8954]
+            - generic [ref=e8956] [cursor=pointer]:
+              - generic [ref=e8959]: Skorper
+              - button "Remove" [ref=e8960]:
+                - img [ref=e8961]
+            - generic [ref=e8963] [cursor=pointer]:
+              - generic [ref=e8966]: Mørk sirup
+              - button "Remove" [ref=e8967]:
+                - img [ref=e8968]
+            - generic [ref=e8970] [cursor=pointer]:
+              - generic [ref=e8973]: Groft salt
+              - button "Remove" [ref=e8974]:
+                - img [ref=e8975]
+            - generic [ref=e8977] [cursor=pointer]:
+              - generic [ref=e8980]: grøn remo
+              - button "Remove" [ref=e8981]:
+                - img [ref=e8982]
+            - generic [ref=e8984] [cursor=pointer]:
+              - generic [ref=e8987]: flødeboller
+              - button "Remove" [ref=e8988]:
+                - img [ref=e8989]
+            - generic [ref=e8991] [cursor=pointer]:
+              - generic [ref=e8994]: Sølvpapir
+              - button "Remove" [ref=e8995]:
+                - img [ref=e8996]
+            - generic [ref=e8998] [cursor=pointer]:
+              - generic [ref=e9001]: Refill til håndsæbe
+              - button "Remove" [ref=e9002]:
+                - img [ref=e9003]
+            - generic [ref=e9005] [cursor=pointer]:
+              - generic [ref=e9008]: Gløggmix
+              - button "Remove" [ref=e9009]:
+                - img [ref=e9010]
+            - generic [ref=e9012] [cursor=pointer]:
+              - generic [ref=e9015]: Gløgg
+              - button "Remove" [ref=e9016]:
+                - img [ref=e9017]
+            - generic [ref=e9019] [cursor=pointer]:
+              - generic [ref=e9022]: Klar neglelak
+              - button "Remove" [ref=e9023]:
+                - img [ref=e9024]
+            - generic [ref=e9026] [cursor=pointer]:
+              - generic [ref=e9028]:
+                - generic [ref=e9029]: Laks
+                - generic [ref=e9030]: burgerbøffer
+              - button "Remove" [ref=e9031]:
+                - img [ref=e9032]
+            - generic [ref=e9034] [cursor=pointer]:
+              - generic [ref=e9037]: Grønne bønner
+              - button "Remove" [ref=e9038]:
+                - img [ref=e9039]
+            - generic [ref=e9041] [cursor=pointer]:
+              - generic [ref=e9043]:
+                - generic [ref=e9044]: Hakket svinekød
+                - generic [ref=e9045]: 6-800 g
+              - button "Remove" [ref=e9046]:
+                - img [ref=e9047]
+            - generic [ref=e9049] [cursor=pointer]:
+              - generic [ref=e9052]: røget paprika
+              - button "Remove" [ref=e9053]:
+                - img [ref=e9054]
+            - generic [ref=e9056] [cursor=pointer]:
+              - generic [ref=e9059]: Sød paprika
+              - button "Remove" [ref=e9060]:
+                - img [ref=e9061]
+            - generic [ref=e9063] [cursor=pointer]:
+              - generic [ref=e9066]: Kanel
+              - button "Remove" [ref=e9067]:
+                - img [ref=e9068]
+            - generic [ref=e9070] [cursor=pointer]:
+              - generic [ref=e9073]: chips
+              - button "Remove" [ref=e9074]:
+                - img [ref=e9075]
+            - generic [ref=e9077] [cursor=pointer]:
+              - generic [ref=e9080]: Nisseøl
+              - button "Remove" [ref=e9081]:
+                - img [ref=e9082]
+            - generic [ref=e9084] [cursor=pointer]:
+              - generic [ref=e9087]: CR2032 batterier
+              - button "Remove" [ref=e9088]:
+                - img [ref=e9089]
+            - generic [ref=e9091] [cursor=pointer]:
+              - generic [ref=e9093]:
+                - generic [ref=e9094]: Kaffefiltre
+                - generic [ref=e9095]: store
+              - button "Remove" [ref=e9096]:
+                - img [ref=e9097]
+            - generic [ref=e9099] [cursor=pointer]:
+              - generic [ref=e9102]: clemmentiner
+              - button "Remove" [ref=e9103]:
+                - img [ref=e9104]
+            - generic [ref=e9106] [cursor=pointer]:
+              - generic [ref=e9109]: Grov hvedemel
+              - button "Remove" [ref=e9110]:
+                - img [ref=e9111]
+            - generic [ref=e9113] [cursor=pointer]:
+              - generic [ref=e9115]:
+                - generic [ref=e9116]: Hakket tomat
+                - generic [ref=e9117]: "6"
+              - button "Remove" [ref=e9118]:
+                - img [ref=e9119]
+            - generic [ref=e9121] [cursor=pointer]:
+              - generic [ref=e9124]: snack peber
+              - button "Remove" [ref=e9125]:
+                - img [ref=e9126]
+            - generic [ref=e9128] [cursor=pointer]:
+              - generic [ref=e9131]: Vindruer
+              - button "Remove" [ref=e9132]:
+                - img [ref=e9133]
+            - generic [ref=e9135] [cursor=pointer]:
+              - generic [ref=e9138]: Marmelade
+              - button "Remove" [ref=e9139]:
+                - img [ref=e9140]
+            - generic [ref=e9142] [cursor=pointer]:
+              - generic [ref=e9145]: Perler
+              - button "Remove" [ref=e9146]:
+                - img [ref=e9147]
+            - generic [ref=e9149] [cursor=pointer]:
+              - generic [ref=e9152]: Fint salt
+              - button "Remove" [ref=e9153]:
+                - img [ref=e9154]
+            - generic [ref=e9156] [cursor=pointer]:
+              - generic [ref=e9159]: Rosenkål
+              - button "Remove" [ref=e9160]:
+                - img [ref=e9161]
+            - generic [ref=e9163] [cursor=pointer]:
+              - generic [ref=e9166]: Sesamfrø
+              - button "Remove" [ref=e9167]:
+                - img [ref=e9168]
+            - generic [ref=e9170] [cursor=pointer]:
+              - generic [ref=e9173]: Pak choi
+              - button "Remove" [ref=e9174]:
+                - img [ref=e9175]
+            - generic [ref=e9177] [cursor=pointer]:
+              - generic [ref=e9180]: Sesamolie
+              - button "Remove" [ref=e9181]:
+                - img [ref=e9182]
+            - generic [ref=e9184] [cursor=pointer]:
+              - generic [ref=e9187]: Riseddike
+              - button "Remove" [ref=e9188]:
+                - img [ref=e9189]
+            - generic [ref=e9191] [cursor=pointer]:
+              - generic [ref=e9194]: Panko
+              - button "Remove" [ref=e9195]:
+                - img [ref=e9196]
+            - generic [ref=e9198] [cursor=pointer]:
+              - generic [ref=e9200]:
+                - generic [ref=e9201]: Andebryst
+                - generic [ref=e9202]: 2 stk
+              - button "Remove" [ref=e9203]:
+                - img [ref=e9204]
+            - generic [ref=e9206] [cursor=pointer]:
+              - generic [ref=e9208]:
+                - generic [ref=e9209]: Tranebær
+                - generic [ref=e9210]: tørrede
+              - button "Remove" [ref=e9211]:
+                - img [ref=e9212]
+            - generic [ref=e9214] [cursor=pointer]:
+              - generic [ref=e9217]: Øko citron
+              - button "Remove" [ref=e9218]:
+                - img [ref=e9219]
+            - generic [ref=e9221] [cursor=pointer]:
+              - generic [ref=e9223]:
+                - generic [ref=e9224]: Bagekartofler
+                - generic [ref=e9225]: 1,5 kg
+              - button "Remove" [ref=e9226]:
+                - img [ref=e9227]
+            - generic [ref=e9229] [cursor=pointer]:
+              - generic [ref=e9232]: Æble
+              - button "Remove" [ref=e9233]:
+                - img [ref=e9234]
+            - generic [ref=e9236] [cursor=pointer]:
+              - generic [ref=e9238]:
+                - generic [ref=e9239]: Medister
+                - generic [ref=e9240]: "500"
+              - button "Remove" [ref=e9241]:
+                - img [ref=e9242]
+            - generic [ref=e9244] [cursor=pointer]:
+              - generic [ref=e9247]: tun i vand
+              - button "Remove" [ref=e9248]:
+                - img [ref=e9249]
+            - generic [ref=e9251] [cursor=pointer]:
+              - generic [ref=e9254]: Pinjekerner
+              - button "Remove" [ref=e9255]:
+                - img [ref=e9256]
+            - generic [ref=e9258] [cursor=pointer]:
+              - generic [ref=e9260]:
+                - generic [ref=e9261]: Gnocchi
+                - generic [ref=e9262]: 500 g
+              - button "Remove" [ref=e9263]:
+                - img [ref=e9264]
+            - generic [ref=e9266] [cursor=pointer]:
+              - generic [ref=e9268]:
+                - generic [ref=e9269]: Feta
+                - generic [ref=e9270]: 300g
+              - button "Remove" [ref=e9271]:
+                - img [ref=e9272]
+            - generic [ref=e9274] [cursor=pointer]:
+              - generic [ref=e9277]: pecorino
+              - button "Remove" [ref=e9278]:
+                - img [ref=e9279]
+            - generic [ref=e9281] [cursor=pointer]:
+              - generic [ref=e9284]: Ribsgele
+              - button "Remove" [ref=e9285]:
+                - img [ref=e9286]
+            - generic [ref=e9288] [cursor=pointer]:
+              - generic [ref=e9291]: Køkkenrulle
+              - button "Remove" [ref=e9292]:
+                - img [ref=e9293]
+            - generic [ref=e9295] [cursor=pointer]:
+              - generic [ref=e9298]: Hårlak
+              - button "Remove" [ref=e9299]:
+                - img [ref=e9300]
+            - generic [ref=e9302] [cursor=pointer]:
+              - generic [ref=e9305]: Pålægschokolade
+              - button "Remove" [ref=e9306]:
+                - img [ref=e9307]
+            - generic [ref=e9309] [cursor=pointer]:
+              - generic [ref=e9312]: Bananer
+              - button "Remove" [ref=e9313]:
+                - img [ref=e9314]
+            - generic [ref=e9316] [cursor=pointer]:
+              - generic [ref=e9319]: Loctite
+              - button "Remove" [ref=e9320]:
+                - img [ref=e9321]
+            - generic [ref=e9323] [cursor=pointer]:
+              - generic [ref=e9325]:
+                - generic [ref=e9326]: Tandbørstehoveder
+                - generic [ref=e9327]: V+B
+              - button "Remove" [ref=e9328]:
+                - img [ref=e9329]
+            - generic [ref=e9331] [cursor=pointer]:
+              - generic [ref=e9333]:
+                - generic [ref=e9334]: Fryseposer
+                - generic [ref=e9335]: 4l
+              - button "Remove" [ref=e9336]:
+                - img [ref=e9337]
+            - generic [ref=e9339] [cursor=pointer]:
+              - generic [ref=e9342]: Græskar
+              - button "Remove" [ref=e9343]:
+                - img [ref=e9344]
+            - generic [ref=e9346] [cursor=pointer]:
+              - generic [ref=e9349]: Mysli
+              - button "Remove" [ref=e9350]:
+                - img [ref=e9351]
+            - generic [ref=e9353] [cursor=pointer]:
+              - generic [ref=e9356]: Mini flutes
+              - button "Remove" [ref=e9357]:
+                - img [ref=e9358]
+            - generic [ref=e9360] [cursor=pointer]:
+              - generic [ref=e9363]: Øko lime
+              - button "Remove" [ref=e9364]:
+                - img [ref=e9365]
+            - generic [ref=e9367] [cursor=pointer]:
+              - generic [ref=e9370]: worchestershire sauce
+              - button "Remove" [ref=e9371]:
+                - img [ref=e9372]
+            - generic [ref=e9374] [cursor=pointer]:
+              - generic [ref=e9377]: ansjoser
+              - button "Remove" [ref=e9378]:
+                - img [ref=e9379]
+            - generic [ref=e9381] [cursor=pointer]:
+              - generic [ref=e9384]: brød/croutoner
+              - button "Remove" [ref=e9385]:
+                - img [ref=e9386]
+            - generic [ref=e9388] [cursor=pointer]:
+              - generic [ref=e9391]: Romainesalat
+              - button "Remove" [ref=e9392]:
+                - img [ref=e9393]
+            - generic [ref=e9395] [cursor=pointer]:
+              - generic [ref=e9397]:
+                - generic [ref=e9398]: Sorte bønner
+                - generic [ref=e9399]: 2 ds
+              - button "Remove" [ref=e9400]:
+                - img [ref=e9401]
+            - generic [ref=e9403] [cursor=pointer]:
+              - generic [ref=e9406]: kalvecuvette
+              - button "Remove" [ref=e9407]:
+                - img [ref=e9408]
+            - generic [ref=e9410] [cursor=pointer]:
+              - generic [ref=e9413]: Cream cheese
+              - button "Remove" [ref=e9414]:
+                - img [ref=e9415]
+            - generic [ref=e9417] [cursor=pointer]:
+              - generic [ref=e9420]: Tomater
+              - button "Remove" [ref=e9421]:
+                - img [ref=e9422]
+            - generic [ref=e9424] [cursor=pointer]:
+              - generic [ref=e9427]: baconskiver
+              - button "Remove" [ref=e9428]:
+                - img [ref=e9429]
+            - generic [ref=e9431] [cursor=pointer]:
+              - generic [ref=e9434]: Bagels
+              - button "Remove" [ref=e9435]:
+                - img [ref=e9436]
+            - generic [ref=e9438] [cursor=pointer]:
+              - generic [ref=e9441]: Instantkaffe
+              - button "Remove" [ref=e9442]:
+                - img [ref=e9443]
+            - generic [ref=e9445] [cursor=pointer]:
+              - generic [ref=e9448]: Opvasketabletter
+              - button "Remove" [ref=e9449]:
+                - img [ref=e9450]
+            - generic [ref=e9452] [cursor=pointer]:
+              - generic [ref=e9455]: Dåsetomat
+              - button "Remove" [ref=e9456]:
+                - img [ref=e9457]
+            - generic [ref=e9459] [cursor=pointer]:
+              - generic [ref=e9462]: Glasrens
+              - button "Remove" [ref=e9463]:
+                - img [ref=e9464]
+            - generic [ref=e9466] [cursor=pointer]:
+              - generic [ref=e9469]: Afkalker til badeværelse
+              - button "Remove" [ref=e9470]:
+                - img [ref=e9471]
+            - generic [ref=e9473] [cursor=pointer]:
+              - generic [ref=e9476]: WC rens
+              - button "Remove" [ref=e9477]:
+                - img [ref=e9478]
+            - generic [ref=e9480] [cursor=pointer]:
+              - generic [ref=e9483]: Torskerogn
+              - button "Remove" [ref=e9484]:
+                - img [ref=e9485]
+            - generic [ref=e9487] [cursor=pointer]:
+              - generic [ref=e9490]: Hytteost
+              - button "Remove" [ref=e9491]:
+                - img [ref=e9492]
+            - generic [ref=e9494] [cursor=pointer]:
+              - generic [ref=e9497]: Kyllingekebab
+              - button "Remove" [ref=e9498]:
+                - img [ref=e9499]
+            - generic [ref=e9501] [cursor=pointer]:
+              - generic [ref=e9504]: Tandtråd
+              - button "Remove" [ref=e9505]:
+                - img [ref=e9506]
+            - generic [ref=e9508] [cursor=pointer]:
+              - generic [ref=e9511]: spegepølsehaps
+              - button "Remove" [ref=e9512]:
+                - img [ref=e9513]
+            - generic [ref=e9515] [cursor=pointer]:
+              - generic [ref=e9518]: Ostehaps
+              - button "Remove" [ref=e9519]:
+                - img [ref=e9520]
+            - generic [ref=e9522] [cursor=pointer]:
+              - generic [ref=e9525]: Saltkiks
+              - button "Remove" [ref=e9526]:
+                - img [ref=e9527]
+            - generic [ref=e9529] [cursor=pointer]:
+              - generic [ref=e9532]: Mayonnaise
+              - button "Remove" [ref=e9533]:
+                - img [ref=e9534]
+            - generic [ref=e9536] [cursor=pointer]:
+              - generic [ref=e9539]: Honning
+              - button "Remove" [ref=e9540]:
+                - img [ref=e9541]
+            - generic [ref=e9543] [cursor=pointer]:
+              - generic [ref=e9546]: Kamillete
+              - button "Remove" [ref=e9547]:
+                - img [ref=e9548]
+            - generic [ref=e9550] [cursor=pointer]:
+              - generic [ref=e9553]: Mørk chokolade
+              - button "Remove" [ref=e9554]:
+                - img [ref=e9555]
+            - generic [ref=e9557] [cursor=pointer]:
+              - generic [ref=e9559]:
+                - generic [ref=e9560]: Kidney bønner
+                - generic [ref=e9561]: "4"
+              - button "Remove" [ref=e9562]:
+                - img [ref=e9563]
+            - generic [ref=e9565] [cursor=pointer]:
+              - generic [ref=e9568]: Skinke
+              - button "Remove" [ref=e9569]:
+                - img [ref=e9570]
+            - generic [ref=e9572] [cursor=pointer]:
+              - generic [ref=e9574]:
+                - generic [ref=e9575]: Slikkepinde
+                - generic [ref=e9576]: "30"
+              - button "Remove" [ref=e9577]:
+                - img [ref=e9578]
+            - generic [ref=e9580] [cursor=pointer]:
+              - generic [ref=e9582]:
+                - generic [ref=e9583]: Karameller
+                - generic [ref=e9584]: "30"
+              - button "Remove" [ref=e9585]:
+                - img [ref=e9586]
+            - generic [ref=e9588] [cursor=pointer]:
+              - generic [ref=e9591]: Melon
+              - button "Remove" [ref=e9592]:
+                - img [ref=e9593]
+            - generic [ref=e9595] [cursor=pointer]:
+              - generic [ref=e9597]:
+                - generic [ref=e9598]: store skumfiduser
+                - generic [ref=e9599]: poser+spyd
+              - button "Remove" [ref=e9600]:
+                - img [ref=e9601]
+            - generic [ref=e9603] [cursor=pointer]:
+              - generic [ref=e9605]:
+                - generic [ref=e9606]: Blåbær
+                - generic [ref=e9607]: Spyd
+              - button "Remove" [ref=e9608]:
+                - img [ref=e9609]
+            - generic [ref=e9611] [cursor=pointer]:
+              - generic [ref=e9613]:
+                - generic [ref=e9614]: Hindbær
+                - generic [ref=e9615]: spyd
+              - button "Remove" [ref=e9616]:
+                - img [ref=e9617]
+            - generic [ref=e9619] [cursor=pointer]:
+              - generic [ref=e9622]: Grillspyd
+              - button "Remove" [ref=e9623]:
+                - img [ref=e9624]
+            - generic [ref=e9626] [cursor=pointer]:
+              - generic [ref=e9628]:
+                - generic [ref=e9629]: Pepperoni
+                - generic [ref=e9630]: "4"
+              - button "Remove" [ref=e9631]:
+                - img [ref=e9632]
+            - generic [ref=e9634] [cursor=pointer]:
+              - generic [ref=e9636]:
+                - generic [ref=e9637]: Revet mozarella
+                - generic [ref=e9638]: 6 ps
+              - button "Remove" [ref=e9639]:
+                - img [ref=e9640]
+            - generic [ref=e9642] [cursor=pointer]:
+              - generic [ref=e9645]: Gouda
+              - button "Remove" [ref=e9646]:
+                - img [ref=e9647]
+            - generic [ref=e9649] [cursor=pointer]:
+              - generic [ref=e9652]: Chokoladecroissant
+              - button "Remove" [ref=e9653]:
+                - img [ref=e9654]
+            - generic [ref=e9656] [cursor=pointer]:
+              - generic [ref=e9659]: Krydderboller
+              - button "Remove" [ref=e9660]:
+                - img [ref=e9661]
+            - generic [ref=e9663] [cursor=pointer]:
+              - generic [ref=e9666]: Sprayolie
+              - button "Remove" [ref=e9667]:
+                - img [ref=e9668]
+            - generic [ref=e9670] [cursor=pointer]:
+              - generic [ref=e9673]: Spidskommen
+              - button "Remove" [ref=e9674]:
+                - img [ref=e9675]
+            - generic [ref=e9677] [cursor=pointer]:
+              - generic [ref=e9679]:
+                - generic [ref=e9680]: Pasta penne
+                - generic [ref=e9681]: "2"
+              - button "Remove" [ref=e9682]:
+                - img [ref=e9683]
+            - generic [ref=e9685] [cursor=pointer]:
+              - generic [ref=e9688]: Miniflutes
+              - button "Remove" [ref=e9689]:
+                - img [ref=e9690]
+            - generic [ref=e9692] [cursor=pointer]:
+              - generic [ref=e9695]: Fiskesauce
+              - button "Remove" [ref=e9696]:
+                - img [ref=e9697]
+            - generic [ref=e9699] [cursor=pointer]:
+              - generic [ref=e9702]: Tomatpure
+              - button "Remove" [ref=e9703]:
+                - img [ref=e9704]
+            - generic [ref=e9706] [cursor=pointer]:
+              - generic [ref=e9709]: cajun krydderi
+              - button "Remove" [ref=e9710]:
+                - img [ref=e9711]
+            - generic [ref=e9713] [cursor=pointer]:
+              - generic [ref=e9715]:
+                - generic [ref=e9716]: Halloumi
+                - generic [ref=e9717]: 300 g
+              - button "Remove" [ref=e9718]:
+                - img [ref=e9719]
+            - generic [ref=e9721] [cursor=pointer]:
+              - generic [ref=e9723]:
+                - generic [ref=e9724]: Gammel knas
+                - generic [ref=e9725]: 50 g
+              - button "Remove" [ref=e9726]:
+                - img [ref=e9727]
+            - generic [ref=e9729] [cursor=pointer]:
+              - generic [ref=e9731]:
+                - generic [ref=e9732]: Kartofler til vafler
+                - generic [ref=e9733]: 1 kg
+              - button "Remove" [ref=e9734]:
+                - img [ref=e9735]
+            - generic [ref=e9737] [cursor=pointer]:
+              - generic [ref=e9740]: Oliven
+              - button "Remove" [ref=e9741]:
+                - img [ref=e9742]
+            - generic [ref=e9744] [cursor=pointer]:
+              - generic [ref=e9746]:
+                - generic [ref=e9747]: burrata
+                - generic [ref=e9748]: "4"
+              - button "Remove" [ref=e9749]:
+                - img [ref=e9750]
+            - generic [ref=e9752] [cursor=pointer]:
+              - generic [ref=e9755]: tortillini
+              - button "Remove" [ref=e9756]:
+                - img [ref=e9757]
+            - generic [ref=e9759] [cursor=pointer]:
+              - generic [ref=e9762]: Rødbeder
+              - button "Remove" [ref=e9763]:
+                - img [ref=e9764]
+            - generic [ref=e9766] [cursor=pointer]:
+              - generic [ref=e9769]: Vaffelrør
+              - button "Remove" [ref=e9770]:
+                - img [ref=e9771]
+            - generic [ref=e9773] [cursor=pointer]:
+              - generic [ref=e9776]: Brun farin
+              - button "Remove" [ref=e9777]:
+                - img [ref=e9778]
+            - generic [ref=e9780] [cursor=pointer]:
+              - generic [ref=e9783]: Cornflakes
+              - button "Remove" [ref=e9784]:
+                - img [ref=e9785]
+            - generic [ref=e9787] [cursor=pointer]:
+              - generic [ref=e9790]: Dipmix
+              - button "Remove" [ref=e9791]:
+                - img [ref=e9792]
+            - generic [ref=e9794] [cursor=pointer]:
+              - generic [ref=e9796]:
+                - generic [ref=e9797]: Sunlolly
+                - generic [ref=e9798]: ananas
+              - button "Remove" [ref=e9799]:
+                - img [ref=e9800]
+            - generic [ref=e9802] [cursor=pointer]:
+              - generic [ref=e9804]:
+                - generic [ref=e9805]: Sunlolly
+                - generic [ref=e9806]: cola
+              - button "Remove" [ref=e9807]:
+                - img [ref=e9808]
+            - generic [ref=e9810] [cursor=pointer]:
+              - generic [ref=e9813]: Vaffelis
+              - button "Remove" [ref=e9814]:
+                - img [ref=e9815]
+            - generic [ref=e9817] [cursor=pointer]:
+              - generic [ref=e9820]: Universalrengøring
+              - button "Remove" [ref=e9821]:
+                - img [ref=e9822]
+            - generic [ref=e9824] [cursor=pointer]:
+              - generic [ref=e9827]: Salatblade
+              - button "Remove" [ref=e9828]:
+                - img [ref=e9829]
+            - generic [ref=e9831] [cursor=pointer]:
+              - generic [ref=e9834]: Danskvand
+              - button "Remove" [ref=e9835]:
+                - img [ref=e9836]
+            - generic [ref=e9838] [cursor=pointer]:
+              - generic [ref=e9841]: Sodavand
+              - button "Remove" [ref=e9842]:
+                - img [ref=e9843]
+            - generic [ref=e9845] [cursor=pointer]:
+              - generic [ref=e9847]:
+                - generic [ref=e9848]: fritter
+                - generic [ref=e9849]: 2 ps
+              - button "Remove" [ref=e9850]:
+                - img [ref=e9851]
+            - generic [ref=e9853] [cursor=pointer]:
+              - generic [ref=e9856]: Koldskål
+              - button "Remove" [ref=e9857]:
+                - img [ref=e9858]
+            - generic [ref=e9860] [cursor=pointer]:
+              - generic [ref=e9863]: pågen boller
+              - button "Remove" [ref=e9864]:
+                - img [ref=e9865]
+            - generic [ref=e9867] [cursor=pointer]:
+              - generic [ref=e9870]: Chufa kiks
+              - button "Remove" [ref=e9871]:
+                - img [ref=e9872]
+            - generic [ref=e9874] [cursor=pointer]:
+              - generic [ref=e9877]: Oregano
+              - button "Remove" [ref=e9878]:
+                - img [ref=e9879]
+            - generic [ref=e9881] [cursor=pointer]:
+              - generic [ref=e9884]: Forårsløg
+              - button "Remove" [ref=e9885]:
+                - img [ref=e9886]
+            - generic [ref=e9888] [cursor=pointer]:
+              - generic [ref=e9891]: Fiskefars/hakket fisk
+              - button "Remove" [ref=e9892]:
+                - img [ref=e9893]
+            - generic [ref=e9895] [cursor=pointer]:
+              - generic [ref=e9898]: Preben deo
+              - button "Remove" [ref=e9899]:
+                - img [ref=e9900]
+            - generic [ref=e9902] [cursor=pointer]:
+              - generic [ref=e9905]: Ret til børnehaven
+              - button "Remove" [ref=e9906]:
+                - img [ref=e9907]
+            - generic [ref=e9909] [cursor=pointer]:
+              - generic [ref=e9912]: pære/bananyoghurt
+              - button "Remove" [ref=e9913]:
+                - img [ref=e9914]
+            - generic [ref=e9916] [cursor=pointer]:
+              - generic [ref=e9919]: Kikærter
+              - button "Remove" [ref=e9920]:
+                - img [ref=e9921]
+            - generic [ref=e9923] [cursor=pointer]:
+              - generic [ref=e9926]: Skumfiduser
+              - button "Remove" [ref=e9927]:
+                - img [ref=e9928]
+            - generic [ref=e9930] [cursor=pointer]:
+              - generic [ref=e9933]: Hvidløgsbrød
+              - button "Remove" [ref=e9934]:
+                - img [ref=e9935]
+            - generic [ref=e9937] [cursor=pointer]:
+              - generic [ref=e9940]: majskolber
+              - button "Remove" [ref=e9941]:
+                - img [ref=e9942]
+            - generic [ref=e9944] [cursor=pointer]:
+              - generic [ref=e9947]: Kammerjunker
+              - button "Remove" [ref=e9948]:
+                - img [ref=e9949]
+            - generic [ref=e9951] [cursor=pointer]:
+              - generic [ref=e9954]: Limefrugter
+              - button "Remove" [ref=e9955]:
+                - img [ref=e9956]
+            - generic [ref=e9958] [cursor=pointer]:
+              - generic [ref=e9961]: Rom
+              - button "Remove" [ref=e9962]:
+                - img [ref=e9963]
+            - generic [ref=e9965] [cursor=pointer]:
+              - generic [ref=e9968]: Ginger beer
+              - button "Remove" [ref=e9969]:
+                - img [ref=e9970]
+            - generic [ref=e9972] [cursor=pointer]:
+              - generic [ref=e9975]: Cola
+              - button "Remove" [ref=e9976]:
+                - img [ref=e9977]
+            - generic [ref=e9979] [cursor=pointer]:
+              - generic [ref=e9982]: Diverse oste
+              - button "Remove" [ref=e9983]:
+                - img [ref=e9984]
+            - generic [ref=e9986] [cursor=pointer]:
+              - generic [ref=e9988]:
+                - generic [ref=e9989]: Pizzabund
+                - generic [ref=e9990]: 6-7
+              - button "Remove" [ref=e9991]:
+                - img [ref=e9992]
+            - generic [ref=e9994] [cursor=pointer]:
+              - generic [ref=e9997]: Slikbank
+              - button "Remove" [ref=e9998]:
+                - img [ref=e9999]
+            - generic [ref=e10001] [cursor=pointer]:
+              - generic [ref=e10004]: Myslybar
+              - button "Remove" [ref=e10005]:
+                - img [ref=e10006]
+            - generic [ref=e10008] [cursor=pointer]:
+              - generic [ref=e10010]:
+                - generic [ref=e10011]: Puck ost
+                - generic [ref=e10012]: 150g
+              - button "Remove" [ref=e10013]:
+                - img [ref=e10014]
+            - generic [ref=e10016] [cursor=pointer]:
+              - generic [ref=e10018]:
+                - generic [ref=e10019]: Bacontern
+                - generic [ref=e10020]: 250g
+              - button "Remove" [ref=e10021]:
+                - img [ref=e10022]
+            - generic [ref=e10024] [cursor=pointer]:
+              - generic [ref=e10027]: Tærtebund
+              - button "Remove" [ref=e10028]:
+                - img [ref=e10029]
+            - generic [ref=e10031] [cursor=pointer]:
+              - generic [ref=e10034]: Majskolbe
+              - button "Remove" [ref=e10035]:
+                - img [ref=e10036]
+            - generic [ref=e10038] [cursor=pointer]:
+              - generic [ref=e10041]: Cornichoner
+              - button "Remove" [ref=e10042]:
+                - img [ref=e10043]
+            - generic [ref=e10045] [cursor=pointer]:
+              - generic [ref=e10048]: Dåsetun
+              - button "Remove" [ref=e10049]:
+                - img [ref=e10050]
+            - generic [ref=e10052] [cursor=pointer]:
+              - generic [ref=e10055]: Opvaskesalt
+              - button "Remove" [ref=e10056]:
+                - img [ref=e10057]
+            - generic [ref=e10059] [cursor=pointer]:
+              - generic [ref=e10062]: Æblejuice
+              - button "Remove" [ref=e10063]:
+                - img [ref=e10064]
+            - generic [ref=e10066] [cursor=pointer]:
+              - generic [ref=e10069]: Brød til grill
+              - button "Remove" [ref=e10070]:
+                - img [ref=e10071]
+            - generic [ref=e10073] [cursor=pointer]:
+              - generic [ref=e10076]: Sild
+              - button "Remove" [ref=e10077]:
+                - img [ref=e10078]
+            - generic [ref=e10080] [cursor=pointer]:
+              - generic [ref=e10083]: Koriander
+              - button "Remove" [ref=e10084]:
+                - img [ref=e10085]
+            - generic [ref=e10087] [cursor=pointer]:
+              - generic [ref=e10090]: Boller til turmorgenmad
+              - button "Remove" [ref=e10091]:
+                - img [ref=e10092]
+            - generic [ref=e10094] [cursor=pointer]:
+              - generic [ref=e10097]: Løgpulver
+              - button "Remove" [ref=e10098]:
+                - img [ref=e10099]
+            - generic [ref=e10101] [cursor=pointer]:
+              - generic [ref=e10104]: Quinoa
+              - button "Remove" [ref=e10105]:
+                - img [ref=e10106]
+            - generic [ref=e10108] [cursor=pointer]:
+              - generic [ref=e10111]: Hjertesalat
+              - button "Remove" [ref=e10112]:
+                - img [ref=e10113]
+            - generic [ref=e10115] [cursor=pointer]:
+              - generic [ref=e10118]: Kyllingespyd
+              - button "Remove" [ref=e10119]:
+                - img [ref=e10120]
+            - generic [ref=e10122] [cursor=pointer]:
+              - generic [ref=e10125]: Asparges
+              - button "Remove" [ref=e10126]:
+                - img [ref=e10127]
+            - generic [ref=e10129] [cursor=pointer]:
+              - generic [ref=e10132]: Plaster
+              - button "Remove" [ref=e10133]:
+                - img [ref=e10134]
+            - generic [ref=e10136] [cursor=pointer]:
+              - generic [ref=e10139]: Kødsnor
+              - button "Remove" [ref=e10140]:
+                - img [ref=e10141]
+            - generic [ref=e10143] [cursor=pointer]:
+              - generic [ref=e10146]: Sennepssild
+              - button "Remove" [ref=e10147]:
+                - img [ref=e10148]
+            - generic [ref=e10150] [cursor=pointer]:
+              - generic [ref=e10153]: Lys sirup
+              - button "Remove" [ref=e10154]:
+                - img [ref=e10155]
+            - generic [ref=e10157] [cursor=pointer]:
+              - generic [ref=e10160]: Nektariner
+              - button "Remove" [ref=e10161]:
+                - img [ref=e10162]
+            - generic [ref=e10164] [cursor=pointer]:
+              - generic [ref=e10167]: Skinkepålæg
+              - button "Remove" [ref=e10168]:
+                - img [ref=e10169]
+            - generic [ref=e10171] [cursor=pointer]:
+              - generic [ref=e10174]: Madpakkebrød
+              - button "Remove" [ref=e10175]:
+                - img [ref=e10176]
+            - generic [ref=e10178] [cursor=pointer]:
+              - generic [ref=e10181]: Boller
+              - button "Remove" [ref=e10182]:
+                - img [ref=e10183]
+            - generic [ref=e10185] [cursor=pointer]:
+              - generic [ref=e10187]:
+                - generic [ref=e10188]: Brikjuice appelsin
+                - generic [ref=e10189]: "10"
+              - button "Remove" [ref=e10190]:
+                - img [ref=e10191]
+            - generic [ref=e10193] [cursor=pointer]:
+              - generic [ref=e10196]: Is
+              - button "Remove" [ref=e10197]:
+                - img [ref=e10198]
+            - generic [ref=e10200] [cursor=pointer]:
+              - generic [ref=e10203]: Cashewnødder saltede
+              - button "Remove" [ref=e10204]:
+                - img [ref=e10205]
+            - generic [ref=e10207] [cursor=pointer]:
+              - generic [ref=e10210]: fersken
+              - button "Remove" [ref=e10211]:
+                - img [ref=e10212]
+            - generic [ref=e10214] [cursor=pointer]:
+              - generic [ref=e10216]:
+                - generic [ref=e10217]: Grillkød
+                - generic [ref=e10218]: 3 dage
+              - button "Remove" [ref=e10219]:
+                - img [ref=e10220]
+            - generic [ref=e10222] [cursor=pointer]:
+              - generic [ref=e10225]: Skurresvampe
+              - button "Remove" [ref=e10226]:
+                - img [ref=e10227]
+            - generic [ref=e10229] [cursor=pointer]:
+              - generic [ref=e10232]: Frugt legegruppe
+              - button "Remove" [ref=e10233]:
+                - img [ref=e10234]
+            - generic [ref=e10236] [cursor=pointer]:
+              - generic [ref=e10239]: Røde linser
+              - button "Remove" [ref=e10240]:
+                - img [ref=e10241]
+            - generic [ref=e10243] [cursor=pointer]:
+              - generic [ref=e10246]: Jordbær
+              - button "Remove" [ref=e10247]:
+                - img [ref=e10248]
+            - generic [ref=e10250] [cursor=pointer]:
+              - generic [ref=e10253]: Chorizo
+              - button "Remove" [ref=e10254]:
+                - img [ref=e10255]
+            - generic [ref=e10257] [cursor=pointer]:
+              - generic [ref=e10260]: Müsli
+              - button "Remove" [ref=e10261]:
+                - img [ref=e10262]
+            - generic [ref=e10264] [cursor=pointer]:
+              - generic [ref=e10267]: Vaskemiddel hvid
+              - button "Remove" [ref=e10268]:
+                - img [ref=e10269]
+            - generic [ref=e10271] [cursor=pointer]:
+              - generic [ref=e10274]: Te
+              - button "Remove" [ref=e10275]:
+                - img [ref=e10276]
+            - generic [ref=e10278] [cursor=pointer]:
+              - generic [ref=e10281]: pecorino
+              - button "Remove" [ref=e10282]:
+                - img [ref=e10283]
+            - generic [ref=e10285] [cursor=pointer]:
+              - generic [ref=e10287]:
+                - generic [ref=e10288]: Fettucini
+                - generic [ref=e10289]: 750 g
+              - button "Remove" [ref=e10290]:
+                - img [ref=e10291]
+            - generic [ref=e10293] [cursor=pointer]:
+              - generic [ref=e10296]: Udon nudler
+              - button "Remove" [ref=e10297]:
+                - img [ref=e10298]
+            - generic [ref=e10300] [cursor=pointer]:
+              - generic [ref=e10303]: tørret basilikum
+              - button "Remove" [ref=e10304]:
+                - img [ref=e10305]
+            - generic [ref=e10307] [cursor=pointer]:
+              - generic [ref=e10310]: Gulerodsboller
+              - button "Remove" [ref=e10311]:
+                - img [ref=e10312]
+            - generic [ref=e10314] [cursor=pointer]:
+              - generic [ref=e10317]: Knækbrød
+              - button "Remove" [ref=e10318]:
+                - img [ref=e10319]
+            - generic [ref=e10321] [cursor=pointer]:
+              - generic [ref=e10324]: Tærtedej
+              - button "Remove" [ref=e10325]:
+                - img [ref=e10326]
+            - generic [ref=e10328] [cursor=pointer]:
+              - generic [ref=e10331]: Staniol
+              - button "Remove" [ref=e10332]:
+                - img [ref=e10333]
+            - generic [ref=e10335] [cursor=pointer]:
+              - generic [ref=e10338]: Majskiks
+              - button "Remove" [ref=e10339]:
+                - img [ref=e10340]
+            - generic [ref=e10342] [cursor=pointer]:
+              - generic [ref=e10345]: Mozzarella
+              - button "Remove" [ref=e10346]:
+                - img [ref=e10347]
+            - generic [ref=e10349] [cursor=pointer]:
+              - generic [ref=e10351]:
+                - generic [ref=e10352]: Tortellini
+                - generic [ref=e10353]: 500 g
+              - button "Remove" [ref=e10354]:
+                - img [ref=e10355]
+            - generic [ref=e10357] [cursor=pointer]:
+              - generic [ref=e10360]: Tomat
+              - button "Remove" [ref=e10361]:
+                - img [ref=e10362]
+            - generic [ref=e10364] [cursor=pointer]:
+              - generic [ref=e10367]: Deo til mand
+              - button "Remove" [ref=e10368]:
+                - img [ref=e10369]
+            - generic [ref=e10371] [cursor=pointer]:
+              - generic [ref=e10374]: Tomat
+              - button "Remove" [ref=e10375]:
+                - img [ref=e10376]
+            - generic [ref=e10378] [cursor=pointer]:
+              - generic [ref=e10381]: Oksebouillon
+              - button "Remove" [ref=e10382]:
+                - img [ref=e10383]
+            - generic [ref=e10385] [cursor=pointer]:
+              - generic [ref=e10388]: Hønsebouillon
+              - button "Remove" [ref=e10389]:
+                - img [ref=e10390]
+            - generic [ref=e10392] [cursor=pointer]:
+              - generic [ref=e10395]: Pommes frites frost
+              - button "Remove" [ref=e10396]:
+                - img [ref=e10397]
+            - generic [ref=e10399] [cursor=pointer]:
+              - generic [ref=e10401]:
+                - generic [ref=e10402]: Rodalon
+                - generic [ref=e10403]: spray
+              - button "Remove" [ref=e10404]:
+                - img [ref=e10405]
+            - generic [ref=e10407] [cursor=pointer]:
+              - generic [ref=e10410]: Makrel
+              - button "Remove" [ref=e10411]:
+                - img [ref=e10412]
+            - generic [ref=e10414] [cursor=pointer]:
+              - generic [ref=e10417]: Jordbærmarmelade
+              - button "Remove" [ref=e10418]:
+                - img [ref=e10419]
+            - generic [ref=e10421] [cursor=pointer]:
+              - generic [ref=e10424]: Jordbærsaft
+              - button "Remove" [ref=e10425]:
+                - img [ref=e10426]
+            - generic [ref=e10428] [cursor=pointer]:
+              - generic [ref=e10431]: Glukosesirup
+              - button "Remove" [ref=e10432]:
+                - img [ref=e10433]
+            - generic [ref=e10435] [cursor=pointer]:
+              - generic [ref=e10438]: Børnepanodil
+              - button "Remove" [ref=e10439]:
+                - img [ref=e10440]
+            - generic [ref=e10442] [cursor=pointer]:
+              - generic [ref=e10444]:
+                - generic [ref=e10445]: Omega
+                - generic [ref=e10446]: "3"
+              - button "Remove" [ref=e10447]:
+                - img [ref=e10448]
+            - generic [ref=e10450] [cursor=pointer]:
+              - generic [ref=e10453]: Mozarella
+              - button "Remove" [ref=e10454]:
+                - img [ref=e10455]
+            - generic [ref=e10457] [cursor=pointer]:
+              - generic [ref=e10460]: Plastik
+              - button "Remove" [ref=e10461]:
+                - img [ref=e10462]
+            - generic [ref=e10464] [cursor=pointer]:
+              - generic [ref=e10467]: Påskeæg
+              - button "Remove" [ref=e10468]:
+                - img [ref=e10469]
+            - generic [ref=e10471] [cursor=pointer]:
+              - generic [ref=e10474]: div. Frugt
+              - button "Remove" [ref=e10475]:
+                - img [ref=e10476]
+            - generic [ref=e10478] [cursor=pointer]:
+              - generic [ref=e10481]: Fisk
+              - button "Remove" [ref=e10482]:
+                - img [ref=e10483]
+            - generic [ref=e10485] [cursor=pointer]:
+              - generic [ref=e10488]: Lyst brød
+              - button "Remove" [ref=e10489]:
+                - img [ref=e10490]
+            - generic [ref=e10492] [cursor=pointer]:
+              - generic [ref=e10495]: Oksemørbrad
+              - button "Remove" [ref=e10496]:
+                - img [ref=e10497]
+            - generic [ref=e10499] [cursor=pointer]:
+              - generic [ref=e10502]: Pasteuriserede æggeblommer
+              - button "Remove" [ref=e10503]:
+                - img [ref=e10504]
+            - generic [ref=e10506] [cursor=pointer]:
+              - generic [ref=e10509]: Frisk estragon
+              - button "Remove" [ref=e10510]:
+                - img [ref=e10511]
+            - generic [ref=e10513] [cursor=pointer]:
+              - generic [ref=e10516]: Bearnaise essens
+              - button "Remove" [ref=e10517]:
+                - img [ref=e10518]
+            - generic [ref=e10520] [cursor=pointer]:
+              - generic [ref=e10523]: Dåsemajs
+              - button "Remove" [ref=e10524]:
+                - img [ref=e10525]
+            - generic [ref=e10527] [cursor=pointer]:
+              - generic [ref=e10530]: kartofler til madder
+              - button "Remove" [ref=e10531]:
+                - img [ref=e10532]
+            - generic [ref=e10534] [cursor=pointer]:
+              - generic [ref=e10537]: Tørrede banan
+              - button "Remove" [ref=e10538]:
+                - img [ref=e10539]
+            - generic [ref=e10541] [cursor=pointer]:
+              - generic [ref=e10544]: Tomatpasta
+              - button "Remove" [ref=e10545]:
+                - img [ref=e10546]
+            - generic [ref=e10548] [cursor=pointer]:
+              - generic [ref=e10551]: Cornflakes
+              - button "Remove" [ref=e10552]:
+                - img [ref=e10553]
+            - generic [ref=e10555] [cursor=pointer]:
+              - generic [ref=e10558]: Tandstikker
+              - button "Remove" [ref=e10559]:
+                - img [ref=e10560]
+            - generic [ref=e10562] [cursor=pointer]:
+              - generic [ref=e10565]: Croissant choko
+              - button "Remove" [ref=e10566]:
+                - img [ref=e10567]
+            - generic [ref=e10569] [cursor=pointer]:
+              - generic [ref=e10572]: Honningmelon
+              - button "Remove" [ref=e10573]:
+                - img [ref=e10574]
+            - generic [ref=e10576] [cursor=pointer]:
+              - generic [ref=e10579]: Isterninger
+              - button "Remove" [ref=e10580]:
+                - img [ref=e10581]
+            - generic [ref=e10583] [cursor=pointer]:
+              - generic [ref=e10586]: Treo
+              - button "Remove" [ref=e10587]:
+                - img [ref=e10588]
+            - generic [ref=e10590] [cursor=pointer]:
+              - generic [ref=e10593]: Eddike
+              - button "Remove" [ref=e10594]:
+                - img [ref=e10595]
+            - generic [ref=e10597] [cursor=pointer]:
+              - generic [ref=e10600]: Opvaskebørste
+              - button "Remove" [ref=e10601]:
+                - img [ref=e10602]
+            - generic [ref=e10604] [cursor=pointer]:
+              - generic [ref=e10607]: blåbær figenstænger
+              - button "Remove" [ref=e10608]:
+                - img [ref=e10609]
+            - generic [ref=e10611] [cursor=pointer]:
+              - generic [ref=e10614]: Popcorn
+              - button "Remove" [ref=e10615]:
+                - img [ref=e10616]
+            - generic [ref=e10618] [cursor=pointer]:
+              - generic [ref=e10621]: Snacks
+              - button "Remove" [ref=e10622]:
+                - img [ref=e10623]
+            - generic [ref=e10625] [cursor=pointer]:
+              - generic [ref=e10628]: Frugtfarve
+              - button "Remove" [ref=e10629]:
+                - img [ref=e10630]
+            - generic [ref=e10632] [cursor=pointer]:
+              - generic [ref=e10635]: Tomat passata
+              - button "Remove" [ref=e10636]:
+                - img [ref=e10637]
+            - generic [ref=e10639] [cursor=pointer]:
+              - generic [ref=e10642]: Chili sauce
+              - button "Remove" [ref=e10643]:
+                - img [ref=e10644]
+            - generic [ref=e10646] [cursor=pointer]:
+              - generic [ref=e10649]: Kiks
+              - button "Remove" [ref=e10650]:
+                - img [ref=e10651]
+            - generic [ref=e10653] [cursor=pointer]:
+              - generic [ref=e10656]: Karry
+              - button "Remove" [ref=e10657]:
+                - img [ref=e10658]
+            - generic [ref=e10660] [cursor=pointer]:
+              - generic [ref=e10663]: Karry
+              - button "Remove" [ref=e10664]:
+                - img [ref=e10665]
+            - generic [ref=e10667] [cursor=pointer]:
+              - generic [ref=e10670]: blød tandbørste
+              - button "Remove" [ref=e10671]:
+                - img [ref=e10672]
+            - generic [ref=e10674] [cursor=pointer]:
+              - generic [ref=e10677]: kiwi
+              - button "Remove" [ref=e10678]:
+                - img [ref=e10679]
+            - generic [ref=e10681] [cursor=pointer]:
+              - generic [ref=e10684]: Pågen brød
+              - button "Remove" [ref=e10685]:
+                - img [ref=e10686]
+            - generic [ref=e10688] [cursor=pointer]:
+              - generic [ref=e10691]: Cashewnødder/peanuts
+              - button "Remove" [ref=e10692]:
+                - img [ref=e10693]
+            - generic [ref=e10695] [cursor=pointer]:
+              - generic [ref=e10698]: Kyllingfilet
+              - button "Remove" [ref=e10699]:
+                - img [ref=e10700]
+            - generic [ref=e10702] [cursor=pointer]:
+              - generic [ref=e10704]:
+                - generic [ref=e10705]: cheddr
+                - generic [ref=e10706]: 150 g
+              - button "Remove" [ref=e10707]:
+                - img [ref=e10708]
+            - generic [ref=e10710] [cursor=pointer]:
+              - generic [ref=e10713]: Salvie
+              - button "Remove" [ref=e10714]:
+                - img [ref=e10715]
+            - generic [ref=e10717] [cursor=pointer]:
+              - generic [ref=e10720]: Kardemomme
+              - button "Remove" [ref=e10721]:
+                - img [ref=e10722]
+            - generic [ref=e10724] [cursor=pointer]:
+              - generic [ref=e10727]: Mørk pålægschokolade
+              - button "Remove" [ref=e10728]:
+                - img [ref=e10729]
+            - generic [ref=e10731] [cursor=pointer]:
+              - generic [ref=e10734]: Groft rugmel
+              - button "Remove" [ref=e10735]:
+                - img [ref=e10736]

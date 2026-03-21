@@ -31,7 +31,7 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     await hass.http.async_register_static_paths(
         [StaticPathConfig(url_path=CARD_URL, path=str(CARD_PATH), cache_headers=False)]
     )
-    add_extra_js_url(hass, f"{CARD_URL}?v=1.0.3")
+    add_extra_js_url(hass, f"{CARD_URL}?v=1.0.5")
 
     return True
 

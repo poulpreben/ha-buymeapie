@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.3";
+const CARD_VERSION = "1.0.5";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -102,18 +102,63 @@ class BuyMeAPieCard extends HTMLElement {
     return GROUP_COLORS[groupId] || GROUP_COLORS[0];
   }
 
-  async _addItem(title) {
-    if (!title.trim()) return;
+  // Parse input matching bmap app's parser:
+  //   Comma/semicolon = multiple items ("Milk, Bread" = 2 items)
+  //   Whitespace or colon before number+unit = amount ("Milk 2 l", "Milk: 2 liters")
+  _parseOne(s) {
+    const trimmed = s.replace(/^[\s,;:.]+/, "").replace(/[\s,;:.]+$/, "");
+    if (!trimmed) return null;
+    const units = "g|gr|gm|gram|grams|kg|kilo|kilos|l|liter|liters|litre|litres|dl|ml|cl|oz|lb|lbs|pound|pounds|pint|pints|gallon|gallons|bottle|bottles|can|cans|pack|packs|package|packages|box|boxes|bag|bags|jar|jars|tin|tins|piece|pieces|pc|pcs|stk|pakke|pakker|flaske|flasker|pose|poser|boks|bokser|bundt|portion|dåse|dåser";
+    // Match: title (space or colon) number [unit]
+    const re = new RegExp(
+      `^(.+?)(?:\\s*:\\s*|\\s+)(\\d+(?:[,./]\\d+)?(?:\\s*(?:${units})\\.?)?)\\s*$`, "i"
+    );
+    const m = trimmed.match(re);
+    if (m && m[1] && m[2]) {
+      return { title: m[1].trim(), amount: m[2].trim() };
+    }
+    // Fallback: colon separator for freeform amounts ("Milk: large carton")
+    const colonIdx = trimmed.indexOf(":");
+    if (colonIdx > 0) {
+      const title = trimmed.slice(0, colonIdx).trim();
+      const amount = trimmed.slice(colonIdx + 1).trim();
+      if (title && amount) return { title, amount };
+    }
+    return { title: trimmed, amount: "" };
+  }
+
+  _parseInput(raw) {
+    if (!raw.trim()) return [];
+    // Split by comma or semicolon (but not commas inside number+unit like "1,5 kg")
+    const units = "g|gr|gm|gram|grams|kg|kilo|kilos|l|liter|liters|litre|litres|dl|ml|cl|oz|lb|lbs|stk|pakke|pakker|flaske|flasker|pose|poser|boks|bokser|piece|pieces|pc|pcs|pack|packs|bottle|bottles|can|cans|box|boxes|bag|bags|jar|jars|tin|tins|portion|bundt|dåse|dåser";
+    const delimiterRe = new RegExp(
+      `,(?!\\d+(?:${units})?(?:$|[,;\\s]))`, "gi"
+    );
+    const normalized = raw.replace(delimiterRe, ";");
+    return normalized.split(";")
+      .map((s) => this._parseOne(s))
+      .filter(Boolean);
+  }
+
+  async _addItem(raw) {
+    const items = this._parseInput(raw);
+    if (items.length === 0) return;
     const input = this.querySelector(".bmap-input");
     if (input) input.value = "";
     this._inputValue = "";
     this._suggestions = [];
     this._showSuggestions = false;
-    await this._hass.callService(
-      "todo", "add_item",
-      { item: title.trim() },
-      { entity_id: this._config.entity }
-    );
+
+    for (const parsed of items) {
+      const data = { item: parsed.title };
+      if (parsed.amount) {
+        data.description = parsed.amount;
+      }
+      await this._hass.callService(
+        "todo", "add_item", data,
+        { entity_id: this._config.entity }
+      );
+    }
   }
 
   async _toggleItem(uid, currentStatus) {
@@ -511,12 +556,18 @@ class BuyMeAPieCard extends HTMLElement {
       });
     }
 
-    this.querySelectorAll(".bmap-checkbox-wrap").forEach((el) => {
-      el.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this._toggleItem(el.dataset.uid, el.dataset.status);
+    // Delegate click on item rows for toggling
+    const itemsContainer = this.querySelector(".bmap-items");
+    if (itemsContainer) {
+      itemsContainer.addEventListener("click", (e) => {
+        // Ignore clicks on delete buttons
+        if (e.target.closest(".bmap-delete")) return;
+        const item = e.target.closest(".bmap-item");
+        if (item && item.dataset.uid) {
+          this._toggleItem(item.dataset.uid, item.dataset.status);
+        }
       });
-    });
+    }
 
     this.querySelectorAll(".bmap-delete").forEach((el) => {
       el.addEventListener("click", (e) => {
@@ -532,10 +583,8 @@ class BuyMeAPieCard extends HTMLElement {
       ? `<div class="bmap-item-desc">${this._esc(item.description)}</div>`
       : "";
     return `
-      <div class="${cls}">
-        <div class="bmap-checkbox-wrap" data-uid="${this._escAttr(item.uid)}" data-status="${item.status}">
-          <div class="bmap-checkbox"></div>
-        </div>
+      <div class="${cls}" data-uid="${this._escAttr(item.uid)}" data-status="${item.status}">
+        <div class="bmap-checkbox"></div>
         <div class="bmap-item-content">
           <div class="bmap-item-title">${this._esc(item.summary)}</div>
           ${desc}
