@@ -1,0 +1,10 @@
+{
+  "domain": "buymeapie",
+  "name": "Buy Me a Pie",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://buymeapie.com",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "version": "1.0.0"
+}

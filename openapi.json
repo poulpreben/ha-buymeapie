@@ -1,0 +1,876 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Buy Me a Pie API",
+    "description": "Unofficial API specification for Buy Me a Pie (buymeapie.com) shopping list service. Reverse-engineered from the web application JavaScript source.",
+    "version": "4.0.0",
+    "contact": {
+      "name": "Buy Me a Pie (Skript LLC)"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.buymeapie.com",
+      "description": "Production API"
+    },
+    {
+      "url": "http://localhost:8080",
+      "description": "Local mock server"
+    }
+  ],
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
+  "paths": {
+    "/bauth": {
+      "get": {
+        "operationId": "login",
+        "summary": "Authenticate user",
+        "description": "Validates Basic Auth credentials (login:pin). Returns user info on success.",
+        "tags": ["auth"],
+        "responses": {
+          "200": {
+            "description": "Authentication successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
+    "/v4.0/users": {
+      "post": {
+        "operationId": "registerUser",
+        "summary": "Register a new user",
+        "tags": ["auth"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateUser",
+        "summary": "Update user account",
+        "tags": ["auth"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v4.0/oauth2/code": {
+      "post": {
+        "operationId": "oauthAuthorize",
+        "summary": "OAuth2 authorization code grant",
+        "tags": ["auth"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OAuthRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authorization code issued",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/password_resets": {
+      "post": {
+        "operationId": "resetPassword",
+        "summary": "Request PIN recovery email",
+        "tags": ["auth"],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email"],
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Recovery email sent"
+          }
+        }
+      }
+    },
+    "/lists": {
+      "get": {
+        "operationId": "getLists",
+        "summary": "Get all shopping lists",
+        "tags": ["lists"],
+        "responses": {
+          "200": {
+            "description": "List of shopping lists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/List"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createList",
+        "summary": "Create a new shopping list",
+        "tags": ["lists"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateListRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "List created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lists/{list_id}": {
+      "put": {
+        "operationId": "updateList",
+        "summary": "Update a shopping list (rename, share)",
+        "tags": ["lists"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateListRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/List"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteList",
+        "summary": "Delete a shopping list",
+        "tags": ["lists"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "List deleted"
+          }
+        }
+      }
+    },
+    "/lists/{list_id}/items": {
+      "get": {
+        "operationId": "getItems",
+        "summary": "Get all items in a list",
+        "tags": ["items"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "addItem",
+        "summary": "Add an item to a list",
+        "tags": ["items"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateItemRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lists/{list_id}/items/{item_id}": {
+      "put": {
+        "operationId": "updateItem",
+        "summary": "Update an item (title, amount, purchased status)",
+        "tags": ["items"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          },
+          {
+            "$ref": "#/components/parameters/itemId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateItemRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteItem",
+        "summary": "Delete an item from a list",
+        "tags": ["items"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          },
+          {
+            "$ref": "#/components/parameters/itemId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Item deleted"
+          }
+        }
+      }
+    },
+    "/lists/{list_id}/changed_items/{timestamp}": {
+      "get": {
+        "operationId": "getChangedItems",
+        "summary": "Get items changed since a timestamp (incremental sync)",
+        "tags": ["items", "sync"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/listId"
+          },
+          {
+            "name": "timestamp",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Unix timestamp (seconds). Returns items modified after this time."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Changed items since the given timestamp",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unique_items": {
+      "get": {
+        "operationId": "getUniqueItems",
+        "summary": "Get all dictionary/autocomplete items",
+        "tags": ["unique_items"],
+        "responses": {
+          "200": {
+            "description": "Dictionary of unique items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UniqueItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unique_items/{encoded_title}": {
+      "put": {
+        "operationId": "updateUniqueItem",
+        "summary": "Update a dictionary item's category",
+        "tags": ["unique_items"],
+        "parameters": [
+          {
+            "name": "encoded_title",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "URL-encoded item title"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUniqueItemRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteUniqueItem",
+        "summary": "Delete a dictionary item",
+        "tags": ["unique_items"],
+        "parameters": [
+          {
+            "name": "encoded_title",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Item deleted"
+          }
+        }
+      }
+    },
+    "/restrictions": {
+      "get": {
+        "operationId": "getRestrictions",
+        "summary": "Get account limits (max lists, items, shared accounts)",
+        "tags": ["account"],
+        "responses": {
+          "200": {
+            "description": "Account restrictions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restrictions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clear_cache": {
+      "put": {
+        "operationId": "clearCache",
+        "summary": "Clear server-side cache",
+        "tags": ["sync"],
+        "responses": {
+          "200": {
+            "description": "Cache cleared"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "HTTP Basic Auth using login:pin (4-digit PIN). Example: Authorization: Basic base64(mylogin:1234)"
+      }
+    },
+    "parameters": {
+      "listId": {
+        "name": "list_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Shopping list ID"
+      },
+      "itemId": {
+        "name": "item_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Item ID"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "description": "Username"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "pin": {
+            "type": "string",
+            "pattern": "^[0-9]{4}$",
+            "description": "4-digit PIN"
+          },
+          "subscription_status": {
+            "type": "string",
+            "description": "Account subscription tier"
+          }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "required": ["login", "pin", "email"],
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string",
+            "pattern": "^[0-9]{4}$"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "subscription_status": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string",
+            "pattern": "^[0-9]{4}$"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "OAuthRequest": {
+        "type": "object",
+        "required": ["username", "password", "client_id", "redirect_uri"],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "description": "4-digit PIN"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "redirect_uri": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "List": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "List identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "List display name"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email"
+            },
+            "description": "Email addresses this list is shared with"
+          },
+          "items_purchased": {
+            "type": "integer",
+            "description": "Count of purchased items"
+          },
+          "items_not_purchased": {
+            "type": "integer",
+            "description": "Count of unpurchased items"
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp of creation"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["list", "recipe"],
+            "description": "List type"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Source URL (for recipe-type lists)"
+          }
+        }
+      },
+      "CreateListRequest": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Client-generated ID (optional)"
+          },
+          "name": {
+            "type": "string"
+          },
+          "items_purchased": {
+            "type": "integer",
+            "default": 0
+          },
+          "items_not_purchased": {
+            "type": "integer",
+            "default": 0
+          }
+        }
+      },
+      "UpdateListRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "email"
+            },
+            "description": "Set shared users (replaces existing)"
+          }
+        }
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Item identifier"
+          },
+          "title": {
+            "type": "string",
+            "description": "Item name"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Quantity/unit (e.g. '2 liters', '500g')"
+          },
+          "is_purchased": {
+            "type": "boolean",
+            "description": "Whether the item has been checked off"
+          },
+          "group_id": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 28,
+            "description": "Category/color group (0 = uncategorized, 1-7 standard, 8-28 extended)"
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp of last update"
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp of creation"
+          },
+          "deleted": {
+            "type": "boolean",
+            "description": "Soft-delete flag"
+          }
+        }
+      },
+      "CreateItemRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "is_purchased": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "UpdateItemRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "is_purchased": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UniqueItem": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "group_id": {
+            "type": "integer"
+          },
+          "use_count": {
+            "type": "integer"
+          },
+          "permanent": {
+            "type": "boolean"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "last_use": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "UpdateUniqueItemRequest": {
+        "type": "object",
+        "properties": {
+          "group_id": {
+            "type": "integer"
+          },
+          "permanent": {
+            "type": "boolean"
+          },
+          "use_count": {
+            "type": "integer"
+          }
+        }
+      },
+      "Restrictions": {
+        "type": "object",
+        "properties": {
+          "maxListsCount": {
+            "type": "integer",
+            "description": "Maximum number of lists (free: 3)"
+          },
+          "maxItemscount": {
+            "type": "integer",
+            "description": "Maximum items per list (free: 200)"
+          },
+          "sharedAccountsMaxNumber": {
+            "type": "integer",
+            "description": "Maximum shared accounts per list (free: 3)"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Authentication and user management"
+    },
+    {
+      "name": "lists",
+      "description": "Shopping list CRUD"
+    },
+    {
+      "name": "items",
+      "description": "Shopping list item CRUD"
+    },
+    {
+      "name": "unique_items",
+      "description": "Dictionary/autocomplete items"
+    },
+    {
+      "name": "sync",
+      "description": "Synchronization and caching"
+    },
+    {
+      "name": "account",
+      "description": "Account restrictions and limits"
+    }
+  ]
+}
