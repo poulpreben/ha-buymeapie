@@ -20,7 +20,7 @@ def async_register_commands(hass: HomeAssistant) -> None:
 @websocket_api.websocket_command(
     {
         vol.Required("type"): "buymeapie/autocomplete",
-        vol.Required("entry_id"): str,
+        vol.Optional("entry_id", default=""): str,
         vol.Optional("query", default=""): str,
         vol.Optional("limit", default=10): int,
     }
@@ -32,11 +32,16 @@ def handle_autocomplete(
     msg: dict[str, Any],
 ) -> None:
     """Return autocomplete suggestions from unique_items dictionary."""
-    entry_id = msg["entry_id"]
+    entry_id = msg.get("entry_id", "")
     query = msg["query"].lower().strip()
     limit = msg["limit"]
 
-    coordinator = hass.data.get(DOMAIN, {}).get(entry_id)
+    domain_data = hass.data.get(DOMAIN, {})
+    if entry_id:
+        coordinator = domain_data.get(entry_id)
+    else:
+        # Use the first available entry
+        coordinator = next(iter(domain_data.values()), None)
     if coordinator is None:
         connection.send_result(msg["id"], [])
         return
