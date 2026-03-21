@@ -97,7 +97,7 @@ class BuyMeAPieCard extends HTMLElement {
   _parseOne(s) {
     const trimmed = s.replace(/^[\s,;:.]+/, "").replace(/[\s,;:.]+$/, "");
     if (!trimmed) return null;
-    const units = "g|gr|gm|gram|grams|kg|kilo|kilos|l|liter|liters|litre|litres|dl|ml|cl|oz|lb|lbs|pound|pounds|pint|pints|gallon|gallons|bottle|bottles|can|cans|pack|packs|package|packages|box|boxes|bag|bags|jar|jars|tin|tins|piece|pieces|pc|pcs|stk|pakke|pakker|flaske|flasker|pose|poser|boks|bokser|bundt|portion|dåse|dåser";
+    const units = "g|gr|gm|gram|grams|kg|kilo|kilos|l|liter|liters|litre|litres|dl|ml|cl|oz|lb|lbs|pound|pounds|pint|pints|gallon|gallons|bottle|bottles|can|cans|pack|packs|pk|package|packages|box|boxes|bag|bags|jar|jars|tin|tins|piece|pieces|pc|pcs|stk|pakke|pakker|flaske|flasker|pose|poser|boks|bokser|bundt|portion|dåse|dåser|ds|spand|rulle|ruller|bdt|sæt";
     // Match: title (space or colon) number [unit]
     const re = new RegExp(
       `^(.+?)(?:\\s*:\\s*|\\s+)(\\d+(?:[,./]\\d+)?(?:\\s*(?:${units})\\.?)?)\\s*$`, "i"

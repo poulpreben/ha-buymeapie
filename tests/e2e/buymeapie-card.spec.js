@@ -483,4 +483,50 @@ test.describe("Buy Me a Pie Card", () => {
     });
     expect(result.value).toBe("Agurk");
   });
+
+  test("multi-item with quantity parsing", async ({ page }) => {
+    // "agurk, musli 2 pk, bananer" should create 3 items
+    // with "musli" having amount "2 pk"
+    const parsed = await page.evaluate(() => {
+      function findInShadow(root, sel) {
+        const el = root.querySelector(sel);
+        if (el) return el;
+        for (const c of root.querySelectorAll("*")) {
+          if (c.shadowRoot) {
+            const f = findInShadow(c.shadowRoot, sel);
+            if (f) return f;
+          }
+        }
+        return null;
+      }
+      const card = findInShadow(document, "buymeapie-card");
+      return card._parseInput("agurk, musli 2 pk, bananer");
+    });
+    expect(parsed).toHaveLength(3);
+    expect(parsed[0]).toEqual({ title: "agurk", amount: "" });
+    expect(parsed[1]).toEqual({ title: "musli", amount: "2 pk" });
+    expect(parsed[2]).toEqual({ title: "bananer", amount: "" });
+
+    // Actually add them and verify
+    await addItemViaInput(page, "agurk, musli 2 pk, bananer");
+    await page.waitForTimeout(3000);
+
+    const info = await getCardInfo(page);
+    const musli = info.activeItems.find((i) => i.title === "Musli");
+    expect(musli).toBeDefined();
+    expect(musli.desc).toBe("2 pk");
+
+    const agurk = info.activeItems.find((i) => i.title === "Agurk");
+    expect(agurk).toBeDefined();
+
+    const bananer = info.activeItems.find((i) => i.title === "Bananer");
+    expect(bananer).toBeDefined();
+
+    // Clean up
+    await deleteItemByTitle(page, "Musli");
+    await page.waitForTimeout(500);
+    await deleteItemByTitle(page, "Agurk");
+    await page.waitForTimeout(500);
+    await deleteItemByTitle(page, "Bananer");
+  });
 });
