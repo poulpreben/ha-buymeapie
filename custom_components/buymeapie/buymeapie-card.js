@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.8";
+const CARD_VERSION = "1.0.9";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -67,12 +67,9 @@ class BuyMeAPieCard extends HTMLElement {
 
   async _fetchSuggestions(query) {
     if (!this._hass) return;
-    const entryId = this._cachedEntryId || (await this._resolveEntryId());
-    if (!entryId) return;
     try {
       const results = await this._hass.callWS({
         type: "buymeapie/autocomplete",
-        entry_id: entryId,
         query: query,
         limit: 8,
       });
@@ -85,17 +82,9 @@ class BuyMeAPieCard extends HTMLElement {
     }
   }
 
+  // entry_id is no longer needed — the websocket handler auto-selects
   async _resolveEntryId() {
-    if (this._cachedEntryId) return this._cachedEntryId;
-    try {
-      const entries = await this._hass.callWS({ type: "config_entries/get" });
-      const match = entries.find((e) => e.domain === "buymeapie");
-      if (match) {
-        this._cachedEntryId = match.entry_id;
-        return match.entry_id;
-      }
-    } catch { /* ignore */ }
-    return null;
+    return "";
   }
 
   _gc(groupId) {
