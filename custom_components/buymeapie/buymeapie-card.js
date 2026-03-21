@@ -478,14 +478,11 @@ class BuyMeAPieCard extends HTMLElement {
             margin-top: -2px;
           }
 
-          .bmap-item-content {
+          .bmap-item-title {
             flex: 1;
             min-width: 0;
-            padding: 12px 0;
-          }
-          .bmap-item-title {
             font-size: 16px;
-            line-height: 1.4;
+            line-height: 48px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -495,13 +492,11 @@ class BuyMeAPieCard extends HTMLElement {
             text-decoration: line-through;
             color: var(--secondary-text-color);
           }
-          .bmap-item-desc {
-            font-size: 12px;
-            line-height: 1.3;
+          .bmap-item-amount {
+            font-size: 13px;
             color: var(--secondary-text-color);
-            overflow: hidden;
-            text-overflow: ellipsis;
             white-space: nowrap;
+            flex-shrink: 0;
           }
 
           /* ── Delete button: appears on hover ── */
@@ -643,15 +638,13 @@ class BuyMeAPieCard extends HTMLElement {
   _renderItem(item, isCompleted) {
     const cls = isCompleted ? "bmap-item completed" : "bmap-item";
     const desc = item.description
-      ? `<div class="bmap-item-desc">${this._esc(item.description)}</div>`
+      ? `<span class="bmap-item-amount">${this._esc(item.description)}</span>`
       : "";
     return `
       <div class="${cls}" data-uid="${this._escAttr(item.uid)}" data-status="${item.status}">
         <div class="bmap-checkbox"></div>
-        <div class="bmap-item-content">
-          <div class="bmap-item-title">${this._esc(item.summary)}</div>
-          ${desc}
-        </div>
+        <div class="bmap-item-title">${this._esc(item.summary)}</div>
+        ${desc}
         <button class="bmap-delete" data-uid="${this._escAttr(item.uid)}" title="Remove">
           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
         </button>
