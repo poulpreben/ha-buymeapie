@@ -8,4 +8,8 @@ bmap_dump.json
 .claude/
 snapshot.md
 snap*.md
-*.png
+after-*.png
+current-*.png
+dark-*.png
+light-*.png
+limited-*.png
