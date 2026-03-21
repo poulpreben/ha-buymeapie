@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
-from homeassistant.components.frontend import add_extra_js_url
 from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
@@ -16,24 +16,82 @@ from .const import CONF_API_URL, CONF_LOGIN, CONF_PIN, DEFAULT_API_BASE_URL, DOM
 from .coordinator import BuyMeAPieCoordinator
 from .websocket import async_register_commands
 
+_LOGGER = logging.getLogger(__name__)
+
 PLATFORMS: list[Platform] = [Platform.TODO]
 
+CARD_VERSION = "1.1.3"
 CARD_URL = f"/api/{DOMAIN}/buymeapie-card.js"
 CARD_PATH = Path(__file__).parent / "buymeapie-card.js"
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the Buy Me a Pie component."""
-    # Register websocket commands (once, not per entry)
     async_register_commands(hass)
 
-    # Serve the Lovelace card JS
+    # Serve the Lovelace card JS file
     await hass.http.async_register_static_paths(
         [StaticPathConfig(url_path=CARD_URL, path=str(CARD_PATH), cache_headers=False)]
     )
-    add_extra_js_url(hass, f"{CARD_URL}?v=1.1.2")
+
+    # Register as a Lovelace resource so cards load BEFORE rendering.
+    # This eliminates the race condition that add_extra_js_url has.
+    url = f"{CARD_URL}?v={CARD_VERSION}"
+    await _register_lovelace_resource(hass, url)
 
     return True
+
+
+async def _register_lovelace_resource(hass: HomeAssistant, url: str) -> None:
+    """Register the card JS as a Lovelace resource."""
+    try:
+        # Access the lovelace resources collection
+        lovelace = hass.data.get("lovelace")
+        if lovelace is None:
+            _LOGGER.debug("Lovelace not available, falling back to add_extra_js_url")
+            _fallback_extra_js(hass, url)
+            return
+
+        resources = lovelace.resources
+        if resources is None:
+            _LOGGER.debug("Lovelace resources not available, falling back")
+            _fallback_extra_js(hass, url)
+            return
+
+        # Ensure resources are loaded
+        if not resources.loaded:
+            await resources.async_load()
+            resources.loaded = True
+
+        # Check if already registered (by URL path, ignoring version query)
+        base_url = CARD_URL
+        existing = None
+        for item in resources.async_items():
+            if item.get("url", "").split("?")[0] == base_url:
+                existing = item
+                break
+
+        if existing:
+            # Update version if changed
+            if existing.get("url") != url:
+                await resources.async_update_item(
+                    existing["id"], {"url": url, "res_type": "module"}
+                )
+                _LOGGER.debug("Updated Lovelace resource: %s", url)
+        else:
+            # Register new resource
+            await resources.async_create_item({"res_type": "module", "url": url})
+            _LOGGER.info("Registered Lovelace resource: %s", url)
+
+    except Exception:
+        _LOGGER.debug("Lovelace resource registration failed, falling back", exc_info=True)
+        _fallback_extra_js(hass, url)
+
+
+def _fallback_extra_js(hass: HomeAssistant, url: str) -> None:
+    """Fallback: use add_extra_js_url if Lovelace resource registration fails."""
+    from homeassistant.components.frontend import add_extra_js_url
+    add_extra_js_url(hass, url)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
