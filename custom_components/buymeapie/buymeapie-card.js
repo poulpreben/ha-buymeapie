@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.7";
+const CARD_VERSION = "1.0.8";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -724,16 +724,27 @@ class BuyMeAPieCardEditor extends HTMLElement {
   }
 }
 
-customElements.define("buymeapie-card", BuyMeAPieCard);
-customElements.define("buymeapie-card-editor", BuyMeAPieCardEditor);
+// Guard against double-registration (async import() can race)
+if (!customElements.get("buymeapie-card")) {
+  customElements.define("buymeapie-card", BuyMeAPieCard);
+}
+if (!customElements.get("buymeapie-card-editor")) {
+  customElements.define("buymeapie-card-editor", BuyMeAPieCardEditor);
+}
+
+// Tell HA to re-render any cards that showed "Custom element doesn't exist"
+// before our define() ran. HA's Lovelace listens for this event.
+window.dispatchEvent(new Event("ll-rebuild"));
 
 window.customCards = window.customCards || [];
-window.customCards.push({
-  type: "buymeapie-card",
-  name: "Buy Me a Pie",
-  description: "Shopping list with autocomplete from your Buy Me a Pie history",
-  preview: false,
-});
+if (!window.customCards.some((c) => c.type === "buymeapie-card")) {
+  window.customCards.push({
+    type: "buymeapie-card",
+    name: "Buy Me a Pie",
+    description: "Shopping list with autocomplete from your Buy Me a Pie history",
+    preview: false,
+  });
+}
 
 console.info(
   `%c BUYMEAPIE %c v${CARD_VERSION} `,
