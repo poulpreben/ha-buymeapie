@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.2";
+const CARD_VERSION = "1.0.3";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -11,9 +11,6 @@ const GROUP_COLORS = {
   24: "#4F99AA", 25: "#FD9C69", 26: "#DE2B17", 27: "#797D88",
   28: "#B4CC8B",
 };
-
-// Bag icon SVG (matches bmap logo style)
-const BAG_ICON = `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`;
 
 class BuyMeAPieCard extends HTMLElement {
   constructor() {
@@ -61,7 +58,6 @@ class BuyMeAPieCard extends HTMLElement {
         { entity_id: this._config.entity },
         undefined, true
       );
-      // result.response contains the items keyed by entity_id
       this._items = result?.response?.[this._config.entity]?.items || [];
     } catch {
       this._items = [];
@@ -179,7 +175,7 @@ class BuyMeAPieCard extends HTMLElement {
       <div class="bmap-suggestion" data-title="${this._escAttr(s.title)}">
         <span class="bmap-dot" style="background:${this._gc(s.group_id)}"></span>
         <span class="bmap-suggestion-title">${this._esc(s.title)}</span>
-        <span class="bmap-suggestion-count">${s.use_count}×</span>
+        <span class="bmap-suggestion-count">${s.use_count}x</span>
       </div>
     `).join("");
     box.querySelectorAll(".bmap-suggestion").forEach((el) => {
@@ -193,7 +189,7 @@ class BuyMeAPieCard extends HTMLElement {
   _render() {
     this._initialized = true;
     if (!this._config.entity) {
-      this.innerHTML = `<ha-card><div style="padding:24px;text-align:center;opacity:0.5">Select an entity in card settings</div></ha-card>`;
+      this.innerHTML = `<ha-card><div style="padding:24px;text-align:center;color:var(--secondary-text-color)">Select an entity in card settings</div></ha-card>`;
       return;
     }
     const entity = this._hass?.states[this._config.entity];
@@ -205,229 +201,283 @@ class BuyMeAPieCard extends HTMLElement {
     this.innerHTML = `
       <ha-card>
         <style>
-          :host { --bmap-brand: #0095FF; }
+          /* ── Header: matches ha-card header pattern ── */
           .bmap-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 16px 4px;
+            gap: 12px;
+            padding: 12px 16px;
           }
           .bmap-header-icon {
-            color: var(--bmap-brand);
-            flex-shrink: 0;
+            color: var(--primary-color);
+            display: flex;
+          }
+          .bmap-header-icon svg {
+            width: 24px;
+            height: 24px;
           }
           .bmap-header-title {
-            font-size: 1.1em;
+            font-size: 16px;
             font-weight: 500;
+            letter-spacing: .1px;
+            color: var(--primary-text-color);
             flex: 1;
           }
           .bmap-header .count {
-            font-size: 0.8em;
-            color: var(--secondary-text-color, #75858e);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--secondary-text-color);
+            min-width: 20px;
+            text-align: center;
           }
-          .bmap-input-wrap {
+
+          /* ── Input: matches native todo input style ── */
+          .bmap-input-row {
             position: relative;
-            padding: 8px 16px 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--divider-color);
           }
           .bmap-input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 10px 12px 10px 36px;
-            border: 2px solid var(--divider-color, #CCDAE3);
-            border-radius: 10px;
-            background: var(--card-background-color, #fff);
-            color: var(--primary-text-color, #1a1a1a);
-            font-size: 1em;
+            flex: 1;
+            padding: 12px 0;
+            border: none;
+            background: transparent;
+            color: var(--primary-text-color);
+            font-size: 16px;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.2s;
-          }
-          .bmap-input:focus {
-            border-color: var(--bmap-brand);
           }
           .bmap-input::placeholder {
-            color: var(--secondary-text-color, #75858e);
+            color: var(--secondary-text-color);
           }
-          .bmap-input-icon {
-            position: absolute;
-            left: 28px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary-text-color, #75858e);
-            pointer-events: none;
-            font-size: 1.1em;
+          .bmap-add-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin: -8px -8px -8px 0;
+            border: none;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: background 0.15s;
           }
+          .bmap-add-btn:hover {
+            background: rgba(var(--rgb-primary-color, 3, 169, 244), 0.1);
+          }
+          .bmap-add-btn svg {
+            width: 24px;
+            height: 24px;
+          }
+
+          /* ── Suggestions dropdown ── */
           .bmap-suggestions {
             display: none;
             position: absolute;
-            left: 16px;
-            right: 16px;
-            top: calc(100% - 2px);
+            left: 0;
+            right: 0;
+            top: 100%;
             background: var(--card-background-color, #fff);
-            border: 2px solid var(--bmap-brand);
-            border-top: 1px solid var(--divider-color, #e0e0e0);
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            border: 1px solid var(--divider-color);
+            border-top: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 10;
-            max-height: 260px;
+            max-height: 280px;
             overflow-y: auto;
           }
           .bmap-suggestion {
             display: flex;
             align-items: center;
-            padding: 10px 12px;
+            padding: 12px 16px;
             cursor: pointer;
-            gap: 10px;
+            gap: 12px;
             transition: background 0.1s;
-          }
-          .bmap-suggestion:hover {
-            background: var(--secondary-background-color, #F5F7FB);
+            border-bottom: 1px solid var(--divider-color);
           }
           .bmap-suggestion:last-child {
-            border-radius: 0 0 8px 8px;
+            border-bottom: none;
+          }
+          .bmap-suggestion:hover {
+            background: var(--secondary-background-color);
           }
           .bmap-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             flex-shrink: 0;
           }
           .bmap-suggestion-title {
             flex: 1;
+            font-size: 14px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            color: var(--primary-text-color);
           }
           .bmap-suggestion-count {
-            font-size: 0.75em;
-            color: var(--secondary-text-color, #75858e);
+            font-size: 12px;
+            color: var(--disabled-text-color, var(--secondary-text-color));
           }
-          .bmap-items { padding: 4px 0 8px; }
+
+          /* ── Item list: matches native todo list items ── */
+          .bmap-items { padding: 0; }
+          .bmap-section-label {
+            padding: 16px 16px 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-text-color);
+          }
           .bmap-item {
             display: flex;
             align-items: center;
-            padding: 7px 16px;
-            gap: 12px;
+            padding: 0 16px;
+            min-height: 48px;
+            gap: 16px;
             cursor: pointer;
             transition: background 0.1s;
+            border-bottom: 1px solid var(--divider-color);
+          }
+          .bmap-item:last-child {
+            border-bottom: none;
           }
           .bmap-item:hover {
-            background: var(--secondary-background-color, #F5F7FB);
+            background: var(--secondary-background-color);
           }
+
+          /* ── Checkbox: square with rounded corners like HA native ── */
           .bmap-checkbox {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px solid var(--divider-color, #CCDAE3);
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 2px solid var(--secondary-text-color);
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.15s;
+            background: transparent;
           }
           .bmap-item.completed .bmap-checkbox {
-            background: var(--bmap-brand);
-            border-color: var(--bmap-brand);
+            background: var(--primary-color);
+            border-color: var(--primary-color);
           }
           .bmap-item.completed .bmap-checkbox::after {
-            content: "\\2713";
-            color: #fff;
-            font-size: 13px;
-            font-weight: bold;
+            content: "";
+            width: 4px;
+            height: 8px;
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-top: -2px;
           }
+
           .bmap-item-content {
             flex: 1;
             min-width: 0;
+            padding: 12px 0;
           }
           .bmap-item-title {
+            font-size: 16px;
+            line-height: 1.4;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            color: var(--primary-text-color);
           }
           .bmap-item.completed .bmap-item-title {
             text-decoration: line-through;
-            color: var(--secondary-text-color, #75858e);
+            color: var(--secondary-text-color);
           }
           .bmap-item-desc {
-            font-size: 0.8em;
-            color: var(--secondary-text-color, #75858e);
+            font-size: 12px;
+            line-height: 1.3;
+            color: var(--secondary-text-color);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
           }
-          .bmap-item-color {
-            width: 4px;
-            height: 24px;
-            border-radius: 2px;
-            flex-shrink: 0;
-          }
+
+          /* ── Delete button: appears on hover ── */
           .bmap-delete {
             opacity: 0;
             transition: opacity 0.15s;
-            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
             border: none;
-            color: var(--error-color, #BA2E38);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--secondary-text-color);
             cursor: pointer;
-            padding: 4px 2px;
-            font-size: 1.2em;
-            line-height: 1;
+            margin: -6px -8px -6px 0;
           }
-          .bmap-item:hover .bmap-delete { opacity: 0.6; }
-          .bmap-delete:hover { opacity: 1 !important; }
-          .bmap-wave {
-            height: 6px;
-            margin: 4px 16px;
-            background: repeating-linear-gradient(
-              90deg,
-              var(--divider-color, #CCDAE3) 0px,
-              var(--divider-color, #CCDAE3) 6px,
-              transparent 6px,
-              transparent 12px
-            );
-            border-radius: 3px;
-            opacity: 0.5;
+          .bmap-item:hover .bmap-delete { opacity: 1; }
+          .bmap-delete:hover {
+            background: rgba(var(--rgb-error-color, 219, 68, 55), 0.1);
+            color: var(--error-color);
           }
-          .bmap-section-label {
-            padding: 4px 16px 2px;
-            font-size: 0.75em;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--secondary-text-color, #75858e);
-            font-weight: 500;
+          .bmap-delete svg {
+            width: 20px;
+            height: 20px;
           }
+
+          /* ── Empty state ── */
           .bmap-empty {
             padding: 32px 16px;
             text-align: center;
-            color: var(--secondary-text-color, #75858e);
+            font-size: 14px;
+            color: var(--secondary-text-color);
+          }
+
+          /* ── Divider between active/completed ── */
+          .bmap-divider {
+            height: 1px;
+            margin: 0 16px;
+            background: var(--divider-color);
           }
         </style>
 
         <div class="bmap-header">
-          <span class="bmap-header-icon">${BAG_ICON}</span>
+          <span class="bmap-header-icon">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17,18C15.89,18 15,18.89 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20C19,18.89 18.1,18 17,18M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L20.88,5.5C20.95,5.34 21,5.17 21,5A1,1 0 0,0 20,4H5.21L4.27,2M7,18C5.89,18 5,18.89 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20C9,18.89 8.1,18 7,18Z"/></svg>
+          </span>
           <span class="bmap-header-title">${this._esc(name)}</span>
           <span class="count">${needsAction.length}</span>
         </div>
 
-        <div class="bmap-input-wrap">
-          <span class="bmap-input-icon">+</span>
+        <div class="bmap-input-row">
           <input
             class="bmap-input"
             type="text"
-            placeholder="Add item..."
+            placeholder="Add item"
             autocomplete="off"
             value="${this._escAttr(this._inputValue)}"
           />
+          <button class="bmap-add-btn" title="Add item">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg>
+          </button>
           <div class="bmap-suggestions"></div>
         </div>
 
         <div class="bmap-items">
           ${needsAction.length === 0 && (!showCompleted || completed.length === 0) ? `
-            <div class="bmap-empty">List is empty</div>
+            <div class="bmap-empty">No items</div>
           ` : ""}
-          ${needsAction.map((item) => this._renderItem(item, false)).join("")}
+
+          ${needsAction.length > 0 ? `
+            <div class="bmap-section-label">Active</div>
+            ${needsAction.map((item) => this._renderItem(item, false)).join("")}
+          ` : ""}
+
           ${showCompleted && completed.length > 0 ? `
-            <div class="bmap-wave"></div>
-            <div class="bmap-section-label">Purchased (${completed.length})</div>
+            ${needsAction.length > 0 ? '<div class="bmap-divider"></div>' : ""}
+            <div class="bmap-section-label">Completed</div>
             ${completed.map((item) => this._renderItem(item, true)).join("")}
           ` : ""}
         </div>
@@ -448,10 +498,17 @@ class BuyMeAPieCard extends HTMLElement {
           this._renderSuggestions();
         }, 200);
       });
-      // Restore cursor position
       if (this._inputValue) {
         input.setSelectionRange(this._inputValue.length, this._inputValue.length);
       }
+    }
+
+    const addBtn = this.querySelector(".bmap-add-btn");
+    if (addBtn) {
+      addBtn.addEventListener("click", () => {
+        const val = this.querySelector(".bmap-input")?.value;
+        if (val) this._addItem(val);
+      });
     }
 
     this.querySelectorAll(".bmap-checkbox-wrap").forEach((el) => {
@@ -483,7 +540,9 @@ class BuyMeAPieCard extends HTMLElement {
           <div class="bmap-item-title">${this._esc(item.summary)}</div>
           ${desc}
         </div>
-        <button class="bmap-delete" data-uid="${this._escAttr(item.uid)}" title="Delete">×</button>
+        <button class="bmap-delete" data-uid="${this._escAttr(item.uid)}" title="Remove">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/></svg>
+        </button>
       </div>
     `;
   }
@@ -507,7 +566,6 @@ class BuyMeAPieCard extends HTMLElement {
   }
 
   static getStubConfig(hass) {
-    // Only offer buymeapie entities, not HA's built-in ones
     const entities = Object.keys(hass.states).filter(
       (e) => e.startsWith("todo.") && hass.states[e].state !== "unavailable"
     );
@@ -537,48 +595,54 @@ class BuyMeAPieCardEditor extends HTMLElement {
   _render() {
     if (!this._hass) return;
 
-    // Find all available todo entities
     const entities = Object.keys(this._hass.states)
       .filter((e) => e.startsWith("todo.") && this._hass.states[e].state !== "unavailable")
       .sort();
 
     this.innerHTML = `
       <style>
-        .bmap-editor { padding: 16px; }
-        .bmap-editor label { display: block; font-weight: 500; margin-bottom: 6px; color: var(--primary-text-color); }
-        .bmap-editor select {
+        .bmap-editor { padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+        .bmap-editor label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 4px; color: var(--primary-text-color); }
+        .bmap-editor select, .bmap-editor input[type=text] {
           width: 100%;
+          box-sizing: border-box;
           padding: 10px 12px;
           border-radius: 8px;
-          border: 1px solid var(--divider-color, #ccc);
-          background: var(--card-background-color, #fff);
+          border: 1px solid var(--divider-color);
+          background: var(--secondary-background-color);
           color: var(--primary-text-color);
-          font-size: 1em;
+          font-size: 14px;
           font-family: inherit;
-          appearance: auto;
         }
-        .bmap-editor .checkbox-row {
+        .bmap-editor .row {
           display: flex;
           align-items: center;
           gap: 8px;
-          margin-top: 16px;
           cursor: pointer;
         }
-        .bmap-editor .checkbox-row input { width: 18px; height: 18px; cursor: pointer; }
+        .bmap-editor .row input[type=checkbox] {
+          width: 18px;
+          height: 18px;
+          accent-color: var(--primary-color);
+          cursor: pointer;
+        }
+        .bmap-editor .row span { font-size: 14px; color: var(--primary-text-color); }
       </style>
       <div class="bmap-editor">
-        <label for="bmap-entity-select">Shopping list</label>
-        <select id="bmap-entity-select">
-          ${!this._config.entity ? '<option value="" selected>Select a list...</option>' : ""}
-          ${entities.map((e) => {
-            const name = this._hass.states[e].attributes.friendly_name || e;
-            const sel = e === this._config.entity ? "selected" : "";
-            return `<option value="${e}" ${sel}>${name}</option>`;
-          }).join("")}
-        </select>
-        <label class="checkbox-row">
+        <div>
+          <label>Shopping list</label>
+          <select id="bmap-entity-select">
+            ${!this._config.entity ? '<option value="" selected>Select a list...</option>' : ""}
+            ${entities.map((e) => {
+              const name = this._hass.states[e].attributes.friendly_name || e;
+              const sel = e === this._config.entity ? "selected" : "";
+              return `<option value="${e}" ${sel}>${name}</option>`;
+            }).join("")}
+          </select>
+        </div>
+        <label class="row">
           <input type="checkbox" id="bmap-show-completed" ${this._config.show_completed !== false ? "checked" : ""} />
-          Show purchased items
+          <span>Show completed items</span>
         </label>
       </div>
     `;
@@ -587,7 +651,6 @@ class BuyMeAPieCardEditor extends HTMLElement {
       this._config = { ...this._config, entity: e.target.value };
       this._dispatch();
     });
-
     this.querySelector("#bmap-show-completed").addEventListener("change", (e) => {
       this._config = { ...this._config, show_completed: e.target.checked };
       this._dispatch();
@@ -608,12 +671,12 @@ window.customCards = window.customCards || [];
 window.customCards.push({
   type: "buymeapie-card",
   name: "Buy Me a Pie",
-  description: "Shopping list card with autocomplete from your Buy Me a Pie item history",
+  description: "Shopping list with autocomplete from your Buy Me a Pie history",
   preview: false,
 });
 
 console.info(
-  `%c 🛒 BUYMEAPIE %c v${CARD_VERSION} `,
+  `%c BUYMEAPIE %c v${CARD_VERSION} `,
   "background:#0095FF;color:#fff;font-weight:bold;padding:2px 6px;border-radius:4px 0 0 4px",
-  "background:#f7f7f7;color:#1a1a1a;padding:2px 6px;border-radius:0 4px 4px 0"
+  "background:var(--secondary-background-color,#f7f7f7);color:var(--primary-text-color,#1a1a1a);padding:2px 6px;border-radius:0 4px 4px 0"
 );
