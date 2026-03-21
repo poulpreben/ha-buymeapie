@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.5";
+const CARD_VERSION = "1.0.6";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -480,6 +480,13 @@ class BuyMeAPieCard extends HTMLElement {
             color: var(--secondary-text-color);
           }
 
+          .bmap-more {
+            padding: 8px 16px 12px;
+            font-size: 12px;
+            color: var(--secondary-text-color);
+            text-align: center;
+          }
+
           /* ── Divider between active/completed ── */
           .bmap-divider {
             height: 1px;
@@ -522,8 +529,9 @@ class BuyMeAPieCard extends HTMLElement {
 
           ${showCompleted && completed.length > 0 ? `
             ${needsAction.length > 0 ? '<div class="bmap-divider"></div>' : ""}
-            <div class="bmap-section-label">Completed</div>
-            ${completed.map((item) => this._renderItem(item, true)).join("")}
+            <div class="bmap-section-label">Completed (${completed.length})</div>
+            ${completed.slice(0, 10).map((item) => this._renderItem(item, true)).join("")}
+            ${completed.length > 10 ? `<div class="bmap-more">${completed.length - 10} more</div>` : ""}
           ` : ""}
         </div>
       </ha-card>
