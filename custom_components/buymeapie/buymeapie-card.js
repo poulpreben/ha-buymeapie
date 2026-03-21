@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.1.3";
+const CARD_VERSION = "1.1.4";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -129,6 +129,21 @@ class BuyMeAPieCard extends HTMLElement {
       .filter(Boolean);
   }
 
+  // Look up canonical title from unique_items (preserves original casing)
+  async _canonicalTitle(title) {
+    try {
+      const results = await this._hass.callWS({
+        type: "buymeapie/autocomplete",
+        query: title,
+        limit: 1,
+      });
+      if (results?.length && results[0].title.toLowerCase() === title.toLowerCase()) {
+        return results[0].title;
+      }
+    } catch { /* ignore */ }
+    return title;
+  }
+
   async _addItem(raw) {
     const items = this._parseInput(raw);
     if (items.length === 0) return;
@@ -139,7 +154,9 @@ class BuyMeAPieCard extends HTMLElement {
     this._showSuggestions = false;
 
     for (const parsed of items) {
-      const data = { item: parsed.title };
+      // Use canonical casing from autocomplete dictionary
+      const title = await this._canonicalTitle(parsed.title);
+      const data = { item: title };
       if (parsed.amount) {
         data.description = parsed.amount;
       }
