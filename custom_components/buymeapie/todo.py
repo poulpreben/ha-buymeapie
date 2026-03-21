@@ -53,6 +53,7 @@ class BuyMeAPieTodoListEntity(CoordinatorEntity[BuyMeAPieCoordinator], TodoListE
         TodoListEntityFeature.CREATE_TODO_ITEM
         | TodoListEntityFeature.UPDATE_TODO_ITEM
         | TodoListEntityFeature.DELETE_TODO_ITEM
+        | TodoListEntityFeature.SET_DESCRIPTION_ON_ITEM
     )
 
     def __init__(
