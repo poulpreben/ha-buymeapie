@@ -44,11 +44,16 @@ class BuyMeAPieCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             unique_items = []
 
         # Build lookup: title -> unique item data (case-insensitive)
-        unique_lookup: dict[str, dict[str, Any]] = {
-            item["title"].lower(): item
-            for item in unique_items
-            if not item.get("deleted", False)
-        }
+        # Keep the entry with the highest use_count for each key
+        # (the API may have duplicates like "Agurk" and "agurk")
+        unique_lookup: dict[str, dict[str, Any]] = {}
+        for item in unique_items:
+            if item.get("deleted", False):
+                continue
+            key = item["title"].lower()
+            existing = unique_lookup.get(key)
+            if existing is None or item.get("use_count", 0) > existing.get("use_count", 0):
+                unique_lookup[key] = item
 
         data: dict[str, Any] = {"lists": {}, "unique_items": unique_lookup}
 
