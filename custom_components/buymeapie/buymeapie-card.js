@@ -317,14 +317,14 @@ class BuyMeAPieCard extends HTMLElement {
             height: 24px;
           }
           .bmap-header-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
             letter-spacing: .1px;
             color: var(--primary-text-color);
             flex: 1;
           }
           .bmap-header .count {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--secondary-text-color);
             min-width: 20px;
@@ -345,7 +345,7 @@ class BuyMeAPieCard extends HTMLElement {
             border: none;
             background: transparent;
             color: var(--primary-text-color);
-            font-size: 16px;
+            font-size: 14px;
             font-family: inherit;
             outline: none;
           }
@@ -412,7 +412,7 @@ class BuyMeAPieCard extends HTMLElement {
           }
           .bmap-suggestion-title {
             flex: 1;
-            font-size: 14px;
+            font-size: 13px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -430,7 +430,7 @@ class BuyMeAPieCard extends HTMLElement {
           }
           .bmap-section-label {
             padding: 16px 16px 4px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 500;
             color: var(--primary-text-color);
           }
@@ -481,7 +481,7 @@ class BuyMeAPieCard extends HTMLElement {
           .bmap-item-title {
             flex: 1;
             min-width: 0;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 48px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -493,7 +493,7 @@ class BuyMeAPieCard extends HTMLElement {
             color: var(--secondary-text-color);
           }
           .bmap-item-amount {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--secondary-text-color);
             white-space: nowrap;
             flex-shrink: 0;
