@@ -1,11 +1,12 @@
 {
   "domain": "buymeapie",
   "name": "Buy Me a Pie",
-  "codeowners": [],
+  "codeowners": ["@poulpreben"],
   "config_flow": true,
-  "documentation": "https://buymeapie.com",
+  "documentation": "https://github.com/poulpreben/ha-buymeapie/blob/main/README.md",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/poulpreben/ha-buymeapie/issues",
   "homeassistant": "2026.1.0",
   "version": "1.0.0"
 }
