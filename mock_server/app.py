@@ -3,19 +3,24 @@
 from __future__ import annotations
 
 import base64
+import json
+import logging
 import re
 import time
 import uuid
+from pathlib import Path
 from typing import Any
 from urllib.parse import unquote
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import Response
 
+logger = logging.getLogger("bmap-mock")
+
 app = FastAPI(title="Buy Me a Pie Mock API", version="0.1.0")
 
 # ---------------------------------------------------------------------------
-# In-memory storage
+# In-memory storage — loaded from dump file or minimal fallback
 # ---------------------------------------------------------------------------
 
 users: dict[str, dict[str, Any]] = {
@@ -27,114 +32,53 @@ users: dict[str, dict[str, Any]] = {
     }
 }
 
-_now = int(time.time())
+lists_db: dict[str, dict[str, Any]] = {}
+items_db: dict[str, list[dict[str, Any]]] = {}
+unique_items_db: dict[str, dict[str, Any]] = {}
 
-lists_db: dict[str, dict[str, Any]] = {
-    "list-1": {
-        "id": "list-1",
-        "name": "Groceries",
-        "emails": [],
-        "items_purchased": 1,
-        "items_not_purchased": 2,
-        "created_at": _now - 86400,
-        "type": "list",
-        "source_url": "",
-    },
-    "list-2": {
-        "id": "list-2",
-        "name": "Hardware Store",
-        "emails": [],
-        "items_purchased": 0,
-        "items_not_purchased": 2,
-        "created_at": _now - 3600,
-        "type": "list",
-        "source_url": "",
-    },
-}
+DUMP_PATH = Path("/data/bmap_dump.json")
 
-items_db: dict[str, list[dict[str, Any]]] = {
-    "list-1": [
-        {
-            "id": "item-1",
-            "title": "Milk",
-            "amount": "1 gallon",
-            "is_purchased": False,
-            "group_id": 1,
-            "updated_at": _now - 600,
-            "created_at": _now - 86400,
-            "deleted": False,
-        },
-        {
-            "id": "item-2",
-            "title": "Eggs",
-            "amount": "12",
-            "is_purchased": False,
-            "group_id": 1,
-            "updated_at": _now - 300,
-            "created_at": _now - 86400,
-            "deleted": False,
-        },
-        {
-            "id": "item-3",
-            "title": "Bread",
-            "amount": "1 loaf",
-            "is_purchased": True,
-            "group_id": 2,
-            "updated_at": _now - 100,
-            "created_at": _now - 86400,
-            "deleted": False,
-        },
-    ],
-    "list-2": [
-        {
-            "id": "item-4",
-            "title": "Screws",
-            "amount": "box of 100",
-            "is_purchased": False,
-            "group_id": 0,
-            "updated_at": _now - 1800,
-            "created_at": _now - 3600,
-            "deleted": False,
-        },
-        {
-            "id": "item-5",
-            "title": "Wood glue",
-            "amount": "1 bottle",
-            "is_purchased": False,
-            "group_id": 0,
-            "updated_at": _now - 1800,
-            "created_at": _now - 3600,
-            "deleted": False,
-        },
-    ],
-}
 
-unique_items_db: dict[str, dict[str, Any]] = {
-    "Milk": {
-        "title": "Milk",
-        "group_id": 1,
-        "use_count": 5,
-        "permanent": False,
-        "deleted": False,
-        "last_use": _now - 600,
-    },
-    "Eggs": {
-        "title": "Eggs",
-        "group_id": 1,
-        "use_count": 3,
-        "permanent": False,
-        "deleted": False,
-        "last_use": _now - 300,
-    },
-    "Bread": {
-        "title": "Bread",
-        "group_id": 2,
-        "use_count": 7,
-        "permanent": False,
-        "deleted": False,
-        "last_use": _now - 100,
-    },
-}
+def _load_seed_data() -> None:
+    """Load seed data from a dump file, or use minimal fallback."""
+    if DUMP_PATH.exists():
+        logger.info("Loading seed data from %s", DUMP_PATH)
+        with open(DUMP_PATH) as f:
+            dump = json.load(f)
+
+        for lst in dump.get("lists", []):
+            lists_db[lst["id"]] = lst
+
+        for list_id, items in dump.get("items", {}).items():
+            items_db[list_id] = items
+
+        for ui in dump.get("unique_items", []):
+            unique_items_db[ui["title"]] = ui
+
+        total_items = sum(len(v) for v in items_db.values())
+        logger.info(
+            "Loaded %d lists, %d items, %d unique items",
+            len(lists_db),
+            total_items,
+            len(unique_items_db),
+        )
+    else:
+        logger.info("No dump file at %s, using minimal seed data", DUMP_PATH)
+        _now = int(time.time())
+        lists_db["list-1"] = {
+            "id": "list-1",
+            "name": "Shopping list",
+            "emails": [],
+            "items_purchased": 0,
+            "items_not_purchased": 0,
+            "created_at": _now,
+            "type": "list",
+            "source_url": "",
+        }
+        items_db["list-1"] = []
+
+
+_load_seed_data()
 
 
 # ---------------------------------------------------------------------------
