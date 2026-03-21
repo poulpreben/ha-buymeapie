@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.9";
+const CARD_VERSION = "1.1.0";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -152,6 +152,12 @@ class BuyMeAPieCard extends HTMLElement {
 
   async _toggleItem(uid, currentStatus) {
     const newStatus = currentStatus === "completed" ? "needs_action" : "completed";
+    // Optimistic update: move item immediately in the UI
+    const item = this._items.find((i) => i.uid === uid);
+    if (item) {
+      item.status = newStatus;
+      this._render();
+    }
     await this._hass.callService(
       "todo", "update_item",
       { item: uid, status: newStatus },
@@ -160,6 +166,9 @@ class BuyMeAPieCard extends HTMLElement {
   }
 
   async _deleteItem(uid) {
+    // Optimistic update: remove item immediately from UI
+    this._items = this._items.filter((i) => i.uid !== uid);
+    this._render();
     await this._hass.callService(
       "todo", "remove_item",
       { item: uid },
