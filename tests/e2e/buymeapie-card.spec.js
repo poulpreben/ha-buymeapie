@@ -1,10 +1,10 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 
-const HA_URL = "http://localhost:8123";
-const HA_USER = "preben";
-const HA_PASS = "REDACTED";
-const DASHBOARD_URL = `${HA_URL}/dashboard-test/0`;
+const HA_URL = process.env.HA_URL || "http://localhost:8123";
+const HA_USER = process.env.HA_USER || "admin";
+const HA_PASS = process.env.HA_PASS || "admin";
+const DASHBOARD_URL = `${HA_URL}/${process.env.HA_DASHBOARD || "dashboard-test/0"}`;
 
 // Helper: login to HA and navigate to the test dashboard
 async function loginAndNavigate(page) {

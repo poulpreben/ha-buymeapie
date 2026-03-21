@@ -5,5 +5,7 @@ __pycache__/
 uv.lock
 bmap_dump.json
 .playwright-mcp/
-*.png
+.claude/
+snapshot.md
 snap*.md
+*.png
