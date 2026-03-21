@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.0.1";
+const CARD_VERSION = "1.0.2";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -56,27 +56,15 @@ class BuyMeAPieCard extends HTMLElement {
       return;
     }
     try {
-      const result = await this._hass.callWS({
-        type: "execute_script",
-        sequence: [{
-          service: "todo.get_items",
-          target: { entity_id: this._config.entity },
-          response_variable: "result",
-        }],
-      });
-      this._items = result?.result?.response?.[this._config.entity]?.items || [];
+      const result = await this._hass.callService(
+        "todo", "get_items", {},
+        { entity_id: this._config.entity },
+        undefined, true
+      );
+      // result.response contains the items keyed by entity_id
+      this._items = result?.response?.[this._config.entity]?.items || [];
     } catch {
-      // Fallback: try callService with return_response
-      try {
-        const result = await this._hass.callService(
-          "todo", "get_items", {},
-          { entity_id: this._config.entity },
-          undefined, true
-        );
-        this._items = result?.response?.[this._config.entity]?.items || [];
-      } catch {
-        this._items = [];
-      }
+      this._items = [];
     }
     this._render();
   }
