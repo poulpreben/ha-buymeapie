@@ -48,6 +48,7 @@ class BuyMeAPieTodoListEntity(CoordinatorEntity[BuyMeAPieCoordinator], TodoListE
     """A Buy Me a Pie shopping list as a Home Assistant todo entity."""
 
     _attr_has_entity_name = True
+    _attr_icon = "mdi:cart-outline"
     _attr_supported_features = (
         TodoListEntityFeature.CREATE_TODO_ITEM
         | TodoListEntityFeature.UPDATE_TODO_ITEM
