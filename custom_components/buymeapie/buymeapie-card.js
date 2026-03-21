@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.1.5";
+const CARD_VERSION = "1.2.0";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -288,12 +288,15 @@ class BuyMeAPieCard extends HTMLElement {
     }
     const entity = this._hass?.states[this._config.entity];
     const name = this._config.title || entity?.attributes?.friendly_name || "Shopping List";
-    const needsAction = this._items.filter((i) => i.status === "needs_action");
-    // Sort completed: most recently toggled first so they appear at the top
+    // Reverse so newly added/modified items appear at the top
+    const needsAction = this._items
+      .filter((i) => i.status === "needs_action")
+      .reverse();
     const completed = this._items
       .filter((i) => i.status === "completed")
       .reverse();
     const showCompleted = this._config.show_completed !== false;
+    const maxItems = this._config.max_items || 0; // 0 = no limit
 
     this.innerHTML = `
       <ha-card>
@@ -421,7 +424,10 @@ class BuyMeAPieCard extends HTMLElement {
           }
 
           /* ── Item list: matches native todo list items ── */
-          .bmap-items { padding: 0; }
+          .bmap-items {
+            padding: 0;
+            overflow-y: auto;
+          }
           .bmap-section-label {
             padding: 16px 16px 4px;
             font-size: 14px;
@@ -569,7 +575,7 @@ class BuyMeAPieCard extends HTMLElement {
           <div class="bmap-suggestions"></div>
         </div>
 
-        <div class="bmap-items">
+        <div class="bmap-items"${maxItems ? ` style="max-height:${maxItems * 48 + 32}px"` : ""}>
           ${needsAction.length === 0 && (!showCompleted || completed.length === 0) ? `
             <div class="bmap-empty">No items</div>
           ` : ""}
@@ -678,7 +684,7 @@ class BuyMeAPieCard extends HTMLElement {
     const entities = Object.keys(hass.states).filter(
       (e) => e.startsWith("todo.") && hass.states[e].state !== "unavailable"
     );
-    return { entity: entities[0] || "", show_completed: true };
+    return { entity: entities[0] || "", show_completed: true, max_items: 0 };
   }
 }
 
@@ -736,6 +742,28 @@ class BuyMeAPieCardEditor extends HTMLElement {
           cursor: pointer;
         }
         .bmap-editor .row span { font-size: 14px; color: var(--primary-text-color); }
+        .bmap-editor input[type=number] {
+          width: 80px;
+          padding: 8px 12px;
+          border-radius: 8px;
+          border: 1px solid var(--divider-color);
+          background: var(--secondary-background-color);
+          color: var(--primary-text-color);
+          font-size: 14px;
+          font-family: inherit;
+        }
+        .bmap-editor .field-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+        }
+        .bmap-editor .field-row label { margin-bottom: 0; }
+        .bmap-editor .hint {
+          font-size: 12px;
+          color: var(--secondary-text-color);
+          margin-top: -8px;
+        }
       </style>
       <div class="bmap-editor">
         <div>
@@ -749,6 +777,11 @@ class BuyMeAPieCardEditor extends HTMLElement {
             }).join("")}
           </select>
         </div>
+        <div class="field-row">
+          <label>Max visible items</label>
+          <input type="number" id="bmap-max-items" min="0" max="50" value="${this._config.max_items || 0}" placeholder="0" />
+        </div>
+        <div class="hint">0 = no limit, shows all items. Set to e.g. 10 to enable scrolling.</div>
         <label class="row">
           <input type="checkbox" id="bmap-show-completed" ${this._config.show_completed !== false ? "checked" : ""} />
           <span>Show completed items</span>
@@ -758,6 +791,10 @@ class BuyMeAPieCardEditor extends HTMLElement {
 
     this.querySelector("#bmap-entity-select").addEventListener("change", (e) => {
       this._config = { ...this._config, entity: e.target.value };
+      this._dispatch();
+    });
+    this.querySelector("#bmap-max-items").addEventListener("change", (e) => {
+      this._config = { ...this._config, max_items: parseInt(e.target.value) || 0 };
       this._dispatch();
     });
     this.querySelector("#bmap-show-completed").addEventListener("change", (e) => {
