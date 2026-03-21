@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
+from homeassistant.components.frontend import add_extra_js_url
+from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
@@ -10,8 +14,26 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from .api import BuyMeAPieApi
 from .const import CONF_API_URL, CONF_LOGIN, CONF_PIN, DEFAULT_API_BASE_URL, DOMAIN
 from .coordinator import BuyMeAPieCoordinator
+from .websocket import async_register_commands
 
 PLATFORMS: list[Platform] = [Platform.TODO]
+
+CARD_URL = f"/api/{DOMAIN}/buymeapie-card.js"
+CARD_PATH = Path(__file__).parent / "buymeapie-card.js"
+
+
+async def async_setup(hass: HomeAssistant, config: dict) -> bool:
+    """Set up the Buy Me a Pie component."""
+    # Register websocket commands (once, not per entry)
+    async_register_commands(hass)
+
+    # Serve the Lovelace card JS
+    await hass.http.async_register_static_paths(
+        [StaticPathConfig(url_path=CARD_URL, path=str(CARD_PATH), cache_headers=False)]
+    )
+    add_extra_js_url(hass, CARD_URL)
+
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

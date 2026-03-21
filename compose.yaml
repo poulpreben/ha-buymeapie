@@ -5,6 +5,8 @@ services:
       dockerfile: Containerfile
     ports:
       - "8080:8080"
+    volumes:
+      - ./bmap_dump.json:/data/bmap_dump.json:ro,z
     container_name: bmap-mock-api
 
   homeassistant:
