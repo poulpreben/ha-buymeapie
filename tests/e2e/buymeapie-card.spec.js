@@ -350,4 +350,137 @@ test.describe("Buy Me a Pie Card", () => {
     // With 484+ completed items, only 10 should be rendered
     expect(info.completedCount).toBeLessThanOrEqual(10);
   });
+
+  test("tab-complete fills top suggestion", async ({ page }) => {
+    // Type "ag", wait for suggestions, press Tab -> should fill "Agurk"
+    const result = await page.evaluate(() => {
+      function findInShadow(root, sel) {
+        const el = root.querySelector(sel);
+        if (el) return el;
+        for (const c of root.querySelectorAll("*")) {
+          if (c.shadowRoot) {
+            const f = findInShadow(c.shadowRoot, sel);
+            if (f) return f;
+          }
+        }
+        return null;
+      }
+      const card = findInShadow(document, "buymeapie-card");
+      const input = card.querySelector(".bmap-input");
+      input.focus();
+      input.value = "ag";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const count = card.querySelectorAll(".bmap-suggestion").length;
+          input.dispatchEvent(
+            new KeyboardEvent("keydown", {
+              key: "Tab",
+              bubbles: true,
+              cancelable: true,
+            })
+          );
+          setTimeout(() => {
+            resolve({ value: input.value, hadSuggestions: count > 0 });
+          }, 100);
+        }, 500);
+      });
+    });
+    expect(result.hadSuggestions).toBe(true);
+    expect(result.value).toBe("Agurk");
+  });
+
+  test("tab-complete works with comma multi-item", async ({ page }) => {
+    // Type "Agurk, mu", Tab -> should become "Agurk, Musli"
+    const result = await page.evaluate(() => {
+      function findInShadow(root, sel) {
+        const el = root.querySelector(sel);
+        if (el) return el;
+        for (const c of root.querySelectorAll("*")) {
+          if (c.shadowRoot) {
+            const f = findInShadow(c.shadowRoot, sel);
+            if (f) return f;
+          }
+        }
+        return null;
+      }
+      const card = findInShadow(document, "buymeapie-card");
+      const input = card.querySelector(".bmap-input");
+      input.focus();
+      input.value = "Agurk, mu";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const top = card
+            .querySelector(".bmap-suggestion-title")
+            ?.textContent?.trim();
+          input.dispatchEvent(
+            new KeyboardEvent("keydown", {
+              key: "Tab",
+              bubbles: true,
+              cancelable: true,
+            })
+          );
+          setTimeout(() => {
+            resolve({ value: input.value, topSuggestion: top });
+          }, 100);
+        }, 500);
+      });
+    });
+    expect(result.topSuggestion).toBe("Musli");
+    expect(result.value).toBe("Agurk, Musli");
+  });
+
+  test("canonical casing from autocomplete dictionary", async ({ page }) => {
+    // Typing "musli" lowercase should add as "Musli" (capital M)
+    await addItemViaInput(page, "musli");
+    await page.waitForTimeout(2000);
+
+    const info = await getCardInfo(page);
+    const titles = info.activeItems.map((i) => i.title);
+    expect(titles).toContain("Musli");
+    expect(titles).not.toContain("musli");
+
+    // Clean up
+    await deleteItemByTitle(page, "Musli");
+  });
+
+  test("suggestion click replaces current segment", async ({ page }) => {
+    // Type "ag", click "Agurk" suggestion -> input should show "Agurk"
+    const result = await page.evaluate(() => {
+      function findInShadow(root, sel) {
+        const el = root.querySelector(sel);
+        if (el) return el;
+        for (const c of root.querySelectorAll("*")) {
+          if (c.shadowRoot) {
+            const f = findInShadow(c.shadowRoot, sel);
+            if (f) return f;
+          }
+        }
+        return null;
+      }
+      const card = findInShadow(document, "buymeapie-card");
+      const input = card.querySelector(".bmap-input");
+      input.focus();
+      input.value = "ag";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const first = card.querySelector(".bmap-suggestion");
+          if (first) {
+            first.dispatchEvent(
+              new MouseEvent("mousedown", { bubbles: true, cancelable: true })
+            );
+          }
+          setTimeout(() => {
+            resolve({ value: input.value });
+          }, 100);
+        }, 500);
+      });
+    });
+    expect(result.value).toBe("Agurk");
+  });
 });

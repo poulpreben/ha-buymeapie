@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.1.4";
+const CARD_VERSION = "1.1.5";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -196,11 +196,25 @@ class BuyMeAPieCard extends HTMLElement {
     );
   }
 
+  // Get the text segment currently being typed (after the last comma)
+  _currentSegment(value) {
+    const parts = value.split(",");
+    return parts[parts.length - 1].trimStart();
+  }
+
+  // Replace the current segment (after last comma) with a new value
+  _replaceCurrentSegment(value, replacement) {
+    const parts = value.split(",");
+    parts[parts.length - 1] = (parts.length > 1 ? " " : "") + replacement;
+    return parts.join(",");
+  }
+
   _onInput(e) {
     this._inputValue = e.target.value;
     clearTimeout(this._debounceTimer);
-    if (this._inputValue.length >= 1) {
-      this._debounceTimer = setTimeout(() => this._fetchSuggestions(this._inputValue), 150);
+    const segment = this._currentSegment(this._inputValue);
+    if (segment.length >= 1) {
+      this._debounceTimer = setTimeout(() => this._fetchSuggestions(segment), 150);
     } else {
       this._suggestions = [];
       this._showSuggestions = false;
@@ -209,7 +223,17 @@ class BuyMeAPieCard extends HTMLElement {
   }
 
   _onKeyDown(e) {
-    if (e.key === "Enter") {
+    if (e.key === "Tab" && this._suggestions.length > 0) {
+      // Tab-complete: replace current segment with top suggestion
+      e.preventDefault();
+      const top = this._suggestions[0].title;
+      const input = e.target;
+      input.value = this._replaceCurrentSegment(input.value, top);
+      this._inputValue = input.value;
+      this._suggestions = [];
+      this._showSuggestions = false;
+      this._renderSuggestions();
+    } else if (e.key === "Enter") {
       e.preventDefault();
       this._addItem(e.target.value);
     } else if (e.key === "Escape") {
@@ -220,9 +244,16 @@ class BuyMeAPieCard extends HTMLElement {
   }
 
   _onSuggestionClick(title) {
+    // Replace the current segment with the clicked suggestion
+    const input = this.querySelector(".bmap-input");
+    if (input) {
+      input.value = this._replaceCurrentSegment(input.value, title);
+      this._inputValue = input.value;
+      input.focus();
+    }
     this._suggestions = [];
     this._showSuggestions = false;
-    this._addItem(title);
+    this._renderSuggestions();
   }
 
   _renderSuggestions() {
