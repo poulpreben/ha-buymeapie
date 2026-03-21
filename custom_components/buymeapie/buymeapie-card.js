@@ -580,10 +580,7 @@ class BuyMeAPieCard extends HTMLElement {
             <div class="bmap-empty">No items</div>
           ` : ""}
 
-          ${needsAction.length > 0 ? `
-            <div class="bmap-section-label">Active</div>
-            ${needsAction.map((item) => this._renderItem(item, false)).join("")}
-          ` : ""}
+          ${needsAction.map((item) => this._renderItem(item, false)).join("")}
 
           ${showCompleted && completed.length > 0 ? `
             ${needsAction.length > 0 ? '<div class="bmap-divider"></div>' : ""}
