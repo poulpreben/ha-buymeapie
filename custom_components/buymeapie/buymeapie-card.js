@@ -693,20 +693,9 @@ class BuyMeAPieCardEditor extends HTMLElement {
   }
 
   set hass(hass) {
-    const oldHass = this._hass;
+    const needsRender = !this._hass;
     this._hass = hass;
-    if (!oldHass) {
-      this._render();
-      return;
-    }
-    const todoEntities = (h) =>
-      Object.keys(h.states)
-        .filter((e) => e.startsWith("todo.") && h.states[e].state !== "unavailable")
-        .sort()
-        .join(",");
-    if (todoEntities(oldHass) !== todoEntities(hass)) {
-      this._render();
-    }
+    if (needsRender) this._render();
   }
 
   _render() {
