@@ -67,10 +67,12 @@ class BuyMeAPieCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 )
                 items = []
 
-            # Filter out soft-deleted items
-            active_items = [
-                item for item in items if not item.get("deleted", False)
-            ]
+            # Filter out soft-deleted items, sort by updated_at descending
+            active_items = sorted(
+                (item for item in items if not item.get("deleted", False)),
+                key=lambda x: x.get("updated_at", 0),
+                reverse=True,
+            )
 
             data["lists"][list_id] = {
                 "info": shopping_list,

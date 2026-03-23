@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.4.0";
+const CARD_VERSION = "1.4.1";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -312,13 +312,9 @@ class BuyMeAPieCard extends HTMLElement {
     const sortBy = this._config.sort_by || "time"; // "time" or "category"
     const showCategories = this._config.show_categories !== false;
 
-    // Reverse so newest items appear first (default)
-    let needsAction = this._items
-      .filter((i) => i.status === "needs_action")
-      .reverse();
-    let completed = this._items
-      .filter((i) => i.status === "completed")
-      .reverse();
+    // Items arrive pre-sorted by updated_at desc from the coordinator
+    let needsAction = this._items.filter((i) => i.status === "needs_action");
+    let completed = this._items.filter((i) => i.status === "completed");
 
     if (sortBy === "category") {
       const catSort = (a, b) => {
