@@ -164,9 +164,10 @@ class BuyMeAPieCard extends HTMLElement {
     this._suggestions = [];
     this._showSuggestions = false;
 
-    // Optimistic: add all items to UI immediately
+    // Optimistic: add all items to top of UI immediately
+    // (coordinator sorts newest first, so new items go at index 0)
     for (const parsed of items) {
-      this._items.push({
+      this._items.unshift({
         uid: `_temp_${Date.now()}_${Math.random()}`,
         summary: parsed.title,
         description: parsed.amount || undefined,
@@ -190,13 +191,12 @@ class BuyMeAPieCard extends HTMLElement {
 
   async _toggleItem(uid, currentStatus) {
     const newStatus = currentStatus === "completed" ? "needs_action" : "completed";
-    // Optimistic update: move item to end of array so it appears at top
-    // of whichever section it moves to (completed is reversed)
+    // Optimistic update: move item to top of array (newest first)
     const idx = this._items.findIndex((i) => i.uid === uid);
     if (idx !== -1) {
       const item = this._items.splice(idx, 1)[0];
       item.status = newStatus;
-      this._items.push(item);
+      this._items.unshift(item);
       this._render();
     }
     await this._hass.callService(
