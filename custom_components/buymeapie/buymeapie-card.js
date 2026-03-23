@@ -153,18 +153,28 @@ class BuyMeAPieCard extends HTMLElement {
     this._suggestions = [];
     this._showSuggestions = false;
 
+    // Optimistic: add all items to UI immediately
     for (const parsed of items) {
-      // Use canonical casing from autocomplete dictionary
+      this._items.push({
+        uid: `_temp_${Date.now()}_${Math.random()}`,
+        summary: parsed.title,
+        description: parsed.amount || undefined,
+        status: "needs_action",
+        _new: true,
+      });
+    }
+    this._render();
+
+    // Fire all service calls concurrently
+    await Promise.all(items.map(async (parsed) => {
       const title = await this._canonicalTitle(parsed.title);
       const data = { item: title };
-      if (parsed.amount) {
-        data.description = parsed.amount;
-      }
+      if (parsed.amount) data.description = parsed.amount;
       await this._hass.callService(
         "todo", "add_item", data,
         { entity_id: this._config.entity }
       );
-    }
+    }));
   }
 
   async _toggleItem(uid, currentStatus) {
@@ -440,7 +450,6 @@ class BuyMeAPieCard extends HTMLElement {
             padding: 0 16px;
             min-height: 48px;
             gap: 16px;
-            cursor: pointer;
             transition: background 0.1s;
             border-bottom: 1px solid var(--divider-color);
           }
@@ -463,6 +472,7 @@ class BuyMeAPieCard extends HTMLElement {
             justify-content: center;
             transition: all 0.15s;
             background: transparent;
+            cursor: pointer;
           }
           .bmap-item.completed .bmap-checkbox {
             background: var(--primary-color);
@@ -540,6 +550,15 @@ class BuyMeAPieCard extends HTMLElement {
             text-align: center;
           }
 
+          /* ── Flash animation for newly added items ── */
+          @keyframes bmap-flash {
+            0%   { background: rgba(var(--rgb-primary-color, 3, 169, 244), 0.25); }
+            100% { background: transparent; }
+          }
+          .bmap-item.bmap-new {
+            animation: bmap-flash 0.8s ease-out;
+          }
+
           /* ── Divider between active/completed ── */
           .bmap-divider {
             height: 1px;
@@ -614,12 +633,11 @@ class BuyMeAPieCard extends HTMLElement {
       });
     }
 
-    // Delegate click on item rows for toggling
+    // Delegate click on checkboxes only for toggling
     const itemsContainer = this.querySelector(".bmap-items");
     if (itemsContainer) {
       itemsContainer.addEventListener("click", (e) => {
-        // Ignore clicks on delete buttons
-        if (e.target.closest(".bmap-delete")) return;
+        if (!e.target.closest(".bmap-checkbox")) return;
         const item = e.target.closest(".bmap-item");
         if (item && item.dataset.uid) {
           this._toggleItem(item.dataset.uid, item.dataset.status);
@@ -636,7 +654,7 @@ class BuyMeAPieCard extends HTMLElement {
   }
 
   _renderItem(item, isCompleted) {
-    const cls = isCompleted ? "bmap-item completed" : "bmap-item";
+    const cls = (isCompleted ? "bmap-item completed" : "bmap-item") + (item._new ? " bmap-new" : "");
     const desc = item.description
       ? `<span class="bmap-item-amount">${this._esc(item.description)}</span>`
       : "";
@@ -693,8 +711,9 @@ class BuyMeAPieCardEditor extends HTMLElement {
   }
 
   set hass(hass) {
+    const needsRender = !this._hass;
     this._hass = hass;
-    this._render();
+    if (needsRender) this._render();
   }
 
   _render() {
