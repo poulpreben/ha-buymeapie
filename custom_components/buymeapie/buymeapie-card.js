@@ -327,7 +327,6 @@ class BuyMeAPieCard extends HTMLElement {
             height: 24px;
           }
           .bmap-header-title {
-            font-size: 14px;
             font-weight: 500;
             letter-spacing: .1px;
             color: var(--primary-text-color);
@@ -355,7 +354,7 @@ class BuyMeAPieCard extends HTMLElement {
             border: none;
             background: transparent;
             color: var(--primary-text-color);
-            font-size: 14px;
+            font-size: inherit;
             font-family: inherit;
             outline: none;
           }
@@ -422,7 +421,6 @@ class BuyMeAPieCard extends HTMLElement {
           }
           .bmap-suggestion-title {
             flex: 1;
-            font-size: 13px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -491,7 +489,6 @@ class BuyMeAPieCard extends HTMLElement {
           .bmap-item-title {
             flex: 1;
             min-width: 0;
-            font-size: 14px;
             line-height: 48px;
             overflow: hidden;
             text-overflow: ellipsis;
