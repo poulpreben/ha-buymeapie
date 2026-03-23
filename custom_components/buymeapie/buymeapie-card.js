@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.2.0";
+const CARD_VERSION = "1.3.1";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
