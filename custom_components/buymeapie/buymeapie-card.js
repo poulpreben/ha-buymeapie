@@ -337,6 +337,10 @@ class BuyMeAPieCard extends HTMLElement {
     this.innerHTML = `
       <ha-card>
         <style>
+          ha-card {
+            overflow: hidden;
+          }
+
           /* ── Header: matches ha-card header pattern ── */
           .bmap-header {
             display: flex;
