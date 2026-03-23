@@ -15,6 +15,7 @@ from .const import DOMAIN
 def async_register_commands(hass: HomeAssistant) -> None:
     """Register WebSocket commands."""
     websocket_api.async_register_command(hass, handle_autocomplete)
+    websocket_api.async_register_command(hass, handle_categories)
 
 
 @websocket_api.websocket_command(
@@ -82,3 +83,36 @@ def handle_autocomplete(
             for item in results
         ],
     )
+
+
+@websocket_api.websocket_command(
+    {
+        vol.Required("type"): "buymeapie/categories",
+        vol.Optional("entry_id", default=""): str,
+    }
+)
+@callback
+def handle_categories(
+    hass: HomeAssistant,
+    connection: websocket_api.ActiveConnection,
+    msg: dict[str, Any],
+) -> None:
+    """Return a title -> group_id map for all unique items."""
+    entry_id = msg.get("entry_id", "")
+    domain_data = hass.data.get(DOMAIN, {})
+    if entry_id:
+        coordinator = domain_data.get(entry_id)
+    else:
+        coordinator = next(iter(domain_data.values()), None)
+    if coordinator is None:
+        connection.send_result(msg["id"], {})
+        return
+
+    unique_items: dict[str, dict[str, Any]] = coordinator.data.get(
+        "unique_items", {}
+    )
+    # Return lowercase title -> group_id map
+    result = {
+        key: item.get("group_id", 0) for key, item in unique_items.items()
+    }
+    connection.send_result(msg["id"], result)

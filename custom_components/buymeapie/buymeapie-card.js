@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.3.1";
+const CARD_VERSION = "1.4.0";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -24,6 +24,7 @@ class BuyMeAPieCard extends HTMLElement {
     this._initialized = false;
     this._cachedEntryId = null;
     this._inputValue = "";
+    this._categories = {}; // title_lower -> group_id
   }
 
   setConfig(config) {
@@ -62,6 +63,12 @@ class BuyMeAPieCard extends HTMLElement {
     } catch {
       this._items = [];
     }
+    // Fetch categories if not cached yet
+    if (Object.keys(this._categories).length === 0) {
+      try {
+        this._categories = await this._hass.callWS({ type: "buymeapie/categories" }) || {};
+      } catch { /* ignore */ }
+    }
     this._render();
   }
 
@@ -89,6 +96,10 @@ class BuyMeAPieCard extends HTMLElement {
 
   _gc(groupId) {
     return GROUP_COLORS[groupId] || GROUP_COLORS[0];
+  }
+
+  _itemGroupId(item) {
+    return this._categories[(item.summary || "").toLowerCase()] || 0;
   }
 
   // Parse input matching bmap app's parser:
@@ -298,13 +309,28 @@ class BuyMeAPieCard extends HTMLElement {
     }
     const entity = this._hass?.states[this._config.entity];
     const name = this._config.title || entity?.attributes?.friendly_name || "Shopping List";
-    // Reverse so newly added/modified items appear at the top
-    const needsAction = this._items
+    const sortBy = this._config.sort_by || "time"; // "time" or "category"
+    const showCategories = this._config.show_categories !== false;
+
+    // Reverse so newest items appear first (default)
+    let needsAction = this._items
       .filter((i) => i.status === "needs_action")
       .reverse();
-    const completed = this._items
+    let completed = this._items
       .filter((i) => i.status === "completed")
       .reverse();
+
+    if (sortBy === "category") {
+      const catSort = (a, b) => {
+        const ga = this._itemGroupId(a);
+        const gb = this._itemGroupId(b);
+        if (ga !== gb) return ga - gb;
+        return (a.summary || "").localeCompare(b.summary || "");
+      };
+      needsAction.sort(catSort);
+      completed.sort(catSort);
+    }
+
     const showCompleted = this._config.show_completed !== false;
     const maxItems = this._config.max_items || 0; // 0 = no limit
 
@@ -456,6 +482,15 @@ class BuyMeAPieCard extends HTMLElement {
           }
           .bmap-item:hover {
             background: var(--secondary-background-color);
+          }
+
+          /* ── Category color band ── */
+          .bmap-cat-band {
+            width: 4px;
+            align-self: stretch;
+            border-radius: 0;
+            flex-shrink: 0;
+            margin-left: -16px;
           }
 
           /* ── Checkbox: square with rounded corners like HA native ── */
@@ -655,8 +690,14 @@ class BuyMeAPieCard extends HTMLElement {
     const desc = item.description
       ? `<span class="bmap-item-amount">${this._esc(item.description)}</span>`
       : "";
+    const showCat = this._config.show_categories !== false;
+    const groupId = this._itemGroupId(item);
+    const band = showCat
+      ? `<div class="bmap-cat-band" style="background:${this._gc(groupId)}"></div>`
+      : "";
     return `
       <div class="${cls}" data-uid="${this._escAttr(item.uid)}" data-status="${item.status}">
+        ${band}
         <div class="bmap-checkbox"></div>
         <div class="bmap-item-title">${this._esc(item.summary)}</div>
         ${desc}
@@ -689,7 +730,7 @@ class BuyMeAPieCard extends HTMLElement {
     const entities = Object.keys(hass.states).filter(
       (e) => e.startsWith("todo.") && hass.states[e].state !== "unavailable"
     );
-    return { entity: entities[0] || "", show_completed: true, max_items: 0 };
+    return { entity: entities[0] || "", show_completed: true, show_categories: true, sort_by: "time", max_items: 0 };
   }
 }
 
@@ -788,6 +829,17 @@ class BuyMeAPieCardEditor extends HTMLElement {
           <input type="number" id="bmap-max-items" min="0" max="50" value="${this._config.max_items || 0}" placeholder="0" />
         </div>
         <div class="hint">0 = no limit, shows all items. Set to e.g. 10 to enable scrolling.</div>
+        <div>
+          <label>Sort by</label>
+          <select id="bmap-sort-by">
+            <option value="time" ${(this._config.sort_by || "time") === "time" ? "selected" : ""}>Newest first</option>
+            <option value="category" ${this._config.sort_by === "category" ? "selected" : ""}>Category + name</option>
+          </select>
+        </div>
+        <label class="row">
+          <input type="checkbox" id="bmap-show-categories" ${this._config.show_categories !== false ? "checked" : ""} />
+          <span>Show category colors</span>
+        </label>
         <label class="row">
           <input type="checkbox" id="bmap-show-completed" ${this._config.show_completed !== false ? "checked" : ""} />
           <span>Show completed items</span>
@@ -801,6 +853,14 @@ class BuyMeAPieCardEditor extends HTMLElement {
     });
     this.querySelector("#bmap-max-items").addEventListener("change", (e) => {
       this._config = { ...this._config, max_items: parseInt(e.target.value) || 0 };
+      this._dispatch();
+    });
+    this.querySelector("#bmap-sort-by").addEventListener("change", (e) => {
+      this._config = { ...this._config, sort_by: e.target.value };
+      this._dispatch();
+    });
+    this.querySelector("#bmap-show-categories").addEventListener("change", (e) => {
+      this._config = { ...this._config, show_categories: e.target.checked };
       this._dispatch();
     });
     this.querySelector("#bmap-show-completed").addEventListener("change", (e) => {

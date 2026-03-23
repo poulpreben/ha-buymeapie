@@ -20,7 +20,7 @@ _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS: list[Platform] = [Platform.TODO]
 
-CARD_VERSION = "1.3.1"
+CARD_VERSION = "1.4.0"
 CARD_URL = f"/api/{DOMAIN}/buymeapie-card.js"
 CARD_PATH = Path(__file__).parent / "buymeapie-card.js"
 
