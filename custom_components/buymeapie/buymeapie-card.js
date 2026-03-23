@@ -492,6 +492,9 @@ class BuyMeAPieCard extends HTMLElement {
             flex-shrink: 0;
             margin-left: -16px;
           }
+          .bmap-item:last-child .bmap-cat-band {
+            border-bottom-left-radius: var(--ha-card-border-radius, 12px);
+          }
 
           /* ── Checkbox: square with rounded corners like HA native ── */
           .bmap-checkbox {
