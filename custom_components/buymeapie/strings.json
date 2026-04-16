@@ -16,7 +16,8 @@
     },
     "error": {
       "invalid_auth": "Invalid login or PIN.",
-      "cannot_connect": "Unable to connect to Buy Me a Pie."
+      "cannot_connect": "Unable to connect to Buy Me a Pie.",
+      "unknown": "An unexpected error occurred."
     },
     "abort": {
       "already_configured": "This account is already configured."

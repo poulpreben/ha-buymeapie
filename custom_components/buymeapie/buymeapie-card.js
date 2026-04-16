@@ -1,4 +1,4 @@
-const CARD_VERSION = "1.4.1";
+const CARD_VERSION = "2.0.0";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -25,6 +25,7 @@ class BuyMeAPieCard extends HTMLElement {
     this._cachedEntryId = null;
     this._inputValue = "";
     this._categories = {}; // title_lower -> group_id
+    this._entityError = null;
   }
 
   setConfig(config) {
@@ -50,9 +51,11 @@ class BuyMeAPieCard extends HTMLElement {
     const state = this._hass.states[this._config.entity];
     if (!state || state.state === "unavailable") {
       this._items = [];
+      this._entityError = this._config.entity;
       this._render();
       return;
     }
+    this._entityError = null;
     try {
       const result = await this._hass.callService(
         "todo", "get_items", {},
@@ -305,6 +308,13 @@ class BuyMeAPieCard extends HTMLElement {
     this._initialized = true;
     if (!this._config.entity) {
       this.innerHTML = `<ha-card><div style="padding:24px;text-align:center;color:var(--secondary-text-color)">Select an entity in card settings</div></ha-card>`;
+      return;
+    }
+    if (this._entityError) {
+      const safe = String(this._entityError).replace(/[&<>"']/g, (c) => (
+        { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]
+      ));
+      this.innerHTML = `<ha-card><div style="padding:24px;text-align:center;color:var(--error-color,var(--secondary-text-color))">Entity <code>${safe}</code> is unavailable</div></ha-card>`;
       return;
     }
     const entity = this._hass?.states[this._config.entity];

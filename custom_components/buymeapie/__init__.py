@@ -6,26 +6,29 @@ import logging
 from pathlib import Path
 
 from homeassistant.components.http import StaticPathConfig
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.typing import ConfigType
 
 from .api import BuyMeAPieApi
 from .const import CONF_API_URL, CONF_LOGIN, CONF_PIN, DEFAULT_API_BASE_URL, DOMAIN
-from .coordinator import BuyMeAPieCoordinator
+from .coordinator import BuyMeAPieConfigEntry, BuyMeAPieCoordinator
 from .websocket import async_register_commands
 
 _LOGGER = logging.getLogger(__name__)
 
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
+
 PLATFORMS: list[Platform] = [Platform.TODO]
 
-CARD_VERSION = "1.4.1"
+CARD_VERSION = "2.0.0"
 CARD_URL = f"/api/{DOMAIN}/buymeapie-card.js"
 CARD_PATH = Path(__file__).parent / "buymeapie-card.js"
 
 
-async def async_setup(hass: HomeAssistant, config: dict) -> bool:
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the Buy Me a Pie component."""
     async_register_commands(hass)
 
@@ -94,7 +97,7 @@ def _fallback_extra_js(hass: HomeAssistant, url: str) -> None:
     add_extra_js_url(hass, url)
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, entry: BuyMeAPieConfigEntry) -> bool:
     """Set up Buy Me a Pie from a config entry."""
     session = async_get_clientsession(hass)
     api = BuyMeAPieApi(
@@ -104,22 +107,16 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         api_url=entry.data.get(CONF_API_URL, DEFAULT_API_BASE_URL),
     )
 
-    coordinator = BuyMeAPieCoordinator(hass, api)
+    coordinator = BuyMeAPieCoordinator(hass, entry, api)
     await coordinator.async_config_entry_first_refresh()
 
-    hass.data.setdefault(DOMAIN, {})
-    hass.data[DOMAIN][entry.entry_id] = coordinator
+    entry.runtime_data = coordinator
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     return True
 
 
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_unload_entry(hass: HomeAssistant, entry: BuyMeAPieConfigEntry) -> bool:
     """Unload a config entry."""
-    if unload_ok := await hass.config_entries.async_unload_platforms(
-        entry, PLATFORMS
-    ):
-        hass.data[DOMAIN].pop(entry.entry_id)
-
-    return unload_ok
+    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)

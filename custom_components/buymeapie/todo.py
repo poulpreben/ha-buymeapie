@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
 
 from homeassistant.components.todo import (
     TodoItem,
@@ -11,37 +10,35 @@ from homeassistant.components.todo import (
     TodoListEntity,
     TodoListEntityFeature,
 )
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN
-from .coordinator import BuyMeAPieCoordinator
+from .coordinator import BuyMeAPieConfigEntry, BuyMeAPieCoordinator
 
 _LOGGER = logging.getLogger(__name__)
+
+PARALLEL_UPDATES = 1
 
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: BuyMeAPieConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up Buy Me a Pie todo entities from a config entry."""
-    coordinator: BuyMeAPieCoordinator = hass.data[DOMAIN][entry.entry_id]
-
-    entities: list[BuyMeAPieTodoListEntity] = []
-    for list_id, list_data in coordinator.data["lists"].items():
-        entities.append(
-            BuyMeAPieTodoListEntity(
-                coordinator=coordinator,
-                list_id=list_id,
-                list_name=list_data["info"]["name"],
-                entry_id=entry.entry_id,
-            )
+    coordinator = entry.runtime_data
+    async_add_entities(
+        BuyMeAPieTodoListEntity(
+            coordinator=coordinator,
+            list_id=list_id,
+            list_name=list_data["info"]["name"],
+            entry_id=entry.entry_id,
         )
-
-    async_add_entities(entities)
+        for list_id, list_data in coordinator.data["lists"].items()
+    )
 
 
 class BuyMeAPieTodoListEntity(CoordinatorEntity[BuyMeAPieCoordinator], TodoListEntity):
@@ -68,6 +65,13 @@ class BuyMeAPieTodoListEntity(CoordinatorEntity[BuyMeAPieCoordinator], TodoListE
         self._list_id = list_id
         self._attr_name = list_name
         self._attr_unique_id = f"{entry_id}_{list_id}"
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, entry_id)},
+            name=coordinator.config_entry.title,
+            manufacturer="Buy Me a Pie",
+            entry_type=DeviceEntryType.SERVICE,
+            configuration_url="https://buymeapie.com",
+        )
 
     @property
     def todo_items(self) -> list[TodoItem] | None:

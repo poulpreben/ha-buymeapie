@@ -2,20 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import voluptuous as vol
 
 from homeassistant.components import websocket_api
+from homeassistant.config_entries import ConfigEntryState
 from homeassistant.core import HomeAssistant, callback
 
 from .const import DOMAIN
+
+if TYPE_CHECKING:
+    from .coordinator import BuyMeAPieCoordinator
 
 
 def async_register_commands(hass: HomeAssistant) -> None:
     """Register WebSocket commands."""
     websocket_api.async_register_command(hass, handle_autocomplete)
     websocket_api.async_register_command(hass, handle_categories)
+
+
+def _get_coordinator(
+    hass: HomeAssistant, entry_id: str
+) -> BuyMeAPieCoordinator | None:
+    """Resolve a loaded coordinator by entry_id, or the first loaded one."""
+    if entry_id:
+        entry = hass.config_entries.async_get_entry(entry_id)
+        if entry is None or entry.state is not ConfigEntryState.LOADED:
+            return None
+        return entry.runtime_data
+    for entry in hass.config_entries.async_entries(DOMAIN):
+        if entry.state is ConfigEntryState.LOADED:
+            return entry.runtime_data
+    return None
 
 
 @websocket_api.websocket_command(
@@ -37,12 +56,7 @@ def handle_autocomplete(
     query = msg["query"].lower().strip()
     limit = msg["limit"]
 
-    domain_data = hass.data.get(DOMAIN, {})
-    if entry_id:
-        coordinator = domain_data.get(entry_id)
-    else:
-        # Use the first available entry
-        coordinator = next(iter(domain_data.values()), None)
+    coordinator = _get_coordinator(hass, entry_id)
     if coordinator is None:
         connection.send_result(msg["id"], [])
         return
@@ -99,11 +113,7 @@ def handle_categories(
 ) -> None:
     """Return a title -> group_id map for all unique items."""
     entry_id = msg.get("entry_id", "")
-    domain_data = hass.data.get(DOMAIN, {})
-    if entry_id:
-        coordinator = domain_data.get(entry_id)
-    else:
-        coordinator = next(iter(domain_data.values()), None)
+    coordinator = _get_coordinator(hass, entry_id)
     if coordinator is None:
         connection.send_result(msg["id"], {})
         return
