@@ -1,4 +1,4 @@
-const CARD_VERSION = "2.0.0";
+const CARD_VERSION = "2.1.0";
 
 // Real Buy Me a Pie category colors from lists.css
 const GROUP_COLORS = {
@@ -26,11 +26,23 @@ class BuyMeAPieCard extends HTMLElement {
     this._inputValue = "";
     this._categories = {}; // title_lower -> group_id
     this._entityError = null;
+    this._templateUnsub = null;
+    this._renderedTitle = null;
+    this._subscribedTitle = null;
+    this._subscribedEntity = null;
   }
 
   setConfig(config) {
+    const prevTitle = this._config?.title;
+    const prevEntity = this._config?.entity;
     this._config = { ...config };
     if (this._hass && this._config.entity) this._loadItems();
+    if (
+      this._hass &&
+      (prevTitle !== this._config.title || prevEntity !== this._config.entity)
+    ) {
+      this._syncTitleSubscription();
+    }
   }
 
   set hass(hass) {
@@ -44,6 +56,15 @@ class BuyMeAPieCard extends HTMLElement {
     ) {
       this._loadItems();
     }
+    if (!oldHass) this._syncTitleSubscription();
+  }
+
+  connectedCallback() {
+    if (this._hass) this._syncTitleSubscription();
+  }
+
+  disconnectedCallback() {
+    this._unsubscribeTitle();
   }
 
   async _loadItems() {
@@ -304,6 +325,96 @@ class BuyMeAPieCard extends HTMLElement {
     });
   }
 
+  // ── Title resolution ───────────────────────────────────────────────
+  // Default title is the shopping list's own name (e.g. "Shopping list"),
+  // NOT the device-prefixed friendly_name (e.g. "user@example.com Shopping list").
+  // A `title` config value is used verbatim for static text, or rendered via
+  // the render_template websocket when it contains Jinja syntax.
+  _hasTemplate(s) {
+    return typeof s === "string" && (s.includes("{{") || s.includes("{%"));
+  }
+
+  _defaultTitle() {
+    const entityId = this._config.entity;
+    const reg = this._hass?.entities?.[entityId];
+    if (reg?.name) return reg.name;
+    if (reg?.original_name) return reg.original_name;
+    // Fallback: strip the device name prefix from friendly_name when possible.
+    const state = this._hass?.states[entityId];
+    const friendly = state?.attributes?.friendly_name;
+    const deviceId = reg?.device_id;
+    const deviceName = deviceId ? this._hass?.devices?.[deviceId]?.name_by_user
+      || this._hass?.devices?.[deviceId]?.name : null;
+    if (friendly && deviceName && friendly.startsWith(deviceName + " ")) {
+      return friendly.slice(deviceName.length + 1);
+    }
+    return friendly || "Shopping List";
+  }
+
+  _resolveTitle() {
+    const raw = this._config.title;
+    if (raw && !this._hasTemplate(raw)) return raw;
+    if (raw && this._hasTemplate(raw) && this._renderedTitle !== null) {
+      return this._renderedTitle;
+    }
+    return this._defaultTitle();
+  }
+
+  _syncTitleSubscription() {
+    const title = this._config?.title;
+    const entityId = this._config?.entity;
+    const needsSub = !!title && this._hasTemplate(title) && !!this._hass?.connection;
+    if (
+      needsSub &&
+      this._templateUnsub &&
+      this._subscribedTitle === title &&
+      this._subscribedEntity === entityId
+    ) {
+      return;
+    }
+    this._unsubscribeTitle();
+    if (!needsSub) return;
+    this._subscribedTitle = title;
+    this._subscribedEntity = entityId;
+    const variables = entityId ? { entity_id: entityId } : {};
+    this._hass.connection
+      .subscribeMessage(
+        (msg) => {
+          this._renderedTitle = msg?.result ?? "";
+          this._updateHeaderTitle();
+        },
+        { type: "render_template", template: title, variables }
+      )
+      .then((unsub) => {
+        // If config changed while awaiting, drop the stale subscription.
+        if (this._subscribedTitle !== title || this._subscribedEntity !== entityId) {
+          try { unsub(); } catch { /* ignore */ }
+          return;
+        }
+        this._templateUnsub = unsub;
+      })
+      .catch((err) => {
+        console.warn("[buymeapie-card] Template render failed:", err);
+        this._renderedTitle = null;
+      });
+  }
+
+  _unsubscribeTitle() {
+    const unsub = this._templateUnsub;
+    this._templateUnsub = null;
+    this._subscribedTitle = null;
+    this._subscribedEntity = null;
+    this._renderedTitle = null;
+    if (unsub) {
+      try { unsub(); } catch { /* ignore */ }
+    }
+  }
+
+  _updateHeaderTitle() {
+    const el = this.querySelector(".bmap-header-title");
+    if (el) el.textContent = this._resolveTitle();
+  }
+
   _render() {
     this._initialized = true;
     if (!this._config.entity) {
@@ -317,8 +428,7 @@ class BuyMeAPieCard extends HTMLElement {
       this.innerHTML = `<ha-card><div style="padding:24px;text-align:center;color:var(--error-color,var(--secondary-text-color))">Entity <code>${safe}</code> is unavailable</div></ha-card>`;
       return;
     }
-    const entity = this._hass?.states[this._config.entity];
-    const name = this._config.title || entity?.attributes?.friendly_name || "Shopping List";
+    const name = this._resolveTitle();
     const sortBy = this._config.sort_by || "time"; // "time" or "category"
     const showCategories = this._config.show_categories !== false;
 
@@ -837,6 +947,11 @@ class BuyMeAPieCardEditor extends HTMLElement {
             }).join("")}
           </select>
         </div>
+        <div>
+          <label>Title</label>
+          <input type="text" id="bmap-title" value="${this._escAttr(this._config.title || "")}" placeholder="(default: shopping list name)" />
+        </div>
+        <div class="hint">Static text or a Jinja template. Examples: <code>My list</code>, <code>{{ states('sensor.weather') }}</code>, <code>{{ area_name(entity_id) }}</code>.</div>
         <div class="field-row">
           <label>Max visible items</label>
           <input type="number" id="bmap-max-items" min="0" max="50" value="${this._config.max_items || 0}" placeholder="0" />
@@ -862,6 +977,14 @@ class BuyMeAPieCardEditor extends HTMLElement {
 
     this.querySelector("#bmap-entity-select").addEventListener("change", (e) => {
       this._config = { ...this._config, entity: e.target.value };
+      this._dispatch();
+    });
+    this.querySelector("#bmap-title").addEventListener("change", (e) => {
+      const value = e.target.value;
+      const next = { ...this._config };
+      if (value) next.title = value;
+      else delete next.title;
+      this._config = next;
       this._dispatch();
     });
     this.querySelector("#bmap-max-items").addEventListener("change", (e) => {
