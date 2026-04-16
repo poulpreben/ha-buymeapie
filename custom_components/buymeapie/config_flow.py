@@ -11,7 +11,7 @@ import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .api import BuyMeAPieApi, BuyMeAPieAuthError
+from .api import BuyMeAPieApi, BuyMeAPieApiError, BuyMeAPieAuthError
 from .const import CONF_API_URL, CONF_LOGIN, CONF_PIN, DEFAULT_API_BASE_URL, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
@@ -52,14 +52,13 @@ class BuyMeAPieConfigFlow(ConfigFlow, domain=DOMAIN):
                 await api.authenticate()
             except BuyMeAPieAuthError:
                 errors["base"] = "invalid_auth"
-            except (aiohttp.ClientError, Exception):
-                _LOGGER.exception("Unexpected error during authentication")
+            except (BuyMeAPieApiError, aiohttp.ClientError, TimeoutError):
                 errors["base"] = "cannot_connect"
+            except Exception:
+                _LOGGER.exception("Unexpected error during authentication")
+                errors["base"] = "unknown"
             else:
-                return self.async_create_entry(
-                    title=f"Buy Me a Pie ({login})",
-                    data=user_input,
-                )
+                return self.async_create_entry(title=login, data=user_input)
 
         return self.async_show_form(
             step_id="user",

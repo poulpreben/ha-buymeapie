@@ -6,7 +6,9 @@ from datetime import timedelta
 import logging
 from typing import Any
 
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import BuyMeAPieApi, BuyMeAPieApiError, BuyMeAPieAuthError
@@ -14,15 +16,25 @@ from .const import DEFAULT_SCAN_INTERVAL, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
+type BuyMeAPieConfigEntry = ConfigEntry[BuyMeAPieCoordinator]
+
 
 class BuyMeAPieCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Coordinator to fetch Buy Me a Pie lists and items."""
 
-    def __init__(self, hass: HomeAssistant, api: BuyMeAPieApi) -> None:
+    config_entry: BuyMeAPieConfigEntry
+
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        config_entry: BuyMeAPieConfigEntry,
+        api: BuyMeAPieApi,
+    ) -> None:
         """Initialize the coordinator."""
         super().__init__(
             hass,
             _LOGGER,
+            config_entry=config_entry,
             name=DOMAIN,
             update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
         )
@@ -33,7 +45,7 @@ class BuyMeAPieCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         try:
             lists = await self.api.get_lists()
         except BuyMeAPieAuthError as err:
-            raise UpdateFailed(f"Authentication failed: {err}") from err
+            raise ConfigEntryAuthFailed(f"Authentication failed: {err}") from err
         except BuyMeAPieApiError as err:
             raise UpdateFailed(f"Error fetching lists: {err}") from err
 

@@ -35,6 +35,16 @@ Or manually:
 1. Copy `custom_components/buymeapie/` to your Home Assistant `config/custom_components/` directory
 2. Restart Home Assistant
 
+## Removal
+
+1. Go to **Settings** > **Devices & Services**
+2. Click the **Buy Me a Pie** integration card
+3. Click the three-dot menu on the account entry and choose **Delete**
+4. (HACS) Open HACS > **Integrations** > **Buy Me a Pie** > three-dot menu > **Remove**
+5. (Manual) Delete `custom_components/buymeapie/` from your `config/` directory
+6. Remove any `custom:buymeapie-card` entries from your dashboards
+7. Restart Home Assistant
+
 ## Configuration
 
 1. Go to **Settings** > **Devices & Services** > **Add Integration**
